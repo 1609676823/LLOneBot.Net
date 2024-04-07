@@ -58,6 +58,18 @@ namespace LLOneBot.Net.Data
         /// 窗口抖动（戳一戳）
         /// </summary>
         Shake,
+        /// <summary>
+        /// 匿名发消息
+        /// </summary>
+        Anonymous,
+        /// <summary>
+        /// 链接分享
+        /// </summary>
+        Share,
+        /// <summary>
+        /// 推荐好友/群
+        /// </summary>
+        Contact
 
     }
 }
