@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace LLOneBot.Net.Receivers
+namespace LLOneBot.Net.Data
 {
     public class MessageBase
     {
@@ -13,10 +13,11 @@ namespace LLOneBot.Net.Receivers
         /// 消息类型
         /// </summary>
         [JsonPropertyName("type")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(MessageType))]
-        public virtual string? Type { get; set; }
+        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
+        public virtual MessageType Type { get; set; }
+        
     }
-
+    
 
     /// <summary>
     /// 发送消息类型
@@ -41,5 +42,22 @@ namespace LLOneBot.Net.Receivers
         /// 语音
         /// </summary>
         Record,
+        /// <summary>
+        /// 短视频
+        /// </summary>
+        Video,
+        /// <summary>
+        /// @某人
+        /// </summary>
+        At,
+        /// <summary>
+        /// 猜拳魔法表情
+        /// </summary>
+        Rps,
+        /// <summary>
+        /// 窗口抖动（戳一戳）
+        /// </summary>
+        Shake,
+
     }
 }
