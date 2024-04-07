@@ -61,9 +61,9 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// 接收message：消息事件
         /// </summary>
-        public IObservable<ResponseMessage> MessageReceived => _messageReceived.AsObservable();
+        public IObservable<Receivers.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
 
-        private readonly Subject<ResponseMessage> _messageReceived = new();
+        private readonly Subject<Receivers.MessageReceiverBase> _messageReceived = new();
 
         /// <summary>
         ///request：请求事件
@@ -351,6 +351,7 @@ namespace LLOneBot.Net.Sessions
                 JsonElement root = jsonDocument.RootElement;
 
                 string post_type = Convert.ToString(root.GetProperty("post_type"))!;
+                string message_type = Convert.ToString(root.GetProperty("message_type"))!;
 
                 /*
 message：消息事件
@@ -358,12 +359,41 @@ notice：通知事件
 request：请求事件
 meta_event：元事件
                  */
+                // Receivers.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.MessageReceiverBase>(responseMessage.Text!)!;
+                //if ("group".Equals(messageReceiverBase.Messagetype,StringComparison.OrdinalIgnoreCase))
+                //{
+                //    Receivers.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.GroupMessageReceiver>(responseMessage.Text!)!;
+                // }
 
 
                 if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
-                    _messageReceived.OnNext(responseMessage);
+
+
+                   
+
+                    if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
+                    {
+
+                     
+                       
+
+                        Receivers.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.GroupMessageReceiver>(responseMessage.Text!)!;
+                        _messageReceived.OnNext(groupMessageReceiver);
+                    }
+                    else if ("private".Equals(message_type, StringComparison.OrdinalIgnoreCase))
+                    {
+
+                    }
+                    else {
+                        Receivers.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.MessageReceiverBase>(responseMessage.Text!)!;
+                        _messageReceived.OnNext(messageReceiverBase);
+
+                    }
+                
+           
+                  
                 }
 
 

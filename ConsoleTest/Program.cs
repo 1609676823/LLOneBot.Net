@@ -1,6 +1,7 @@
 ﻿namespace ConsoleTest
 {
     using LLOneBot.Net.Data;
+    using LLOneBot.Net.Receivers;
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
     using System.Reactive.Linq;
@@ -58,10 +59,12 @@
             LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
             await liteLoaderQQNTBot.StartBot();
             /* 接收message 消息事件*/
-            liteLoaderQQNTBot.MessageReceived.OfType<ResponseMessage>().Subscribe(msg =>
+
+            /* 接收到群消息*/
+            liteLoaderQQNTBot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(msg =>
             {
-                Console.WriteLine("接收到message 消息事件");
-                Console.WriteLine(msg.Text);
+                Console.WriteLine("接收到群消息");
+                Console.WriteLine(msg.raw_message);
             });
             /* request 请求事件*/
             liteLoaderQQNTBot.RequestReceived.OfType<ResponseMessage>().Subscribe(msg =>

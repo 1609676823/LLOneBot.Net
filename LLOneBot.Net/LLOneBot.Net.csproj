@@ -21,10 +21,6 @@
     <PackageReference Include="Websocket.Client" Version="5.1.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Receivers\" />
-  </ItemGroup>
-
   <!-- 如果当前框架是Framework，则引用System.Web -->
   <!--<ItemGroup>
     <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net481'" />
