@@ -42,12 +42,7 @@ namespace LLOneBot.Net.Sessions
 
         private readonly Subject<object> _unknownMessageReceived = new();
 
-        /// <summary>
-        /// 接收meta_event元事件
-        /// </summary>
-        public IObservable<ResponseMessage> Meta_eventReceived => _meta_eventReceived.AsObservable();
 
-        private readonly Subject<ResponseMessage> _meta_eventReceived = new();
 
         /// <summary>
         /// Websocket断开连接
@@ -56,12 +51,34 @@ namespace LLOneBot.Net.Sessions
         public IObservable<WebSocketCloseStatus> DisconnectionHappened => _disconnectionHappened.AsObservable();
 
         private readonly Subject<WebSocketCloseStatus> _disconnectionHappened = new();
+        /// <summary>
+        /// 接收meta_event元事件
+        /// </summary>
+        public IObservable<ResponseMessage> Meta_eventReceived => _meta_eventReceived.AsObservable();
+
+        private readonly Subject<ResponseMessage> _meta_eventReceived = new();
+
+        /// <summary>
+        /// 接收message：消息事件
+        /// </summary>
+        public IObservable<ResponseMessage> MessageReceived => _messageReceived.AsObservable();
+
+        private readonly Subject<ResponseMessage> _messageReceived = new();
+
+        /// <summary>
+        ///request：请求事件
+        /// </summary>
+        public IObservable<ResponseMessage> RequestReceived => _requestReceived.AsObservable();
+
+        private readonly Subject<ResponseMessage> _requestReceived = new();
 
 
+        /// <summary>
+        ///notice：通知事件
+        /// </summary>
+        public IObservable<ResponseMessage> NoticeReceived => _noticeReceived.AsObservable();
 
-
-
-
+        private readonly Subject<ResponseMessage> _noticeReceived = new();
 
         #region 构造类基础属性
 
@@ -341,6 +358,26 @@ notice：通知事件
 request：请求事件
 meta_event：元事件
                  */
+
+
+                if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+
+                {
+                    _messageReceived.OnNext(responseMessage);
+                }
+
+
+                if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+
+                {
+                    _noticeReceived.OnNext(responseMessage);
+                }
+
+                if ("request".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+
+                {
+                    _requestReceived.OnNext(responseMessage);
+                }
 
                 if ("meta_event".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 

@@ -9,7 +9,7 @@
 
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
             #region MyRegion
@@ -36,32 +36,57 @@
             // 禁用鼠标点击等待
             Console.TreatControlCAsInput = true;
             var exit = new ManualResetEvent(false);
+            #region 不使用await
+
+
+            //LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
+            //Task<LoginInfo> taskStartBot = liteLoaderQQNTBot.StartBot();
+            //taskStartBot.Wait();
+            //if ("ok".Equals(taskStartBot.Result.status, StringComparison.OrdinalIgnoreCase))
+            //{
+            //    Console.WriteLine("BOT连接成功");
+            //    Console.WriteLine("账号:"+ taskStartBot.Result.user_id);
+            //    Console.WriteLine("名称:" + taskStartBot.Result.nickname);
+
+            //}
+
+            //else
+            //{ Console.WriteLine("BOT连接失败"); }
+
+            #endregion
 
             LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
-
-            Task<LoginInfo> taskStartBot = liteLoaderQQNTBot.StartBot();
-            taskStartBot.Wait();
-            if ("ok".Equals(taskStartBot.Result.status, StringComparison.OrdinalIgnoreCase))
+            await liteLoaderQQNTBot.StartBot();
+            /* 接收message 消息事件*/
+            liteLoaderQQNTBot.MessageReceived.OfType<ResponseMessage>().Subscribe(msg =>
             {
-                Console.WriteLine("BOT连接成功");
-                Console.WriteLine("账号:"+ taskStartBot.Result.user_id);
-                Console.WriteLine("名称:" + taskStartBot.Result.nickname);
-
-            }
-
-            else
-            { Console.WriteLine("BOT连接失败"); }
-
+                Console.WriteLine("接收到message 消息事件");
+                Console.WriteLine(msg.Text);
+            });
+            /* request 请求事件*/
+            liteLoaderQQNTBot.RequestReceived.OfType<ResponseMessage>().Subscribe(msg =>
+            {
+                Console.WriteLine("接收到request 请求事件");
+                Console.WriteLine(msg.Text);
+            });
+            /* notice 通知事件*/
+            liteLoaderQQNTBot.NoticeReceived.OfType<ResponseMessage>().Subscribe(msg =>
+            {
+                Console.WriteLine("接收到notice 通知事件");
+                Console.WriteLine(msg.Text);
+            });
 
             /*接收meta_event元事件*/
             liteLoaderQQNTBot.Meta_eventReceived.Subscribe(e =>
             {
+                Console.WriteLine("接收到meta_event元事件");
                 Console.WriteLine(e);
             });
+
+            /*断开连接事件*/
             liteLoaderQQNTBot.DisconnectionHappened.Subscribe(e =>
             {
                 Console.WriteLine("websocket断开连接：" + e);
-
                 // liteLoaderQQNTBot.StartBot();
             });
 
