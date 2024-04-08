@@ -1,17 +1,22 @@
 ﻿namespace ConsoleTest
 {
     using LLOneBot.Net.Data;
+    using LLOneBot.Net.Data.MessageDataType;
     using LLOneBot.Net.Receivers;
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
     using System.Reactive.Linq;
     using Websocket.Client;
-    using static System.Runtime.InteropServices.JavaScript.JSType;
+   
+
 
     internal class Program
     {
         static async Task Main(string[] args)
         {
+           
+         
+
 
             #region MyRegion
             //liteLoaderQQNTBot.MessageReceived.Subscribe(e =>
@@ -65,6 +70,16 @@
             {
                 Console.WriteLine("接收到群消息");
                 Console.WriteLine(msg.raw_message);
+                MessageChain messageChain = msg.message;
+                foreach (MessageBase item in messageChain)
+                {
+                   // if (item.Type==MessageType.At)
+                    {
+                        AtMessage at = item as AtMessage;
+                    }
+                }
+
+
             });
             /* request 请求事件*/
             liteLoaderQQNTBot.RequestReceived.OfType<ResponseMessage>().Subscribe(msg =>
@@ -101,4 +116,8 @@
             //Console.WriteLine("Hello, World!");
         }
     }
+
+
+
+
 }

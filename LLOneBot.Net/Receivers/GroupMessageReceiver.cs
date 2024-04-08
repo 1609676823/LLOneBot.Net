@@ -28,7 +28,8 @@ namespace LLOneBot.Net.Receivers
         /// 消息子类型，正常消息是 normal，匿名消息是 anonymous，系统提示（如「管理员已禁止群内匿名聊天」）是 notice
         /// </summary>
         public string sub_type { get; set; }
-        //  public Message[] message { get; set; }
+        [JsonPropertyName("message")]
+        public Data.MessageChain message { get; set; }
         public string message_format { get; set; }
         public string post_type { get; set; }
         public int group_id { get; set; }

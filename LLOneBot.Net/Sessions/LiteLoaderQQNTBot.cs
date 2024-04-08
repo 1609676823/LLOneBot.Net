@@ -10,6 +10,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Websocket.Client;
@@ -347,11 +348,14 @@ namespace LLOneBot.Net.Sessions
             try
             {
 
-                JsonDocument jsonDocument = JsonDocument.Parse(responseMessage.Text!);
-                JsonElement root = jsonDocument.RootElement;
+                //JsonDocument jsonDocument = JsonDocument.Parse(responseMessage.Text!);
+                //JsonElement root = jsonDocument.RootElement;
+                //string post_type = Convert.ToString(root.GetProperty("post_type"))!;
+                //string message_type = Convert.ToString(root.GetProperty("message_type"))!;
 
-                string post_type = Convert.ToString(root.GetProperty("post_type"))!;
-                string message_type = Convert.ToString(root.GetProperty("message_type"))!;
+                JsonNode jsonNode = JsonNode.Parse(responseMessage.Text!)!;
+                string post_type = Convert.ToString(jsonNode["post_type"])!;
+                string message_type = Convert.ToString(jsonNode["message_type"])!;
 
                 /*
 message：消息事件

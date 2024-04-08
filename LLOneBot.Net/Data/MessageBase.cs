@@ -2,22 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LLOneBot.Net.Data
 {
-    public class MessageBase
+    /// <summary>
+    /// 所有消息的基类
+    /// </summary>
+    public partial class MessageBase
     {
+
+        /// <summary>
+        /// MessageBase
+        /// </summary>
+        public MessageBase() { }
         /// <summary>
         /// 消息类型
         /// </summary>
         [JsonPropertyName("type")]
         [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
         public virtual MessageType Type { get; set; }
-        
+        /// <summary>
+        /// 消息内容
+        /// </summary>
+       [JsonPropertyName("data")]
+        public virtual JsonNode data { get; set; }
+
+
+
+
     }
-    
 
     /// <summary>
     /// 发送消息类型
@@ -69,7 +86,36 @@ namespace LLOneBot.Net.Data
         /// <summary>
         /// 推荐好友/群
         /// </summary>
-        Contact
+        Contact,
+        /// <summary>
+        /// 位置
+        /// </summary>
+        Location,
+        /// <summary>
+        /// 音乐分享/音乐自定义分享
+        /// </summary>
+        Music,
+        /// <summary>
+        /// 回复
+        /// </summary>
+        Reply,
+        /// <summary>
+        /// 合并转发
+        /// </summary>
+        Forward,
+        /// <summary>
+        /// 合并转发节点/合并转发自定义节点
+        /// </summary>
+        Node,
+        /// <summary>
+        /// XML 消息
+        /// </summary>
+        Xml,
+        /// <summary>
+        /// JSON 消息
+        /// </summary>
+        Json
+
 
     }
 }
