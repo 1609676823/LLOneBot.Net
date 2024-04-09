@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,25 +13,31 @@ namespace LLOneBot.Net.Data
     /// <summary>
     /// 所有消息的基类
     /// </summary>
-    public partial class MessageBase
+    public  class MessageBase
     {
 
         /// <summary>
         /// MessageBase
         /// </summary>
-        public MessageBase() { }
+        public MessageBase()
+        {
+            
+        }
+
+
+        // [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
+
         /// <summary>
         /// 消息类型
         /// </summary>
-        [JsonPropertyName("type")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
-        public virtual MessageType Type { get; set; }
+        //
+        [JsonIgnore]
+        public virtual MessageType MessageType { get; set; } = MessageType.At;
         /// <summary>
-        /// 消息内容
+        /// 消息类型string
         /// </summary>
-       [JsonPropertyName("data")]
-        public virtual JsonNode data { get; set; }
-
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
 
 
 

@@ -17,12 +17,17 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// AtMessage
         /// </summary>
         public AtMessage() { }
+
+
+
         /// <summary>
-        /// 消息类型
+        /// 消息数据
         /// </summary>
-        public override MessageType Type { get; set; } = MessageType.At;
-      //  [JsonPropertyName("data")]
-       // public Data data { get; set; }
+        [JsonPropertyName("data")]     
+        public Data Data { get; set; }
+
+
+       
 
     }
 

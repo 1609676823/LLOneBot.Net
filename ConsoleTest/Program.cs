@@ -6,6 +6,7 @@
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
     using System.Reactive.Linq;
+    using System.Text.Json;
     using Websocket.Client;
    
 
@@ -14,8 +15,8 @@
     {
         static async Task Main(string[] args)
         {
-           
-         
+           // AtMessage atMessage = new AtMessage();
+           //var json = JsonSerializer.Serialize(atMessage)!;
 
 
             #region MyRegion
@@ -70,12 +71,12 @@
             {
                 Console.WriteLine("接收到群消息");
                 Console.WriteLine(msg.raw_message);
-                MessageChain messageChain = msg.message;
+                MessageChain messageChain = msg.MessageChain;
                 foreach (MessageBase item in messageChain)
                 {
-                   // if (item.Type==MessageType.At)
+                   if (item.MessageType==MessageType.At)
                     {
-                        AtMessage at = item as AtMessage;
+                        AtMessage? at = item as AtMessage;
                     }
                 }
 

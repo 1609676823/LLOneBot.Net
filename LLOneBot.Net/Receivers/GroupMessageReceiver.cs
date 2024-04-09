@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LLOneBot.Net.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,39 @@ namespace LLOneBot.Net.Receivers
         /// 消息子类型，正常消息是 normal，匿名消息是 anonymous，系统提示（如「管理员已禁止群内匿名聊天」）是 notice
         /// </summary>
         public string sub_type { get; set; }
+
+
+        private object _messagejson;
+        /// <summary>
+        /// 消息json
+        /// </summary>
         [JsonPropertyName("message")]
-        public Data.MessageChain message { get; set; }
+        public object messagejson
+        {
+
+            get { return _messagejson; }
+            set
+            {
+                _messagejson = (value);
+                try
+                {
+                    this.MessageChain = MessageBuilder.BulderMessageChain(value);
+                }
+                catch (Exception ex)
+                {
+
+                  //  throw;
+                }
+               
+            }
+
+        }
+
+        /// <summary>
+        /// 接收的消息链
+        /// </summary>
+        [JsonIgnore]
+        public Data.MessageChain MessageChain { get; set; }=new Data.MessageChain();
         public string message_format { get; set; }
         public string post_type { get; set; }
         public int group_id { get; set; }
