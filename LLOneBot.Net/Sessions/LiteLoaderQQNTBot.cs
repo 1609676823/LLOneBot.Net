@@ -23,6 +23,11 @@ namespace LLOneBot.Net.Sessions
     /// </summary>
     public class LiteLoaderQQNTBot
     {
+        /// <summary>
+        /// 最后一个启动的LiteLoaderQQNTBot实例
+        /// </summary>
+        [JsonIgnore]
+        public static LiteLoaderQQNTBot Instance { get; set; }
         private WebsocketClient? _client;
         //  public static LiteLoaderQQNTBot Instance { get; set; }
 

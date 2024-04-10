@@ -72,18 +72,18 @@
                 Console.WriteLine("接收到群消息");
                 Console.WriteLine(msg.raw_message);
                 MessageChain messageChain = msg.MessageChain;
-                foreach (MessageBase item in messageChain)
-                {
-                    if (item.MessageType == MessageType.At)
-                    {
-                        AtMessage? atMessage = item as AtMessage;
+                //foreach (MessageBase item in messageChain)
+                //{
+                //    if (item.MessageType == MessageType.At)
+                //    {
+                //        AtMessage? atMessage = item as AtMessage;
                        
-                    }
-                    if (item.MessageType == MessageType.Image)
-                    {
-                        ImageMessage? imageMessage = item as ImageMessage;
-                    }
-                }
+                //    }
+                //    if (item.MessageType == MessageType.Image)
+                //    {
+                //        ImageMessage? imageMessage = item as ImageMessage;
+                //    }
+                //}
 
 
             });
