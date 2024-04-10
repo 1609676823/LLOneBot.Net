@@ -44,7 +44,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         ///图片 URL
         /// </summary>
-        [JsonIgnore]
+       // [JsonIgnore]
         public string url { get; set; }
         /// <summary>
         ///只在通过网络 URL 发送时有效，表示是否使用已缓存的文件，默认 1
