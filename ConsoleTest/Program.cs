@@ -74,9 +74,10 @@
                 MessageChain messageChain = msg.MessageChain;
                 foreach (MessageBase item in messageChain)
                 {
-                   if (item.MessageType==MessageType.At)
+                    if (item.MessageType == MessageType.At)
                     {
-                        AtMessage? at = item as AtMessage;
+                        AtMessage? atMessage = item as AtMessage;
+                       
                     }
                 }
 

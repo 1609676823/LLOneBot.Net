@@ -32,12 +32,12 @@ namespace LLOneBot.Net.Data
         /// </summary>
         //
         [JsonIgnore]
-        public virtual MessageType MessageType { get; set; } = MessageType.At;
+        public virtual MessageType MessageType { get; set; } 
         /// <summary>
         /// 消息类型string
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public virtual string type { get; set; } = "";
 
 
 

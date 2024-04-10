@@ -1,9 +1,13 @@
-﻿using System;
+﻿using LLOneBot.Net.Data.MessageDataType;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Websocket.Client;
+using static Microsoft.IO.RecyclableMemoryStreamManager;
 
 namespace LLOneBot.Net.Data
 {
@@ -26,13 +30,11 @@ namespace LLOneBot.Net.Data
 
             foreach (JsonNode item in MessageArray) 
             {
-                string type = Convert.ToString(item!["type"])!;
 
-                if ("at".Equals(type, StringComparison.OrdinalIgnoreCase))
-                { 
-                
-                }
+                MessageBase  messageBase=new MessageBase();
+                messageBase = BulderMessageBase(item!);
 
+                messageChain.Add(messageBase);
 
             }
 
@@ -48,6 +50,29 @@ namespace LLOneBot.Net.Data
         public static MessageBase BulderMessageBase(JsonNode MessageDataJson) 
         {
             MessageBase messageBase = new MessageBase();
+            string type = Convert.ToString(MessageDataJson!["type"])!;
+
+
+
+            if ("at".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+               // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+
+                 messageBase = JsonSerializer.Deserialize<AtMessage>(MessageDataJson, new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping })!;
+                return messageBase;
+            }
+
+            if ("text".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                messageBase = JsonSerializer.Deserialize<TextMessage>(MessageDataJson, new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping })!;
+                return messageBase;
+            }
+
+            if ("image".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                messageBase = JsonSerializer.Deserialize<ImageMessage>(MessageDataJson, new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping })!;
+                return messageBase;
+            }
 
             return messageBase;
         }

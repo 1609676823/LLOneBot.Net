@@ -18,20 +18,29 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// </summary>
         public AtMessage() { }
 
-
-
+        /// <summary>
+        /// public override MessageType MessageType { get => base.MessageType  ; set => base.MessageType = value; }
+        /// </summary>
+        [JsonIgnore]
+        public override MessageType MessageType { get; set; } = MessageType.At;
+        /// <summary>
+        /// 
+        /// </summary>
+        public override string type { get; set; } = "at";
         /// <summary>
         /// 消息数据
         /// </summary>
         [JsonPropertyName("data")]     
-        public Data Data { get; set; }
+        public AtMessageData data { get; set; }=new AtMessageData();
 
 
        
 
     }
-
-    public class Data
+    /// <summary>
+    /// 
+    /// </summary>
+    public class AtMessageData
     {
         /// <summary>
         /// @的 QQ 号，all 表示全体成员
