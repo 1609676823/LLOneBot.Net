@@ -15,7 +15,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         /// 类型
         /// </summary>
-        [JsonIgnore]
+       // [JsonIgnore]
         public override MessageType MessageType { get; set; } = MessageType.Image;
         /// <summary>
         /// 类型json

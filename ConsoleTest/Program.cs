@@ -79,6 +79,10 @@
                         AtMessage? atMessage = item as AtMessage;
                        
                     }
+                    if (item.MessageType == MessageType.Image)
+                    {
+                        ImageMessage? imageMessage = item as ImageMessage;
+                    }
                 }
 
 
