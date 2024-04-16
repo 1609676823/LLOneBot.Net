@@ -15,9 +15,10 @@
     {
         static async Task Main(string[] args)
         {
-           // AtMessage atMessage = new AtMessage();
-           //var json = JsonSerializer.Serialize(atMessage)!;
+            // AtMessage atMessage = new AtMessage();
+            //var json = JsonSerializer.Serialize(atMessage)!;
 
+         
 
             #region MyRegion
             //liteLoaderQQNTBot.MessageReceived.Subscribe(e =>
@@ -63,7 +64,19 @@
             #endregion
 
             LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
+
+            MessageChain messageChain = new MessageChain
+                             {
+                            
+                               // new AtMessage(x.Sender.Id),
+                                new TextMessage(),
+                              };
+            
+
             await liteLoaderQQNTBot.StartBot();
+
+            MessageManager.SendGroupMessage("600075933", messageChain);
+
             /* 接收message 消息事件*/
 
             /* 接收到群消息*/
