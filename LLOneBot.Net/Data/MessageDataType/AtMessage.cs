@@ -16,8 +16,18 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         /// AtMessage
         /// </summary>
-        public AtMessage() { }
-
+        public AtMessage() 
+        { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="atqq"></param>
+        public AtMessage(string atqq)
+        {
+            this.data = new AtMessageData();
+            // this.data.text=messagetext;
+           (this.data as AtMessageData)!.qq = atqq;
+        }
         /// <summary>
         /// public override MessageType MessageType { get => base.MessageType  ; set => base.MessageType = value; }
         /// </summary>
@@ -31,10 +41,15 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 消息数据
         /// </summary>
         [JsonPropertyName("data")]     
-        public AtMessageData data { get; set; }=new AtMessageData();
+        public new AtMessageData? data { 
+            get 
+            { return base.data as AtMessageData; } 
+            set 
+            { base.data = (value); } 
+        } 
 
 
-       
+
 
     }
     /// <summary>
@@ -45,7 +60,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         /// @的 QQ 号，all 表示全体成员
         /// </summary>
-        public string qq { get; set; }
+        public string? qq { get; set; }
     }
 
 }

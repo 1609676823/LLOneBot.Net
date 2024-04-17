@@ -70,7 +70,7 @@
    
             await liteLoaderQQNTBot.StartBot();
 
-           MessageManager.SendFriendMessage("2361803582", messageChain,true);
+         //  MessageManager.SendFriendMessage("2361803582", messageChain,true);
 
             /* 接收message 消息事件*/
 
@@ -82,22 +82,31 @@
 
                 MessageChain messageChain = msg.MessageChain;
 
-                foreach (var itemmessage in messageChain)
+                foreach (var item in messageChain)
                 {
-                    if (itemmessage.MessageType== MessageType.Text)
+                    if (item.MessageType== MessageType.Text)
                     {
                         
-                        var message= itemmessage as TextMessage;
+                        var message= item as TextMessage;
                        
                     }
-                
+
+                    if (item.MessageType == MessageType.Image)
+                    {
+                        ImageMessage? imageMessage = item as ImageMessage;
+                    }
+                    if (item.MessageType == MessageType.At)
+                    {
+                        AtMessage? atMessage = item as AtMessage;
+
+                    }
                 }
                 //foreach (MessageBase item in messageChain)
                 //{
                 //    if (item.MessageType == MessageType.At)
                 //    {
                 //        AtMessage? atMessage = item as AtMessage;
-                       
+
                 //    }
                 //    if (item.MessageType == MessageType.Image)
                 //    {
