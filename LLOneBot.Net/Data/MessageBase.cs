@@ -38,9 +38,11 @@ namespace LLOneBot.Net.Data
         /// </summary>
         [JsonPropertyName("type")]
         public virtual string type { get; set; } = "";
-
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonPropertyName("data")]
-        public virtual object data { get; set; } 
+        public virtual object? data { get; set; }
 
 
 

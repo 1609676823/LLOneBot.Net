@@ -23,7 +23,9 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <param name="messagetext"></param>
         public TextMessage(string messagetext) 
         {
-        (this.data as TextMessageData).text = messagetext; 
+            this.data=new TextMessageData();
+            this.data.text=messagetext;
+         //(this.data as TextMessageData).text = messagetext; 
         }
 
 
@@ -41,7 +43,9 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 消息数据
         /// </summary>
         [JsonPropertyName("data")]
-        public override object data { get; set; } = new TextMessageData();
+        //[JsonIgnore]
+        public  TextMessageData? data { get { return base.data as TextMessageData; } set { base.data = (value); } } //= new TextMessageData();
+        //{ get { return this.data; } set { this.data = (value); } } 
     }
 
 
@@ -53,6 +57,6 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         ///纯文本内容
         /// </summary>
-        public string text { get; set; }
+        public string? text { get; set; }
     }
 }

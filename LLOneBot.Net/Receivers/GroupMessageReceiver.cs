@@ -14,29 +14,52 @@ namespace LLOneBot.Net.Receivers
     public class GroupMessageReceiver: MessageReceiverBase
     {
         /// <summary>
-        /// 
+        /// 收到事件的机器人 QQ 号
         /// </summary>
         [JsonPropertyName("self_id")]
         public int self_id { get; set; }
+        /// <summary>
+        /// 发送者 QQ 号
+        /// </summary>
         public long user_id { get; set; }
+        /// <summary>
+        /// 事件发生的时间戳
+        /// </summary>
         public int time { get; set; }
+        /// <summary>
+        /// 消息 ID
+        /// </summary>
         public int message_id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int real_id { get; set; }
-        public Sender sender { get; set; }
-        public string raw_message { get; set; }
+        /// <summary>
+        /// 发送人信息
+        /// </summary>
+        public Sender? sender { get; set; }
+        /// <summary>
+        /// 原始消息内容
+        /// </summary>
+        public string? raw_message { get; set; }
+        /// <summary>
+        /// 字体
+        /// </summary>
         public int font { get; set; }
         /// <summary>
         /// 消息子类型，正常消息是 normal，匿名消息是 anonymous，系统提示（如「管理员已禁止群内匿名聊天」）是 notice
         /// </summary>
-        public string sub_type { get; set; }
+        public string? sub_type { get; set; }
 
-
-        private object _messagejson;
+        /// <summary>
+        /// 
+        /// </summary>
+        private object? _messagejson;
         /// <summary>
         /// 消息json
         /// </summary>
         [JsonPropertyName("message")]
-        public object messagejson
+        public object? messagejson
         {
 
             get { return _messagejson; }
@@ -62,11 +85,23 @@ namespace LLOneBot.Net.Receivers
         /// </summary>
         [JsonIgnore]
         public Data.MessageChain MessageChain { get; set; }=new Data.MessageChain();
-        public string message_format { get; set; }
-        public string post_type { get; set; }
-        public int group_id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string? message_format { get; set; }
+        /// <summary>
+        /// 上报类型 message
+        /// </summary>
+        public string? post_type { get; set; }
+        /// <summary>
+        /// 群号
+        /// </summary>
+        public int? group_id { get; set; }
 
-        public Anonymous anonymous { get; set; }
+        /// <summary>
+        /// 匿名信息，如果不是匿名消息则为 null
+        /// </summary>
+        public Anonymous? anonymous { get; set; }
     }
 
 
@@ -83,23 +118,35 @@ namespace LLOneBot.Net.Receivers
         /// <summary>
         /// 昵称
         /// </summary>
-        public string nickname { get; set; }
+        public string? nickname { get; set; }
         /// <summary>
         /// 群名片/备注
         /// </summary>
-        public string card { get; set; }
-        public string sex { get; set; }
-        public string age { get; set; }
-        public string area { get; set; }
-        public string level { get; set; }
+        public string? card { get; set; }
+        /// <summary>
+        /// 性别，male 或 female 或 unknown
+        /// </summary>
+        public string? sex { get; set; }
+        /// <summary>
+        /// 年龄
+        /// </summary>
+        public string? age { get; set; }
+        /// <summary>
+        /// 地区
+        /// </summary>
+        public string? area { get; set; }
+        /// <summary>
+        /// 成员等级
+        /// </summary>
+        public string? level { get; set; }
         /// <summary>
         /// 角色，owner 或 admin 或 member
         /// </summary>
-        public string role { get; set; }
+        public string? role { get; set; }
         /// <summary>
         /// 专属头衔
         /// </summary>
-        public string title { get; set; }
+        public string? title { get; set; }
 
     }
     /// <summary>

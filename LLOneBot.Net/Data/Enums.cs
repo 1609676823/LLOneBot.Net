@@ -20,18 +20,22 @@ namespace LLOneBot.Net.Data
         /// <summary>
         /// Private
         /// </summary>
-        
+        [EnumMember(Value = "private")]
+        [Description("private")]
         Private,
 
         /// <summary>
         /// Group
         /// </summary>
-       
-     
+
+        [EnumMember(Value = "group")]
+        [Description("group")]
         Group,
         /// <summary>
         /// Unknown
         /// </summary>
+        [EnumMember(Value = "unknown")]
+        [Description("unknown")]
         Unknown
 
 

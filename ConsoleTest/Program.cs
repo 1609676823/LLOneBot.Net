@@ -9,16 +9,12 @@
     using System.Text.Json;
     using Websocket.Client;
    
-
-
     internal class Program
     {
         static async Task Main(string[] args)
         {
             // AtMessage atMessage = new AtMessage();
             //var json = JsonSerializer.Serialize(atMessage)!;
-
-         
 
             #region MyRegion
             //liteLoaderQQNTBot.MessageReceived.Subscribe(e =>
@@ -71,11 +67,10 @@
                                // new AtMessage(x.Sender.Id),
                                 new TextMessage("测试1"),
                               };
-
-           
+   
             await liteLoaderQQNTBot.StartBot();
 
-            MessageManager.SendFriendMessage("2361803582", messageChain);
+           MessageManager.SendFriendMessage("2361803582", messageChain,true);
 
             /* 接收message 消息事件*/
 
@@ -84,7 +79,19 @@
             {
                 Console.WriteLine("接收到群消息");
                 Console.WriteLine(msg.raw_message);
+
                 MessageChain messageChain = msg.MessageChain;
+
+                foreach (var itemmessage in messageChain)
+                {
+                    if (itemmessage.MessageType== MessageType.Text)
+                    {
+                        
+                        var message= itemmessage as TextMessage;
+                       
+                    }
+                
+                }
                 //foreach (MessageBase item in messageChain)
                 //{
                 //    if (item.MessageType == MessageType.At)
