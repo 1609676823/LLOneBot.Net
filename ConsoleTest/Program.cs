@@ -69,13 +69,13 @@
                              {
                             
                                // new AtMessage(x.Sender.Id),
-                                new TextMessage("测试"),
+                                new TextMessage("测试1"),
                               };
 
            
             await liteLoaderQQNTBot.StartBot();
 
-            MessageManager.SendFriendMessage("1609676823", messageChain);
+            MessageManager.SendFriendMessage("2361803582", messageChain);
 
             /* 接收message 消息事件*/
 

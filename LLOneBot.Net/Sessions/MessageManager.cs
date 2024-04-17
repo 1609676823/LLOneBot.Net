@@ -55,8 +55,9 @@ namespace LLOneBot.Net.Sessions
 
                 string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
 
-                ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+                #region post
 
+                ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
                 if (!string.IsNullOrWhiteSpace(accesstocken))
                 {
 
@@ -71,7 +72,7 @@ namespace LLOneBot.Net.Sessions
                 Task<string> task = webHelper.SendHttpRequestAsync(url);
                 task.Wait();
                 resjson = task.Result;
-
+                #endregion
             }
             catch (Exception)
             {
@@ -152,7 +153,7 @@ namespace LLOneBot.Net.Sessions
             try
             {
 
-
+                string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
                 string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
                 url = AppendRoutingToUrl(url, "send_private_msg");
 
@@ -161,6 +162,25 @@ namespace LLOneBot.Net.Sessions
                 jsonNodepost.Add("message", JsonSerializer.SerializeToNode(chain, jsonSerializerOptions));
                 if (auto_escape) { jsonNodepost.Add("auto_escape", auto_escape); }
                 string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+
+                #region post
+
+                ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+                if (!string.IsNullOrWhiteSpace(accesstocken))
+                {
+
+                    //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
+                    // webHelper.RequestHeaders.Add("Content-Type", "application/json");
+                    webHelper.RequestHeaders.Add("Authorization", accesstocken);
+
+                }
+                webHelper.HttpMethod = HttpMethod.Post;
+                webHelper.bodyType = ComWebHelper.BodyType.raw;
+                webHelper.Body_Raw = postjson;
+                Task<string> task = webHelper.SendHttpRequestAsync(url);
+                task.Wait();
+                resjson = task.Result;
+                #endregion
 
 
 
@@ -174,6 +194,31 @@ namespace LLOneBot.Net.Sessions
 
 
             return resjson;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号</param>
+        /// <param name="chain">要发送的消息链</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        /// <returns></returns>
+        public static async Task<string> SendPrivateMessageAsync(string user_id, Data.MessageChain chain, bool auto_escape = false)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SendPrivateMessage(user_id, chain, auto_escape);
+                return resjson;
+            });
+
+
+            return objres;
+
+            //Task<string> myTask = Task.Factory.StartNew(() => {
+            //    // 在这里执行异步操作，并返回字符串结果
+            //    return "Hello, World!";
+            //});
+            //return myTask.Result;
         }
         /// <summary>
         /// 拼接地址路由信息
