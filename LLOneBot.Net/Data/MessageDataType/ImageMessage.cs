@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,20 @@ namespace LLOneBot.Net.Data.MessageDataType
     /// </summary>
     public class ImageMessage: MessageBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url">
+        /// 绝对路径，例如 file:///C:\\Users\Richard\Pictures\1.png，格式使用 file URI
+        ///网络 URL，例如 http://i1.piimg.com/567571/fdd6e7b6d93f1ef0.jpg
+        ///Base64 编码，例如 base64://iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==
+        /// </param>
+        public ImageMessage(string url)
+        {
+            this.data=new ImageMessageData();
+            this.data.url = url;
+        }
+
         /// <summary>
         /// 类型
         /// </summary>

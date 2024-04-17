@@ -62,15 +62,15 @@
 
             LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
 
+          
+   
+            await liteLoaderQQNTBot.StartBot();
             MessageChain messageChain = new MessageChain
                              {
                             
                                // new AtMessage(x.Sender.Id),
                                 new TextMessage("测试1"),
                               };
-   
-            await liteLoaderQQNTBot.StartBot();
-
             //  MessageManager.SendFriendMessage("2361803582", messageChain,true);
 
             /* 接收message 消息事件*/
