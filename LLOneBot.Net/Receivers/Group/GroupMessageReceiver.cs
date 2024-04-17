@@ -6,13 +6,20 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace LLOneBot.Net.Receivers
+namespace LLOneBot.Net.Receivers.Group
 {
     /// <summary>
     /// 群消息接收器
     /// </summary>
-    public class GroupMessageReceiver: MessageReceiverBase
+    public class GroupMessageReceiver : MessageReceiverBase
     {
+        public override ReceiveMessageType receiveMessageType { get;set; }= ReceiveMessageType.Group;
+
+        /// <summary>
+        /// 消息类型
+        /// </summary>
+        [JsonPropertyName("message_type")]
+        public  string? message_type { get; set; }
         /// <summary>
         /// 收到事件的机器人 QQ 号
         /// </summary>
@@ -65,17 +72,17 @@ namespace LLOneBot.Net.Receivers
             get { return _messagejson; }
             set
             {
-                _messagejson = (value);
+                _messagejson = value;
                 try
                 {
-                    this.MessageChain = MessageBuilder.BulderMessageChain(value!);
+                    MessageChain = MessageBuilder.BulderMessageChain(value!);
                 }
                 catch (Exception ex)
                 {
 
-                  //  throw;
+                    //  throw;
                 }
-               
+
             }
 
         }
@@ -84,7 +91,7 @@ namespace LLOneBot.Net.Receivers
         /// 接收的消息链
         /// </summary>
         [JsonIgnore]
-        public Data.MessageChain MessageChain { get; set; }=new Data.MessageChain();
+        public MessageChain MessageChain { get; set; } = new MessageChain();
         /// <summary>
         /// 
         /// </summary>

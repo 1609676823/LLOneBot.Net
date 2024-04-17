@@ -2,13 +2,14 @@
 {
     using LLOneBot.Net.Data;
     using LLOneBot.Net.Data.MessageDataType;
-    using LLOneBot.Net.Receivers;
+    using LLOneBot.Net.Receivers.Group;
+    using LLOneBot.Net.Receivers.Private;
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
     using System.Reactive.Linq;
     using System.Text.Json;
     using Websocket.Client;
-   
+
     internal class Program
     {
         static async Task Main(string[] args)
@@ -70,9 +71,53 @@
    
             await liteLoaderQQNTBot.StartBot();
 
-         //  MessageManager.SendFriendMessage("2361803582", messageChain,true);
+            //  MessageManager.SendFriendMessage("2361803582", messageChain,true);
 
             /* 接收message 消息事件*/
+
+
+            /* 接收到私信消息*/
+            liteLoaderQQNTBot.MessageReceived.OfType<PrivateMessageReceiver>().Subscribe(msg =>
+            {
+                Console.WriteLine("接收到私信消息");
+                Console.WriteLine(msg.raw_message);
+
+                MessageChain messageChain = msg.MessageChain;
+
+                foreach (var item in messageChain)
+                {
+                    if (item.MessageType == MessageType.Text)
+                    {
+
+                        var message = item as TextMessage;
+
+                    }
+
+                    if (item.MessageType == MessageType.Image)
+                    {
+                        ImageMessage? imageMessage = item as ImageMessage;
+                    }
+                    if (item.MessageType == MessageType.At)
+                    {
+                        AtMessage? atMessage = item as AtMessage;
+
+                    }
+                }
+                //foreach (MessageBase item in messageChain)
+                //{
+                //    if (item.MessageType == MessageType.At)
+                //    {
+                //        AtMessage? atMessage = item as AtMessage;
+
+                //    }
+                //    if (item.MessageType == MessageType.Image)
+                //    {
+                //        ImageMessage? imageMessage = item as ImageMessage;
+                //    }
+                //}
+
+
+            });
 
             /* 接收到群消息*/
             liteLoaderQQNTBot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(msg =>

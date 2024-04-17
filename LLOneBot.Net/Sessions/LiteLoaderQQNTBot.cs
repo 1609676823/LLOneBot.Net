@@ -391,11 +391,20 @@ meta_event：元事件
                      
                        
 
+
+/* 项目“LLOneBot.Net (net8.0)”的未合并的更改
+在此之前:
                         Receivers.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.GroupMessageReceiver>(responseMessage.Text!)!;
+在此之后:
+                        GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
+*/
+                        Receivers.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Group.GroupMessageReceiver>(responseMessage.Text!)!;
                         _messageReceived.OnNext(groupMessageReceiver);
                     }
                     else if ("private".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
+                        Receivers.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
+                        _messageReceived.OnNext(privateMessageReceiver);
 
                     }
                     else {
