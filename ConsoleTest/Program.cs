@@ -79,42 +79,31 @@
             /* 接收到私信消息*/
             liteLoaderQQNTBot.MessageReceived.OfType<PrivateMessageReceiver>().Subscribe(msg =>
             {
-                Console.WriteLine("接收到私信消息");
-                Console.WriteLine(msg.raw_message);
+                Console.WriteLine("接收到用户: "+ msg .user_id+ " 的私信消息: "+ msg.raw_message);
+               // Console.WriteLine(msg.raw_message);
 
                 MessageChain messageChain = msg.MessageChain;
 
-                foreach (var item in messageChain)
-                {
-                    if (item.MessageType == MessageType.Text)
-                    {
-
-                        var message = item as TextMessage;
-
-                    }
-
-                    if (item.MessageType == MessageType.Image)
-                    {
-                        ImageMessage? imageMessage = item as ImageMessage;
-                    }
-                    if (item.MessageType == MessageType.At)
-                    {
-                        AtMessage? atMessage = item as AtMessage;
-
-                    }
-                }
-                //foreach (MessageBase item in messageChain)
+                //foreach (var item in messageChain)
                 //{
+                //    if (item.MessageType == MessageType.Text)
+                //    {
+
+                //        var message = item as TextMessage;
+
+                //    }
+
+                //    if (item.MessageType == MessageType.Image)
+                //    {
+                //        ImageMessage? imageMessage = item as ImageMessage;
+                //    }
                 //    if (item.MessageType == MessageType.At)
                 //    {
                 //        AtMessage? atMessage = item as AtMessage;
 
                 //    }
-                //    if (item.MessageType == MessageType.Image)
-                //    {
-                //        ImageMessage? imageMessage = item as ImageMessage;
-                //    }
                 //}
+            
 
 
             });
@@ -122,8 +111,8 @@
             /* 接收到群消息*/
             liteLoaderQQNTBot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(msg =>
             {
-                Console.WriteLine("接收到群消息");
-                Console.WriteLine(msg.raw_message);
+                Console.WriteLine("接收到群: "+msg.group_id+ " 的消息:"+ msg.raw_message);
+               // Console.WriteLine(msg.raw_message);
 
                 MessageChain messageChain = msg.MessageChain;
 
