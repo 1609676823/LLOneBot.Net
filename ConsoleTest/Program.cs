@@ -69,13 +69,13 @@
                              {
                             
                                // new AtMessage(x.Sender.Id),
-                                new TextMessage("金价"),
+                                new TextMessage("测试"),
                               };
 
            
             await liteLoaderQQNTBot.StartBot();
 
-            MessageManager.SendGroupMessage("600075933", messageChain);
+            MessageManager.SendFriendMessage("1609676823", messageChain);
 
             /* 接收message 消息事件*/
 

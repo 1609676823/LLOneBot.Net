@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Collections.Specialized.BitVector32;
 
@@ -18,63 +19,81 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// 允许常规字符串
         /// </summary>
-        public static JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
+        public static JsonSerializerOptions jsonSerializerOptions { get; set; } = new JsonSerializerOptions()
         {
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             WriteIndented = true
         };
         /// <summary>
-        /// 发送群消息
+        ///  发送群消息
         /// </summary>
-        public static string SendGroupMessage(string groupId, Data.MessageChain chain)
+        /// <param name="groupId">群号</param>
+        /// <param name="chain">消息链</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        /// <returns></returns>
+        public static string SendGroupMessage(string groupId, Data.MessageChain chain, bool auto_escape = false)
         {
-
-            //string chainjson = JsonSerializer.Serialize(chain, new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
-            string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
-            url = AppendRoutingToUrl(url, "send_group_msg");
-
-            string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
-
-            /*允许常规字符串*/
-            // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
-
-            System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
-            jsonNodepost.Add("group_id", groupId);
-            jsonNodepost.Add("message", JsonSerializer.SerializeToNode(chain, jsonSerializerOptions));
-
-            string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
-
-            ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
-
-            if (!string.IsNullOrWhiteSpace(accesstocken))
+            string resjson = string.Empty;
+            try
             {
 
-                //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
-                // webHelper.RequestHeaders.Add("Content-Type", "application/json");
-                webHelper.RequestHeaders.Add("Authorization", accesstocken);
+
+                //string chainjson = JsonSerializer.Serialize(chain, new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "send_group_msg");
+
+                string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+
+                /*允许常规字符串*/
+                // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", groupId);
+                jsonNodepost.Add("message", JsonSerializer.SerializeToNode(chain, jsonSerializerOptions));
+
+                if (auto_escape) { jsonNodepost.Add("auto_escape", auto_escape); }
+
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+
+                ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+
+                if (!string.IsNullOrWhiteSpace(accesstocken))
+                {
+
+                    //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
+                    // webHelper.RequestHeaders.Add("Content-Type", "application/json");
+                    webHelper.RequestHeaders.Add("Authorization", accesstocken);
+
+                }
+                webHelper.HttpMethod = HttpMethod.Post;
+                webHelper.bodyType = ComWebHelper.BodyType.raw;
+                webHelper.Body_Raw = postjson;
+                Task<string> task = webHelper.SendHttpRequestAsync(url);
+                task.Wait();
+                resjson = task.Result;
 
             }
-            webHelper.HttpMethod = HttpMethod.Post;
-            webHelper.bodyType = ComWebHelper.BodyType.raw;
-            webHelper.Body_Raw = postjson;
-            Task<string> task = webHelper.SendHttpRequestAsync(url);
-            task.Wait();
-            string res = task.Result;
-            return res;
+            catch (Exception)
+            {
+
+                // throw;
+            }
+            return resjson;
+
+
         }
-
-
         /// <summary>
         /// 发送群消息异步
         /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="chain"></param>
+        /// <param name="groupId">群号</param>
+        /// <param name="chain">消息链</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
         /// <returns></returns>
-        public static async Task<string> SendGroupMessageAsync(string groupId, Data.MessageChain chain)
+        public static async Task<string> SendGroupMessageAsync(string groupId, Data.MessageChain chain, bool auto_escape = false)
         {
             var objres = await Task.Run(() =>
             {
-                string resjson = SendGroupMessage(groupId, chain);
+                string resjson = SendGroupMessage(groupId, chain, auto_escape);
                 return resjson;
             });
 
@@ -87,7 +106,75 @@ namespace LLOneBot.Net.Sessions
             //});
             //return myTask.Result;
         }
+        /// <summary>
+        /// 发送好友消息
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号</param>
+        /// <param name="chain">要发送的消息链</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        public static string SendFriendMessage(string user_id, Data.MessageChain chain, bool auto_escape = false)
+        {
+            return SendPrivateMessage(user_id, chain, auto_escape);
+        }
+        /// <summary>
+        /// 发送好友消息异步
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号</param>
+        /// <param name="chain">要发送的消息链</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        /// <returns></returns>
+        public static async Task<string> SendFriendMessageAsync(string user_id, Data.MessageChain chain, bool auto_escape = false)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SendFriendMessage(user_id, chain, auto_escape);
+                return resjson;
+            });
 
+
+            return objres;
+
+            //Task<string> myTask = Task.Factory.StartNew(() => {
+            //    // 在这里执行异步操作，并返回字符串结果
+            //    return "Hello, World!";
+            //});
+            //return myTask.Result;
+        }
+        /// <summary>
+        /// 发送私聊消息
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号</param>
+        /// <param name="chain">要发送的消息链</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        public static string SendPrivateMessage(string user_id, Data.MessageChain chain, bool auto_escape = false)
+        {
+            string resjson = string.Empty;
+            try
+            {
+
+
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "send_private_msg");
+
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("message", JsonSerializer.SerializeToNode(chain, jsonSerializerOptions));
+                if (auto_escape) { jsonNodepost.Add("auto_escape", auto_escape); }
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+
+
+
+            return resjson;
+        }
         /// <summary>
         /// 拼接地址路由信息
         /// </summary>
