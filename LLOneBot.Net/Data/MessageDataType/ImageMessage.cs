@@ -16,15 +16,17 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="url">
+        /// <param name="file">
         /// 绝对路径，例如 file:///C:\\Users\Richard\Pictures\1.png，格式使用 file URI
         ///网络 URL，例如 http://i1.piimg.com/567571/fdd6e7b6d93f1ef0.jpg
         ///Base64 编码，例如 base64://iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==
         /// </param>
-        public ImageMessage(string url)
+        /// <param name="summary">LLOneBot的扩展字段：图片预览文字</param>
+        public ImageMessage(string file, string summary="")
         {
             this.data=new ImageMessageData();
-            this.data.url = url;
+            this.data.file = file;
+            this.data.summary = summary;
         }
 
         /// <summary>
@@ -52,6 +54,10 @@ namespace LLOneBot.Net.Data.MessageDataType
         ///图片文件名
         /// </summary>
         public string? file { get; set; }
+        /// <summary>
+        /// LLOneBot的扩展字段：图片预览文字
+        /// </summary>
+        public string? summary { get; set; }
 
         /// <summary>
         ///图片类型，flash 表示闪照，无此参数表示普通图片

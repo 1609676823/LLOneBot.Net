@@ -69,9 +69,10 @@
                              {
                             
                                // new AtMessage(x.Sender.Id),
-                                new TextMessage("测试1"),
+                             //  new TextMessage("测试1"),
+                                new ImageMessage(@"file://D:/1.jpg","测试图片")
                               };
-            //  MessageManager.SendFriendMessage("2361803582", messageChain,true);
+              MessageManager.SendFriendMessage("2361803582", messageChain,true);
 
             /* 接收message 消息事件*/
 
