@@ -61,18 +61,20 @@
             #endregion
 
             LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
-
-          
-   
             await liteLoaderQQNTBot.StartBot();
             MessageChain messageChain = new MessageChain
                              {
                             
                                // new AtMessage(x.Sender.Id),
                              //  new TextMessage("测试1"),
-                                new ImageMessage(@"file://D:/1.jpg","测试图片")
+                              // new AtMessage("2361803582"),
+                                new ImageMessage(@"file://D:/1.jpg",@"[QQ红包]你收到一个专属红包，请在新版手机QQ查看。")
+                                
                               };
-              MessageManager.SendFriendMessage("2361803582", messageChain,true);
+            // MessageManager.SendFriendMessage("2361803582", messageChain,true);
+          string resjson=  MessageManager.SendGroupMessage("600075933", messageChain);
+          Console.WriteLine(resjson);
+
 
             /* 接收message 消息事件*/
 
