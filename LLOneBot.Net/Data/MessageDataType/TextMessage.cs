@@ -13,6 +13,21 @@ namespace LLOneBot.Net.Data.MessageDataType
     public class TextMessage: MessageBase
     {
         /// <summary>
+        /// 
+        /// </summary>
+    
+        public TextMessage() { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="messagetext"></param>
+        public TextMessage(string messagetext) 
+        {
+        (this.data as TextMessageData).text = messagetext; 
+        }
+
+
+        /// <summary>
         /// 类型
         /// </summary>
         [JsonIgnore]
@@ -26,7 +41,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 消息数据
         /// </summary>
         [JsonPropertyName("data")]
-        public TextMessageData data { get; set; } = new TextMessageData();
+        public override object data { get; set; } = new TextMessageData();
     }
 
 

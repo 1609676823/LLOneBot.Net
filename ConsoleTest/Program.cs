@@ -69,10 +69,10 @@
                              {
                             
                                // new AtMessage(x.Sender.Id),
-                                new TextMessage(),
+                                new TextMessage("金价"),
                               };
-            
 
+           
             await liteLoaderQQNTBot.StartBot();
 
             MessageManager.SendGroupMessage("600075933", messageChain);

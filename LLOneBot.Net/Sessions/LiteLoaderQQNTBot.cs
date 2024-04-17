@@ -30,6 +30,14 @@ namespace LLOneBot.Net.Sessions
         public static LiteLoaderQQNTBot? Instance { get; set; }
         private WebsocketClient? _client;
         //  public static LiteLoaderQQNTBot Instance { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public LiteLoaderQQNTBot()
+        {
+            Instance = this;
+            // InitializeIpaddress();
+        }
 
 
 
@@ -106,13 +114,7 @@ namespace LLOneBot.Net.Sessions
             AccessTocken = accesstocken;
             InitializeIpaddress();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public LiteLoaderQQNTBot()
-        {
-            // InitializeIpaddress();
-        }
+      
 
         // private string _ip;
         /// <summary>
@@ -257,6 +259,7 @@ namespace LLOneBot.Net.Sessions
         /// <returns></returns>
         public async Task<Data.LoginInfo> StartBot()
         {
+            Instance = this;
             InitializeIpaddress();
             try
             {
