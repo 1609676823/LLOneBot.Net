@@ -28,35 +28,37 @@ namespace LLOneBot.Net.Data.MessageDataType
         [JsonPropertyName("data")]
         public new ImageMessageData? data { get { return base.data as ImageMessageData; } set { base.data = (value); } } //= new TextMessageData();
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class ImageMessageData
     {
         /// <summary>
         ///图片文件名
         /// </summary>
-        public string file { get; set; }
+        public string? file { get; set; }
 
         /// <summary>
         ///图片类型，flash 表示闪照，无此参数表示普通图片
         /// </summary>
-        public string type { get; set; }
+        public string? type { get; set; }
 
         /// <summary>
         ///图片 URL
         /// </summary>
        // [JsonIgnore]
-        public string url { get; set; }
+        public string? url { get; set; }
         /// <summary>
         ///只在通过网络 URL 发送时有效，表示是否使用已缓存的文件，默认 1
         /// </summary>
-        public string cache { get; set; } = "1";
+        public string? cache { get; set; } = "1";
         /// <summary>
         ///只在通过网络 URL 发送时有效，表示是否通过代理下载文件（需通过环境变量或配置文件配置代理），默认 1
         /// </summary>
-        public string proxy { get; set; }
+        public string? proxy { get; set; }
         /// <summary>
         ///只在通过网络 URL 发送时有效，单位秒，表示下载网络文件的超时时间，默认不超时
         /// </summary>
-        public string timeout { get; set; }
+        public string? timeout { get; set; }
     }
 }

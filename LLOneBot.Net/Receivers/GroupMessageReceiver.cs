@@ -68,7 +68,7 @@ namespace LLOneBot.Net.Receivers
                 _messagejson = (value);
                 try
                 {
-                    this.MessageChain = MessageBuilder.BulderMessageChain(value);
+                    this.MessageChain = MessageBuilder.BulderMessageChain(value!);
                 }
                 catch (Exception ex)
                 {

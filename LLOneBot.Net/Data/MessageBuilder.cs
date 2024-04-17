@@ -34,21 +34,23 @@ namespace LLOneBot.Net.Data
         /// <returns></returns>
         public static MessageChain BulderMessageChain(object MessageChainJson)
         {
-            string json=MessageChainJson.ToString()!;    
+            
             MessageChain messageChain = new MessageChain();
-          
-            JsonArray MessageArray = JsonArray.Parse(json)!.AsArray();
-
-            foreach (JsonNode? item in MessageArray) 
+            if (MessageChainJson != null)
             {
+                string json = MessageChainJson.ToString()!;
+                JsonArray MessageArray = JsonArray.Parse(json)!.AsArray();
 
-                MessageBase  messageBase=new MessageBase();
-                messageBase = BulderMessageBase(item!);
+                foreach (JsonNode? item in MessageArray)
+                {
 
-                messageChain.Add(messageBase);
+                    MessageBase messageBase = new MessageBase();
+                    messageBase = BulderMessageBase(item!);
 
+                    messageChain.Add(messageBase);
+
+                }
             }
-
 
             return messageChain;
         }
