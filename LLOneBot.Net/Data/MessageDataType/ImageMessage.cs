@@ -26,7 +26,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 消息数据
         /// </summary>
         [JsonPropertyName("data")]
-        public ImageMessageData data { get; set; } = new ImageMessageData();
+        public new ImageMessageData? data { get { return base.data as ImageMessageData; } set { base.data = (value); } } //= new TextMessageData();
     }
 
     public class ImageMessageData

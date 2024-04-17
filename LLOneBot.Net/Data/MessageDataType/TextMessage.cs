@@ -44,7 +44,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// </summary>
         [JsonPropertyName("data")]
         //[JsonIgnore]
-        public  TextMessageData? data { get { return base.data as TextMessageData; } set { base.data = (value); } } //= new TextMessageData();
+        public new TextMessageData? data { get { return base.data as TextMessageData; } set { base.data = (value); } } //= new TextMessageData();
         //{ get { return this.data; } set { this.data = (value); } } 
     }
 
