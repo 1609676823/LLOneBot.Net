@@ -24,8 +24,8 @@ namespace LLOneBot.Net.Data.MessageDataType
         public TextMessage(string messagetext) 
         {
             this.data=new TextMessageData();
-            this.data.text=messagetext;
-         //(this.data as TextMessageData).text = messagetext; 
+           // this.data.text=messagetext;
+         (this.data as TextMessageData)!.text = messagetext; 
         }
 
 
