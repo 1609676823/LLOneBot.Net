@@ -719,6 +719,58 @@ namespace LLOneBot.Net.Sessions
             return objres;
         }
 
+        /// <summary>
+        /// set_group_admin 群组设置管理员
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要设置管理员的 QQ 号</param>
+        /// <param name="enable">true 为设置，false 为取消</param>
+        /// <returns></returns>
+        public static string SetGroupAdmin(string group_id,string user_id, bool enable)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_admin");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("enable", enable);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+
+        /// <summary>
+        /// set_group_admin 群组设置管理员异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要设置管理员的 QQ 号</param>
+        /// <param name="enable">true 为设置，false 为取消</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupAdminAsync(string group_id,string user_id,bool enable)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupAdmin(group_id, user_id, enable);
+                return resjson;
+            });
+
+
+            return objres;
+        }
+
+
+
 
 
 
