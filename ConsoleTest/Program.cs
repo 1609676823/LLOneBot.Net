@@ -67,14 +67,14 @@
             MessageChain messageChain = new MessageChain
                              {
                               new TextMessage("测试信息："+DateTime.Now),
-                              new ImageMessage("测试图片")
+                             
                               };
 
-            //string resjson = MessageManager.SendMessage("2361803582", "",messageChain);
+            string resjson = MessageManager.SendLike("275797306");
+            
 
-            //Console.WriteLine(resjson);
-
-            //OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
+          //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
+            Console.WriteLine(resjson);
             //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
 
             //Console.WriteLine(resjsondel);

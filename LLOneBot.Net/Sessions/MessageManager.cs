@@ -186,7 +186,7 @@ namespace LLOneBot.Net.Sessions
             //return myTask.Result;
         }
         /// <summary>
-        /// 发送私聊消息
+        /// send_private_msg 发送私聊消息
         /// </summary>
         /// <param name="user_id">对方 QQ 号</param>
         /// <param name="chain">要发送的消息链</param>
@@ -224,7 +224,7 @@ namespace LLOneBot.Net.Sessions
         }
 
         /// <summary>
-        /// 发送私聊消息异步
+        /// send_private_msg 发送私聊消息异步
         /// </summary>
         /// <param name="user_id">对方 QQ 号</param>
         /// <param name="chain">要发送的消息链</param>
@@ -316,7 +316,7 @@ namespace LLOneBot.Net.Sessions
 
         }
         /// <summary>
-        /// 撤回消息
+        /// delete_msg 撤回消息
         /// </summary>
         /// <param name="message_id">消息 ID</param>
         /// <returns></returns>
@@ -346,7 +346,7 @@ namespace LLOneBot.Net.Sessions
 
         }
         /// <summary>
-        /// 撤回消息异步
+        /// delete_msg 撤回消息异步
         /// </summary>
         /// <param name="message_id">消息 ID</param>
         /// <returns></returns>
@@ -363,6 +363,112 @@ namespace LLOneBot.Net.Sessions
 
 
         }
+
+        /// <summary>
+        /// get_msg 获取消息
+        /// </summary>
+        /// <param name="message_id"></param>
+        /// <returns></returns>
+        public static string GetMessage(long message_id)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "get_msg");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("message_id", message_id);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
+
+        }
+
+        /// <summary>
+        /// get_forward_msg 获取合并转发消息
+        /// </summary>
+        /// <param name="id">合并转发 ID</param>
+        /// <returns></returns>
+        public static string GetForwardMessage(string id)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "get_forward_msg");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("id", id);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// send_like 发送好友赞
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号</param>
+        /// <param name="times">赞的次数，每个好友每天最多 10 次</param>
+        /// <returns></returns>
+        public static string SendLike(string user_id,int times=1)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "send_like");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("times", times);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// send_like 发送好友赞异步
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号</param>
+        /// <param name="times">赞的次数，每个好友每天最多 10 次</param>
+        /// <returns></returns>
+        public static async Task<string> SendLikeAsync(string user_id, int times = 1)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SendLike(user_id, times);
+                return resjson;
+            });
+
+
+            return objres;
+
+
+        }
+
+
 
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
