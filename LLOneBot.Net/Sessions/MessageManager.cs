@@ -514,12 +514,76 @@ namespace LLOneBot.Net.Sessions
                 string resjson = SetGroupKick(group_id, user_id, reject_add_request);
                 return resjson;
             });
+            return objres;
+
+
+        }
+
+        /// <summary>
+        /// set_group_ban 群组单人禁言/解除禁言
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要禁言的 QQ 号</param>
+        /// <param name="duration">禁言时长，单位秒，0 表示取消禁言</param>
+        /// <returns></returns>
+        public static string SetGroupBan(string group_id, string user_id, long duration = 1*60)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_ban");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("duration", duration);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
+
+        }
+
+        /// <summary>
+        /// set_group_ban 群组单人禁言/解除禁言 异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要禁言的 QQ 号</param>
+        /// <param name="duration">禁言时长，单位秒，0 表示取消禁言</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupBanAsync(string group_id, string user_id, long duration = 1 * 60)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupBan(group_id, user_id, duration);
+                return resjson;
+            });
 
 
             return objres;
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
         /********************************************************************************************************************************************/

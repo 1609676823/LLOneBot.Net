@@ -70,14 +70,15 @@
                              
                               };
 
-          string resjson = MessageManager.SetGroupKick("782351597", "2361803582");
+          string resjson = 
+                MessageManager.SetGroupBan("782351597", "2361803582",0);
             
 
           //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
-           Console.WriteLine(resjson);
+         Console.WriteLine(resjson);
             //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
 
-            //Console.WriteLine(resjsondel);
+           // Console.WriteLine(resjsondel);
 
 
             /* 接收message 消息事件*/
