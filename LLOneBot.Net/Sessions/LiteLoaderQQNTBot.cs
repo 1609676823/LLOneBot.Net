@@ -294,6 +294,7 @@ namespace LLOneBot.Net.Sessions
         /// </summary>
         /// <returns></returns>
         private async Task StartWebsocketListenerAsync()
+
         {
             var uri = new Uri(WebsocKetIpaddress!);
 
@@ -307,7 +308,7 @@ namespace LLOneBot.Net.Sessions
 
             var clientFactory = new Func<Uri, CancellationToken, Task<WebSocket>>(async (uri, cancellationToken) =>
             {
-                var client = new ClientWebSocket();
+                ClientWebSocket client = new ClientWebSocket();
                 if (!string.IsNullOrWhiteSpace(AccessTocken))
                     client.Options.SetRequestHeader("authorization", AccessTocken);
                 await client.ConnectAsync(uri, cancellationToken).ConfigureAwait(false);
@@ -341,6 +342,41 @@ namespace LLOneBot.Net.Sessions
 
                   });
 
+
+
+        }
+
+        private async void testWebSocket() {
+            ClientWebSocket clientWebSocket = new ClientWebSocket();
+            Uri uri = new Uri("");
+
+
+            // 构建请求头
+            Dictionary<string, string> headers = new Dictionary<string, string>
+        {
+            { "Custom-Header", "Value" } // 添加自定义请求头
+        };
+            clientWebSocket.Options.SetRequestHeader("authorization", AccessTocken);
+           
+            clientWebSocket.ConnectAsync(uri, CancellationToken.None);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes("");
+            //var segment = new ArraySegment<byte>(buffer);
+            //clientWebSocket.ReceiveAsync(buffer,CancellationToken.None);
+
+            //byte[] receiveBuffer = new byte[1024];
+            //var result = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(receiveBuffer), CancellationToken.None);
+            //string receivedMessage = Encoding.UTF8.GetString(receiveBuffer, 0, result.Count);
+           
+
+            while (clientWebSocket.State == WebSocketState.Open)
+            {
+                byte[] receiveBuffer = new byte[1024];
+                var result = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(receiveBuffer), CancellationToken.None);
+                string receivedMessage = Encoding.UTF8.GetString(receiveBuffer, 0, result.Count);
+
+                // 处理接收到的消息
+                Console.WriteLine("Received message: " + receivedMessage);
+            }
 
 
         }

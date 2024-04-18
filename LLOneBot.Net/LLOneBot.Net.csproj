@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!--<TargetFramework>net8.0</TargetFramework>-->
 
-    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net8.0;net6.0;netstandard2.1;</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">netstandard2.1;net8.0;net6.0;</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
 
     <ImplicitUsings>enable</ImplicitUsings>

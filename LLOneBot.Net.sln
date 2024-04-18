@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.34707.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LLOneBot.Net", "LLOneBot.Net\LLOneBot.Net.csproj", "{1F3A2A67-75EB-42EF-95CC-2A69A9E2C3A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{FDBF3A15-E408-4614-B1F3-5CF41BCF5528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{FDBF3A15-E408-4614-B1F3-5CF41BCF5528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
