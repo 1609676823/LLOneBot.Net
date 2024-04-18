@@ -164,10 +164,19 @@ namespace LLOneBot.Net.ComWebHelper
                 throw new Exception("连接失败，请检查请求地址或参数；"+ex.Message);
             }
 
-           // HttpResponseMessage response = await client.SendAsync(request);
+            // HttpResponseMessage response = await client.SendAsync(request);
 
             // 确保请求成功  
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                //throw;
+            }
+          
 
             byte[] responseByte = await response.Content.ReadAsByteArrayAsync();
             string responseBody = Encoding.UTF8.GetString(responseByte);

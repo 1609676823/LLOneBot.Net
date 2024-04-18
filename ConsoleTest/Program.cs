@@ -71,11 +71,11 @@
                               };
 
           string resjson = 
-                MessageManager.SetGroupAdmin("782351597", "2361803582", false);
+             //   MessageManager.SetGroupAdmin("782351597", "2361803582", false);
             
-
-          //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
-         Console.WriteLine(resjson);
+            MessageManager.SetGroupAnonymous("600075933",true);
+            //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
+            Console.WriteLine(resjson);
             //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
 
            // Console.WriteLine(resjsondel);

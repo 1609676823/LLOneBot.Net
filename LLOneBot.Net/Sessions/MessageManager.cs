@@ -769,10 +769,51 @@ namespace LLOneBot.Net.Sessions
             return objres;
         }
 
+        /// <summary>
+        /// set_group_anonymous 群组匿名(可能不生效)
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="enable">是否允许匿名聊天</param>
+        /// <returns></returns>
+        public static string SetGroupAnonymous(string group_id, bool enable)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_anonymous");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);     
+                jsonNodepost.Add("enable", enable);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_group_anonymous 群组匿名异步(可能不生效)
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="enable">是否允许匿名聊天</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupAnonymousAsync(string group_id, bool enable)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupAnonymous(group_id,enable);
+                return resjson;
+            });
 
 
-
-
+            return objres;
+        }
 
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
