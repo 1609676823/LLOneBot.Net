@@ -358,7 +358,7 @@ namespace LLOneBot.Net.Sessions
         };
             clientWebSocket.Options.SetRequestHeader("authorization", AccessTocken);
            
-            clientWebSocket.ConnectAsync(uri, CancellationToken.None);
+           await clientWebSocket.ConnectAsync(uri, CancellationToken.None);
             //var buffer = System.Text.Encoding.UTF8.GetBytes("");
             //var segment = new ArraySegment<byte>(buffer);
             //clientWebSocket.ReceiveAsync(buffer,CancellationToken.None);
@@ -425,17 +425,6 @@ meta_event：元事件
 
                     if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
-
-                     
-                       
-
-
-/* 项目“LLOneBot.Net (net8.0)”的未合并的更改
-在此之前:
-                        Receivers.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.GroupMessageReceiver>(responseMessage.Text!)!;
-在此之后:
-                        GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
-*/
                         Receivers.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Group.GroupMessageReceiver>(responseMessage.Text!)!;
                         _messageReceived.OnNext(groupMessageReceiver);
                     }

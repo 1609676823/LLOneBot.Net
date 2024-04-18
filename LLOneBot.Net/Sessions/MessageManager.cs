@@ -17,6 +17,66 @@ namespace LLOneBot.Net.Sessions
     public static class MessageManager
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="postjson"></param>
+        /// <returns></returns>
+        private static string ApiPublicPost(string url,string postjson) 
+        {
+            string resjson = string.Empty;
+            #region post
+
+            ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+            string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+            if (!string.IsNullOrWhiteSpace(accesstocken))
+            {
+
+                //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
+                // webHelper.RequestHeaders.Add("Content-Type", "application/json");
+                webHelper.RequestHeaders.Add("Authorization", accesstocken);
+
+            }
+            webHelper.HttpMethod = HttpMethod.Post;
+            webHelper.bodyType = ComWebHelper.BodyType.raw;
+            webHelper.Body_Raw = postjson;
+            Task<string> task = webHelper.SendHttpRequestAsync(url);
+            task.Wait();
+            resjson = task.Result;
+            #endregion
+            return resjson;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        private static string ApiPublicGet(string url)
+        {
+            string resjson = string.Empty;
+            #region post
+
+            ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+            string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+            if (!string.IsNullOrWhiteSpace(accesstocken))
+            {
+
+                //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
+                // webHelper.RequestHeaders.Add("Content-Type", "application/json");
+                webHelper.RequestHeaders.Add("Authorization", accesstocken);
+
+            }
+            webHelper.HttpMethod = HttpMethod.Get;
+            webHelper.bodyType = ComWebHelper.BodyType.none;
+            //webHelper.Body_Raw = postjson;
+            Task<string> task = webHelper.SendHttpRequestAsync(url);
+            task.Wait();
+            resjson = task.Result;
+            #endregion
+            return resjson;
+        }
+
+        /// <summary>
         /// 允许常规字符串
         /// </summary>
         public static JsonSerializerOptions jsonSerializerOptions { get; set; } = new JsonSerializerOptions()
@@ -42,7 +102,7 @@ namespace LLOneBot.Net.Sessions
                 string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
                 url = AppendRoutingToUrl(url, "send_group_msg");
 
-                string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+             
 
                 /*允许常规字符串*/
                 // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
@@ -54,25 +114,8 @@ namespace LLOneBot.Net.Sessions
                 if (auto_escape) { jsonNodepost.Add("auto_escape", auto_escape); }
 
                 string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
-
-                #region post
-
-                ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
-                if (!string.IsNullOrWhiteSpace(accesstocken))
-                {
-
-                    //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
-                    // webHelper.RequestHeaders.Add("Content-Type", "application/json");
-                    webHelper.RequestHeaders.Add("Authorization", accesstocken);
-
-                }
-                webHelper.HttpMethod = HttpMethod.Post;
-                webHelper.bodyType = ComWebHelper.BodyType.raw;
-                webHelper.Body_Raw = postjson;
-                Task<string> task = webHelper.SendHttpRequestAsync(url);
-                task.Wait();
-                resjson = task.Result;
-                #endregion
+                resjson= ApiPublicPost(url, postjson);
+              
             }
             catch (Exception)
             {
@@ -163,24 +206,7 @@ namespace LLOneBot.Net.Sessions
                 if (auto_escape) { jsonNodepost.Add("auto_escape", auto_escape); }
                 string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
 
-                #region post
-
-                ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
-                if (!string.IsNullOrWhiteSpace(accesstocken))
-                {
-
-                    //  Dictionary<string,string> Headersdic = new Dictionary<string,string>();
-                    // webHelper.RequestHeaders.Add("Content-Type", "application/json");
-                    webHelper.RequestHeaders.Add("Authorization", accesstocken);
-
-                }
-                webHelper.HttpMethod = HttpMethod.Post;
-                webHelper.bodyType = ComWebHelper.BodyType.raw;
-                webHelper.Body_Raw = postjson;
-                Task<string> task = webHelper.SendHttpRequestAsync(url);
-                task.Wait();
-                resjson = task.Result;
-                #endregion
+                resjson = ApiPublicPost(url, postjson);
 
 
 
