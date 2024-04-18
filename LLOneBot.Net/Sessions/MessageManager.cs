@@ -320,7 +320,7 @@ namespace LLOneBot.Net.Sessions
         /// </summary>
         /// <param name="message_id">消息 ID</param>
         /// <returns></returns>
-        public static string DeleteMessage(string message_id)
+        public static string DeleteMessage(long message_id)
         {
             string resjson = string.Empty;
             try
@@ -350,7 +350,7 @@ namespace LLOneBot.Net.Sessions
         /// </summary>
         /// <param name="message_id">消息 ID</param>
         /// <returns></returns>
-        public static async Task<string> DeleteMessageAsync(string message_id)
+        public static async Task<string> DeleteMessageAsync(long message_id)
         {
             var objres = await Task.Run(() =>
             {

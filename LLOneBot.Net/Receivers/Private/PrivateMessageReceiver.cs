@@ -35,7 +35,7 @@ namespace LLOneBot.Net.Receivers.Private
         /// <summary>
         /// 消息 ID
         /// </summary>
-        public int? message_id { get; set; }
+        public long? message_id { get; set; }
         /// <summary>
         /// real_id
         /// </summary>

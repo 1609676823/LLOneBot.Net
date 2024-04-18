@@ -77,7 +77,8 @@ namespace LLOneBot.Net.Data
         /// <summary>
         /// 消息id
         /// </summary>
-        public int message_id { get; set; }
+        [JsonPropertyName("message_id")]
+        public long message_id { get; set; }
     }
 
 }
