@@ -1,8 +1,10 @@
-﻿using System;
+﻿using LLOneBot.Net.Receivers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -526,7 +528,7 @@ namespace LLOneBot.Net.Sessions
         /// <param name="user_id">要禁言的 QQ 号</param>
         /// <param name="duration">禁言时长，单位秒，0 表示取消禁言</param>
         /// <returns></returns>
-        public static string SetGroupBan(string group_id, string user_id, long duration = 1*60)
+        public static string SetGroupBan(string group_id, string user_id, long duration )
         {
             string resjson = string.Empty;
             try
@@ -558,7 +560,7 @@ namespace LLOneBot.Net.Sessions
         /// <param name="user_id">要禁言的 QQ 号</param>
         /// <param name="duration">禁言时长，单位秒，0 表示取消禁言</param>
         /// <returns></returns>
-        public static async Task<string> SetGroupBanAsync(string group_id, string user_id, long duration = 1 * 60)
+        public static async Task<string> SetGroupBanAsync(string group_id, string user_id, long duration )
         {
             var objres = await Task.Run(() =>
             {
@@ -568,13 +570,108 @@ namespace LLOneBot.Net.Sessions
 
 
             return objres;
+        }
 
+        /// <summary>
+        /// set_group_anonymous_ban 群组匿名用户禁言
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="anonymous">要禁言的匿名用户对象（群消息上报的 anonymous 字段）</param>
+        /// <param name="duration">禁言时长，单位秒，无法取消匿名用户禁言</param>
+        /// <returns></returns>
+        public static string SetGroupAnonymousBan(string group_id, Anonymous anonymous, long duration)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_anonymous_ban");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("anonymous", JsonSerializer.SerializeToNode(anonymous, jsonSerializerOptions));
+                jsonNodepost.Add("duration", duration);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_group_anonymous_ban 群组匿名用户禁言
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="anonymous_flag">要禁言的匿名用户的 flag（需从群消息上报的数据中获得）</param>
+        /// <param name="duration">禁言时长，单位秒，无法取消匿名用户禁言</param>
+        /// <returns></returns>
+        public static string SetGroupAnonymousBan(string group_id, string anonymous_flag, long duration)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_anonymous_ban");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("anonymous_flag", anonymous_flag);
+                jsonNodepost.Add("flag", anonymous_flag);
+                jsonNodepost.Add("duration", duration);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
 
         }
 
+        /// <summary>
+        /// set_group_anonymous_ban 群组匿名用户禁言异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="anonymous">要禁言的匿名用户对象（群消息上报的 anonymous 字段）</param>
+        /// <param name="duration">禁言时长，单位秒，无法取消匿名用户禁言</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupAnonymousBanAsync(string group_id, Anonymous anonymous, long duration)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupAnonymousBan(group_id, anonymous, duration);
+                return resjson;
+            });
 
 
+            return objres;
+        }
+        /// <summary>
+        /// set_group_anonymous_ban 群组匿名用户禁言异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="anonymous_flag">要禁言的匿名用户的 flag（需从群消息上报的数据中获得）</param>
+        /// <param name="duration">禁言时长，单位秒，无法取消匿名用户禁言</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupAnonymousBanAsync(string group_id, string anonymous_flag, long duration)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupAnonymousBan(group_id, anonymous_flag, duration);
+                return resjson;
+            });
 
+
+            return objres;
+        }
 
 
 
