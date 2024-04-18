@@ -316,6 +316,58 @@ namespace LLOneBot.Net.Sessions
 
         }
         /// <summary>
+        /// 撤回消息
+        /// </summary>
+        /// <param name="message_id">消息 ID</param>
+        /// <returns></returns>
+        public static string DeleteMessage(string message_id)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "delete_msg");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("message_id", message_id);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+
+
+
+            return resjson;
+
+        }
+        /// <summary>
+        /// 撤回消息异步
+        /// </summary>
+        /// <param name="message_id">消息 ID</param>
+        /// <returns></returns>
+        public static async Task<string> DeleteMessageAsync(string message_id)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = DeleteMessage(message_id);
+                return resjson;
+            });
+
+
+            return objres;
+
+
+        }
+
+        /********************************************************************************************************************************************/
+        /*****************************************自定义公共方法***************************************************************************************************/
+        /********************************************************************************************************************************************/
+        /// <summary>
         /// 拼接地址路由信息
         /// </summary>
         /// <param name="url"></param>
@@ -329,6 +381,28 @@ namespace LLOneBot.Net.Sessions
             }
 
             return url + routing;
+        }
+
+        /// <summary>
+        /// 获取API响应类
+        /// </summary>
+        /// <param name="json">API响应的json</param>
+        /// <returns></returns>
+        public static Data.OneBotApiResponse GetOneBotApiResponse(string json) 
+        {
+            Data.OneBotApiResponse oneBotApiResponse = new Data.OneBotApiResponse();
+            try
+            {
+                oneBotApiResponse = JsonSerializer.Deserialize<Data.OneBotApiResponse>(json)!;
+            }
+            catch (Exception)
+            {
+
+               // throw;
+            }
+          
+
+            return oneBotApiResponse;
         }
     }
 
