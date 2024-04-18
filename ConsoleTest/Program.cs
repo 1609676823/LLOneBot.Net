@@ -63,10 +63,11 @@
             LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
             await liteLoaderQQNTBot.StartBot();
 
-        
+
             MessageChain messageChain = new MessageChain
                              {
-                              new TextMessage("测试信息："+DateTime.Now),                       
+                              new TextMessage("测试信息："+DateTime.Now),
+                              new ImageMessage("测试图片")
                               };
 
             //string resjson = MessageManager.SendMessage("2361803582", "",messageChain);
