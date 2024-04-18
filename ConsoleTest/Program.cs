@@ -71,7 +71,7 @@
                               };
 
           string resjson = 
-                MessageManager.SetGroupBan("782351597", "2361803582",0);
+                MessageManager.SetGroupWholeBan("782351597", false);
             
 
           //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
