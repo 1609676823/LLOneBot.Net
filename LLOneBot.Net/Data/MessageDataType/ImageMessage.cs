@@ -14,7 +14,7 @@ namespace LLOneBot.Net.Data.MessageDataType
     public class ImageMessage: MessageBase
     {
         /// <summary>
-        /// ImageMessage
+        /// 图片信息
         /// </summary>
         public ImageMessage () { this.data = new ImageMessageData(); }
 

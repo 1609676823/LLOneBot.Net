@@ -11,5 +11,9 @@ namespace LLOneBot.Net.Data
     /// </summary>
     public class MessageChain: List<MessageBase>
     {
+        /// <summary>
+        /// 消息链
+        /// </summary>
+        public MessageChain() { }
     }
 }
