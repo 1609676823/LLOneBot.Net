@@ -70,11 +70,11 @@
                              
                               };
 
-            string resjson = MessageManager.SendLike("275797306");
+          string resjson = MessageManager.SetGroupKick("782351597", "2361803582");
             
 
           //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
-            Console.WriteLine(resjson);
+           Console.WriteLine(resjson);
             //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
 
             //Console.WriteLine(resjsondel);

@@ -468,8 +468,58 @@ namespace LLOneBot.Net.Sessions
 
         }
 
+        /// <summary>
+        /// set_group_kick 群组踢人
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要踢的 QQ 号</param>
+        /// <param name="reject_add_request">拒绝此人的加群请求</param>
+        /// <returns></returns>
+        public static string SetGroupKick(string group_id, string user_id, bool reject_add_request = false)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_kick");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("reject_add_request", reject_add_request);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        ///  set_group_kick 群组踢人异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要踢的 QQ 号</param>
+        /// <param name="reject_add_request">拒绝此人的加群请求</param>
+        /// <returns></returns>
+
+        public static async Task<string> SetGroupKickAsync(string group_id, string user_id, bool reject_add_request = false)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupKick(group_id, user_id, reject_add_request);
+                return resjson;
+            });
 
 
+            return objres;
+
+
+        }
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
         /********************************************************************************************************************************************/
