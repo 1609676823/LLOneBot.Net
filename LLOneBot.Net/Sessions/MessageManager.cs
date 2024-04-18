@@ -785,7 +785,7 @@ namespace LLOneBot.Net.Sessions
         /// <returns></returns>
         public static string AppendRoutingToUrl(string url, string routing)
         {
-            if (!url.EndsWith("/"))
+            if (!url.EndsWith('/'))
             {
                 url += "/";
             }

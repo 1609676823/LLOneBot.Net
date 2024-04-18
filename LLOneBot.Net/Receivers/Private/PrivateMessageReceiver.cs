@@ -81,7 +81,7 @@ namespace LLOneBot.Net.Receivers.Private
                 {
                     MessageChain = MessageBuilder.BulderMessageChain(value!);
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                     //  throw;
@@ -105,9 +105,9 @@ namespace LLOneBot.Net.Receivers.Private
         /// </summary>
         public string? post_type { get; set; }
     }
-    /// <summary>
-    /// 发送人信息
-    /// </summary>
+    ///// <summary>
+    ///// 发送人信息
+    ///// </summary>
     //public class Sender
     //{
     //    /// <summary>

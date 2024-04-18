@@ -216,7 +216,7 @@ namespace LLOneBot.Net.Sessions
             return login_info;
         }
 
-        private string GetServerUrl(string url)
+        private  string GetServerUrl(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -227,12 +227,12 @@ namespace LLOneBot.Net.Sessions
 
             try
             {
-                if (!url.EndsWith("/"))
+                if (!url.EndsWith('/'))
                 {
                     return url + "/";
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
                 //throw;
@@ -476,7 +476,7 @@ meta_event：元事件
                 //string sub_type = Convert.ToString(root.GetProperty("sub_type"))!;
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 _unknownMessageReceived.OnNext(responseMessage!);
             }
