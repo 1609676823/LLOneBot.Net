@@ -43,7 +43,7 @@ namespace LLOneBot.Net.Receivers.Private
         /// <summary>
         /// 发送人信息
         /// </summary>
-        public Sender? sender { get; set; }
+        public Sender? sender { get; set; }=new Sender();
         /// <summary>
         /// 原始消息内容
         /// </summary>
@@ -108,28 +108,28 @@ namespace LLOneBot.Net.Receivers.Private
     /// <summary>
     /// 发送人信息
     /// </summary>
-    public class Sender
-    {
-        /// <summary>
-        /// 发送者 QQ 号
-        /// </summary>
-        public long? user_id { get; set; }
-        /// <summary>
-        /// 昵称
-        /// </summary>
-        public string? nickname { get; set; }
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public string? card { get; set; }
-        /// <summary>
-        /// 性别，male 或 female 或 unknown
-        /// </summary>
-        public string? sex { get; set; }
-        /// <summary>
-        /// 年龄
-        /// </summary>
-        public string? age { get; set; }
-    }
+    //public class Sender
+    //{
+    //    /// <summary>
+    //    /// 发送者 QQ 号
+    //    /// </summary>
+    //    public long? user_id { get; set; }
+    //    /// <summary>
+    //    /// 昵称
+    //    /// </summary>
+    //    public string? nickname { get; set; }
+    //    /// <summary>
+    //    /// 备注
+    //    /// </summary>
+    //    public string? card { get; set; }
+    //    /// <summary>
+    //    /// 性别，male 或 female 或 unknown
+    //    /// </summary>
+    //    public string? sex { get; set; }
+    //    /// <summary>
+    //    /// 年龄
+    //    /// </summary>
+    //    public string? age { get; set; }
+    //}
 
 }
