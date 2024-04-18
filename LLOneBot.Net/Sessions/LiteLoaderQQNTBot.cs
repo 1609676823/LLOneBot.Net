@@ -147,7 +147,9 @@ namespace LLOneBot.Net.Sessions
         /// Access Tocken
         /// </summary>
         public string? AccessTocken { get; set; }
-
+        /// <summary>
+        /// TimeoutSeconds
+        /// </summary>
         public int TimeoutSeconds { get; set; } = 10;
         /// <summary>
         /// 初始化地址
@@ -156,7 +158,7 @@ namespace LLOneBot.Net.Sessions
         {
             //  if (string.IsNullOrWhiteSpace(Ip))
             {
-                IPAddress Ipaddress = GetIPAddress(Ip);
+                IPAddress Ipaddress = GetIPAddress(Ip!);
 
                 string ip = string.Empty;
                 try
@@ -246,9 +248,9 @@ namespace LLOneBot.Net.Sessions
         private IPAddress GetIPAddress(string ip)
         {
 
-            IPAddress iPAddress = null;
-            IPAddress.TryParse(ip, out iPAddress);
-            return iPAddress;
+            IPAddress iPAddress = null!;
+            IPAddress.TryParse(ip, out iPAddress!);
+            return iPAddress!;
         }
         #endregion
 
@@ -293,7 +295,7 @@ namespace LLOneBot.Net.Sessions
         /// <returns></returns>
         private async Task StartWebsocketListenerAsync()
         {
-            var uri = new Uri(WebsocKetIpaddress);
+            var uri = new Uri(WebsocKetIpaddress!);
 
             // var client = new ClientWebSocket();
 

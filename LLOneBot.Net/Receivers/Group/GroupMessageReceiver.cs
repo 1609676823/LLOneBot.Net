@@ -13,6 +13,9 @@ namespace LLOneBot.Net.Receivers.Group
     /// </summary>
     public class GroupMessageReceiver : MessageReceiverBase
     {
+        /// <summary>
+        /// 接收的信息类型Group/Private
+        /// </summary>
         public override ReceiveMessageType receiveMessageType { get;set; }= ReceiveMessageType.Group;
 
         /// <summary>

@@ -72,6 +72,12 @@ namespace LLOneBot.Net.ComWebHelper
         /// 请求的超时设置
         /// </summary>
         public TimeSpan Timeout = System.Threading.Timeout.InfiniteTimeSpan;
+        /// <summary>
+        /// SendHttpRequestAsync
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<string> SendHttpRequestAsync(string url)
         {
             HttpClientHandler handler = new HttpClientHandler();
@@ -147,7 +153,7 @@ namespace LLOneBot.Net.ComWebHelper
 
             #endregion
 
-            HttpResponseMessage response=null;
+            HttpResponseMessage response=null!;
             try
             {
                  response = await client.SendAsync(request);
