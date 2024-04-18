@@ -13,6 +13,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageProjectUrl>https://gitee.com/lnsyzjw/llone-bot.-net</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

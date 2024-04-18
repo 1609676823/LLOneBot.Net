@@ -435,8 +435,10 @@ meta_event：元事件
 
                     }
                     else {
-                        Receivers.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.MessageReceiverBase>(responseMessage.Text!)!;
-                        _messageReceived.OnNext(messageReceiverBase);
+                     
+                        //  Receivers.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.MessageReceiverBase>(responseMessage.Text!)!;
+                       // _messageReceived.OnNext(messageReceiverBase);
+                        _unknownMessageReceived.OnNext(responseMessage!);
 
                     }
                 

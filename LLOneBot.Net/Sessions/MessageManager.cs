@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -196,7 +197,7 @@ namespace LLOneBot.Net.Sessions
             try
             {
 
-                string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+              //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
                 string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
                 url = AppendRoutingToUrl(url, "send_private_msg");
 
@@ -223,7 +224,7 @@ namespace LLOneBot.Net.Sessions
         }
 
         /// <summary>
-        /// 
+        /// 发送私聊消息异步
         /// </summary>
         /// <param name="user_id">对方 QQ 号</param>
         /// <param name="chain">要发送的消息链</param>
@@ -240,11 +241,79 @@ namespace LLOneBot.Net.Sessions
 
             return objres;
 
-            //Task<string> myTask = Task.Factory.StartNew(() => {
-            //    // 在这里执行异步操作，并返回字符串结果
-            //    return "Hello, World!";
-            //});
-            //return myTask.Result;
+           
+        }
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="message_type">消息类型，支持 private、group，分别对应私聊、群组，如不传入，则根据传入的 *_id 参数判断</param>
+        /// <param name="user_id">对方 QQ 号（消息类型为 private 时需要）</param>
+        /// <param name="group_id">群号（消息类型为 group 时需要）</param>
+        /// <param name="chain">要发送的内容(消息链)</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        /// <returns></returns>
+        public static string SendMessage(string user_id,string group_id, Data.MessageChain chain, Data.EventMessageType message_type= Data.EventMessageType.None, bool auto_escape = false)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                
+               
+
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "send_msg");
+
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+
+                if (!message_type.Equals(Data.EventMessageType.None)) 
+                {
+                    jsonNodepost.Add("message_type", message_type.ToString().ToLower());
+                }
+                
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("message", JsonSerializer.SerializeToNode(chain, jsonSerializerOptions));
+                if (auto_escape) { jsonNodepost.Add("auto_escape", auto_escape); }
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+
+                resjson = ApiPublicPost(url, postjson);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                //  throw;
+            }
+
+
+
+            return resjson;
+        }
+
+        /// <summary>
+        /// 发送消息异步
+        /// </summary>
+        /// <param name="user_id">对方 QQ 号（消息类型为 private 时需要）</param>
+        /// <param name="group_id">群号（消息类型为 group 时需要）</param>
+        /// <param name="chain">要发送的内容(消息链)</param>
+        /// <param name="message_type">消息类型，支持 private、group，分别对应私聊、群组，如不传入，则根据传入的 *_id 参数判断</param>
+        /// <param name="auto_escape">消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效</param>
+        /// <returns></returns>
+        public static async Task<string> SendMessageAsync(string user_id, string group_id, Data.MessageChain chain, Data.EventMessageType message_type = Data.EventMessageType.None, bool auto_escape = false)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SendMessage(user_id, group_id, chain, message_type,auto_escape);
+                return resjson;
+            });
+
+
+            return objres;
+
+
         }
         /// <summary>
         /// 拼接地址路由信息

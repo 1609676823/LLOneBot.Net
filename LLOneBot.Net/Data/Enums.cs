@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using System.Diagnostics.CodeAnalysis;
 
 using System.Linq;
@@ -15,13 +16,15 @@ namespace LLOneBot.Net.Data
     /// <summary>
     /// 
     /// </summary>
-    public enum ReceiveMessageType
+    public enum EventMessageType
     {
         /// <summary>
         /// Private
         /// </summary>
         [EnumMember(Value = "private")]
         [Description("private")]
+      
+
         Private,
 
         /// <summary>
@@ -36,7 +39,14 @@ namespace LLOneBot.Net.Data
         /// </summary>
         [EnumMember(Value = "unknown")]
         [Description("unknown")]
-        Unknown
+        Unknown,
+
+        /// <summary>
+        /// None
+        /// </summary>
+        [EnumMember(Value = "none")]
+        [Description("none")]
+        None
 
 
     }

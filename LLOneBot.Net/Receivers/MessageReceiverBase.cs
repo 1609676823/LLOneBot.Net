@@ -19,7 +19,7 @@ namespace LLOneBot.Net.Receivers
         /// </summary>
       //  [JsonPropertyName("message_type")]
         [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
-        public virtual ReceiveMessageType receiveMessageType { get; set; }
+        public virtual EventMessageType receiveMessageType { get; set; }
 
         //private string _message_type;
         //public string message_type 

@@ -75,11 +75,11 @@
                                 new ImageMessage(@"file:///D:/1.jpg",@"[QQ红包]你收到一个专属红包，请在新版手机QQ查看。")
                                 
                               };
-          //  string resjson= MessageManager.SendFriendMessage("2361803582", messageChain,true);
-          //string resjson=  MessageManager.SendGroupMessage("600075933", messageChain);
-      //  Console.WriteLine(resjson);
-
-
+            //  string resjson= MessageManager.SendFriendMessage("2361803582", messageChain,true);
+            //string resjson=  MessageManager.SendGroupMessage("600075933", messageChain);
+            //  Console.WriteLine(resjson);
+            string resjson = MessageManager.SendMessage("2361803582", "",messageChain);
+            Console.WriteLine(resjson);
             /* 接收message 消息事件*/
 
 
