@@ -73,7 +73,7 @@
             string resjson =
               //   MessageManager.SetGroupAdmin("782351597", "2361803582", false);
 
-              MessageManager.GetGroupInfo("600075933", true);
+              MessageManager.GetGroupList();
             //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
             Console.WriteLine(resjson);
             //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
