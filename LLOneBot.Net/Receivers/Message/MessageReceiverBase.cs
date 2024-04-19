@@ -15,6 +15,10 @@ namespace LLOneBot.Net.Receivers.Message
     public class MessageReceiverBase
     {
         /// <summary>
+        /// 消息接收器基类
+        /// </summary>
+        public MessageReceiverBase() { }
+        /// <summary>
         /// 消息接收器类型
         /// </summary>
       //  [JsonPropertyName("message_type")]

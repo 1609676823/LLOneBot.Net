@@ -84,6 +84,90 @@ namespace LLOneBot.Net.Data
     }
 
     /// <summary>
+    ///  Event通知事件类型
+    /// </summary>
+    public enum EventNoticeType
+    {
+        /// <summary>
+        /// 群文件上传
+        /// </summary>
+        [EnumMember(Value = "GroupUpload")]
+        [Description("GroupUpload")]
+        GroupUpload,
+
+        /// <summary>
+        /// 群管理员变动
+        /// </summary>
+        [EnumMember(Value = "GroupAdmin")]
+        [Description("GroupAdmin")]
+        GroupAdmin,
+
+        /// <summary>
+        /// 群成员减少
+        /// </summary>
+        [EnumMember(Value = "GroupDecrease")]
+        [Description("GroupDecrease")]
+        GroupDecrease,
+
+        /// <summary>
+        /// 群成员增加
+        /// </summary>
+        [EnumMember(Value = "GroupIncrease")]
+        [Description("GroupIncrease")]
+        GroupIncrease,
+
+        /// <summary>
+        /// 群禁言
+        /// </summary>
+        [EnumMember(Value = "Groupban")]
+        [Description("Groupban")]
+        Groupban,
+
+
+        /// <summary>
+        /// 好友添加
+        /// </summary>
+        [EnumMember(Value = "FriendAdd")]
+        [Description("FriendAdd")]
+        FriendAdd,
+
+        /// <summary>
+        /// 群消息撤回
+        /// </summary>
+        [EnumMember(Value = "GroupRecall")]
+        [Description("GroupRecall")]
+        GroupRecall,
+
+        /// <summary>
+        /// 好友消息撤回
+        /// </summary>
+        [EnumMember(Value = "FriendRecall")]
+        [Description("FriendRecall")]
+        FriendRecall,
+
+        /// <summary>
+        /// 群内戳一戳
+        /// </summary>
+        [EnumMember(Value = "Poke")]
+        [Description("Poke")]
+        Poke,
+
+        /// <summary>
+        /// 群红包运气王
+        /// </summary>
+        [EnumMember(Value = "LuckyKing")]
+        [Description("LuckyKing")]
+        LuckyKing,
+
+        /// <summary>
+        /// 群成员荣誉变更
+        /// </summary>
+        [EnumMember(Value = "Honor")]
+        [Description("Honor")]
+        Honor,
+    }
+
+    /// <summary>
     /// 发送者的性别
     /// </summary>
     public enum Genders

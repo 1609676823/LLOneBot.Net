@@ -12,6 +12,10 @@ namespace LLOneBot.Net.Receivers.Request
     public class RequestReceiverBase
     {
         /// <summary>
+        /// 请求接收器基类
+        /// </summary>
+        public RequestReceiverBase() { }
+        /// <summary>
         /// 请求接收器类型
         /// </summary>
         [JsonIgnore]

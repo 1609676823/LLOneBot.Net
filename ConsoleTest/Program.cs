@@ -15,6 +15,9 @@
     {
         static async Task Main(string[] args)
         {
+
+        //   string testa = @"测试123456.";
+        //    Console.WriteLine(testa.Length);
             // AtMessage atMessage = new AtMessage();
             //var json = JsonSerializer.Serialize(atMessage)!;
 
