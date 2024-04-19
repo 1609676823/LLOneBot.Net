@@ -489,13 +489,21 @@ meta_event：元事件
                     if ("friend".Equals(request_type,StringComparison.OrdinalIgnoreCase))
                     {
                         Receivers.Request.FriendRequestReceiver friendRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.FriendRequestReceiver>(responseMessage.Text!)!;
+                        friendRequestReceiver.Originaljson = responseMessage.Text!;
                        _requestReceived.OnNext(friendRequestReceiver);
                     }
 
-                    if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
+                   else if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
                     {
                         Receivers.Request.GroupRequestReceiver groupRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.GroupRequestReceiver>(responseMessage.Text!)!;
+                        groupRequestReceiver.Originaljson = responseMessage.Text!;
                         _requestReceived.OnNext(groupRequestReceiver);
+                    }
+                    else
+                    {
+                        Receivers.Request.RequestReceiverBase requestReceiverBase=JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
+                        requestReceiverBase.Originaljson = responseMessage.Text!;
+                        _requestReceived.OnNext(requestReceiverBase);
                     }
                 }
 
