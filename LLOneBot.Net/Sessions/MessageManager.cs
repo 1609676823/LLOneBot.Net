@@ -815,6 +815,105 @@ namespace LLOneBot.Net.Sessions
             return objres;
         }
 
+        /// <summary>
+        /// set_group_card 设置群名片（群备注）
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要设置的 QQ 号</param>
+        /// <param name="card">群名片内容，不填或空字符串表示删除群名片</param>
+        /// <returns></returns>
+        public static string SetGroupCard(string group_id, string user_id, string card)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url,"set_group_card");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("card", card);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_group_card 设置群名片（群备注）异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要设置的 QQ 号</param>
+        /// <param name="card">群名片内容，不填或空字符串表示删除群名片</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupCardAsync(string group_id, string user_id, string card)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupCard(group_id, user_id, card);
+                return resjson;
+            });
+
+
+            return objres;
+        }
+        /// <summary>
+        /// set_group_name 设置群名
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="group_name">新群名</param>
+        /// <returns></returns>
+        public static string SetGroupName(string group_id, string group_name)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_name");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("group_name", group_name);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+
+        /// <summary>
+        /// set_group_name 设置群名异步
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="group_name">新群名</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupNamedAsync(string group_id, string group_name)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupName(group_id, group_name);
+                return resjson;
+            });
+
+
+            return objres;
+        }
+
+
+
+
+
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
         /********************************************************************************************************************************************/
