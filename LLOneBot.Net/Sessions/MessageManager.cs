@@ -1059,6 +1059,66 @@ namespace LLOneBot.Net.Sessions
             return objres;
         }
 
+        /// <summary>
+        /// set_group_add_request 处理加群请求／邀请
+        /// </summary>
+        /// <param name="flag">加群请求的 flag（需从上报的数据中获得）</param>
+        /// <param name="sub_type">add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）</param>
+        /// <param name="approve">是否同意请求／邀请</param>
+        /// <param name="reason">拒绝理由（仅在拒绝时有效）</param>
+        /// <returns></returns>
+        public static string SetGroupAddRequest(string flag, string sub_type, bool approve, string reason = "")
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_add_request");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("flag", flag);
+                jsonNodepost.Add("sub_type", sub_type);
+                jsonNodepost.Add("type",sub_type);
+                jsonNodepost.Add("approve", approve);
+                jsonNodepost.Add("reason", reason);
+
+
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_group_add_request 处理加群请求／邀请异步
+        /// </summary>
+        /// <param name="flag">加群请求的 flag（需从上报的数据中获得）</param>
+        /// <param name="sub_type">add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）</param>
+        /// <param name="approve">是否同意请求／邀请</param>
+        /// <param name="reason">拒绝理由（仅在拒绝时有效）</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupAddRequestAsync(string flag, string sub_type, bool approve, string reason = "")
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupAddRequest(flag, sub_type, approve, reason);
+                return resjson;
+            });
+
+
+            return objres;
+        }
+
+
+
+
+
+
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
         /********************************************************************************************************************************************/
