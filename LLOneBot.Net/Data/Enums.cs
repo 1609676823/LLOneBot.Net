@@ -63,7 +63,7 @@ namespace LLOneBot.Net.Data
         [Description("friend")]
 
 
-        friend,
+        Friend,
 
         /// <summary>
         /// Group
@@ -71,7 +71,7 @@ namespace LLOneBot.Net.Data
 
         [EnumMember(Value = "group")]
         [Description("group")]
-        group,
+        Group,
 
         /// <summary>
         /// Unknown

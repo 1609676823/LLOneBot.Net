@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace LLOneBot.Net.Receivers.Request
 {
@@ -13,6 +14,7 @@ namespace LLOneBot.Net.Receivers.Request
         /// <summary>
         /// 请求接收器类型
         /// </summary>
-        public EventRequestType ReceiveRequestType { get; set; } = EventRequestType.Unknown;
+        [JsonIgnore]
+        public virtual EventRequestType ReceiveRequestType { get; set; } = EventRequestType.Unknown;
     }
 }
