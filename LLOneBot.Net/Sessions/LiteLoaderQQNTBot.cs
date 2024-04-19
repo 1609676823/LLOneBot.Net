@@ -76,21 +76,21 @@ namespace LLOneBot.Net.Sessions
         /// 接收message：消息事件
         /// </summary>
 
-/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-在此之前:
-        public IObservable<Receivers.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
-在此之后:
-        public IObservable<MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
-*/
+        /* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+        在此之前:
+                public IObservable<Receivers.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
+        在此之后:
+                public IObservable<MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
+        */
         public IObservable<Receivers.Message.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
 
 
-/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-在此之前:
-        private readonly Subject<Receivers.MessageReceiverBase> _messageReceived = new();
-在此之后:
-        private readonly Subject<MessageReceiverBase> _messageReceived = new();
-*/
+        /* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+        在此之前:
+                private readonly Subject<Receivers.MessageReceiverBase> _messageReceived = new();
+        在此之后:
+                private readonly Subject<MessageReceiverBase> _messageReceived = new();
+        */
         private readonly Subject<Receivers.Message.MessageReceiverBase> _messageReceived = new();
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace LLOneBot.Net.Sessions
             AccessTocken = accesstocken;
             InitializeIpaddress();
         }
-      
+
 
         // private string _ip;
         /// <summary>
@@ -214,7 +214,7 @@ namespace LLOneBot.Net.Sessions
 
             ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
 
-            webHelper.Timeout=TimeSpan.FromSeconds(TimeoutSeconds);  
+            webHelper.Timeout = TimeSpan.FromSeconds(TimeoutSeconds);
 
             webHelper.HttpMethod = HttpMethod.Get;
             string url = string.Format("{0}get_login_info", GetServerUrl(HttpIpaddress!));
@@ -230,7 +230,7 @@ namespace LLOneBot.Net.Sessions
             return login_info;
         }
 
-        private  string GetServerUrl(string url)
+        private string GetServerUrl(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -246,7 +246,7 @@ namespace LLOneBot.Net.Sessions
                     return url + "/";
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
 
                 //throw;
@@ -285,9 +285,9 @@ namespace LLOneBot.Net.Sessions
             catch (Exception ex)
             {
 
-                throw new Exception("HTTP服务连接失败，请检查;"+ex.Message);
+                throw new Exception("HTTP服务连接失败，请检查;" + ex.Message);
             }
-           
+
             try
             {
                 await StartWebsocketListenerAsync();
@@ -295,11 +295,11 @@ namespace LLOneBot.Net.Sessions
             catch (Exception ex)
             {
 
-                throw new Exception("Websocket服务连接失败，请检查;"+ ex.Message);
+                throw new Exception("Websocket服务连接失败，请检查;" + ex.Message);
             }
-           
+
             return LoginInfo;
-            
+
 
         }
 
@@ -360,7 +360,8 @@ namespace LLOneBot.Net.Sessions
 
         }
 
-        private async void testWebSocket() {
+        private async void testWebSocket()
+        {
             ClientWebSocket clientWebSocket = new ClientWebSocket();
             Uri uri = new Uri("");
 
@@ -371,8 +372,8 @@ namespace LLOneBot.Net.Sessions
             { "Custom-Header", "Value" } // 添加自定义请求头
         };
             clientWebSocket.Options.SetRequestHeader("authorization", AccessTocken);
-           
-           await clientWebSocket.ConnectAsync(uri, CancellationToken.None);
+
+            await clientWebSocket.ConnectAsync(uri, CancellationToken.None);
             //var buffer = System.Text.Encoding.UTF8.GetBytes("");
             //var segment = new ArraySegment<byte>(buffer);
             //clientWebSocket.ReceiveAsync(buffer,CancellationToken.None);
@@ -380,7 +381,7 @@ namespace LLOneBot.Net.Sessions
             //byte[] receiveBuffer = new byte[1024];
             //var result = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(receiveBuffer), CancellationToken.None);
             //string receivedMessage = Encoding.UTF8.GetString(receiveBuffer, 0, result.Count);
-           
+
 
             while (clientWebSocket.State == WebSocketState.Open)
             {
@@ -415,19 +416,13 @@ namespace LLOneBot.Net.Sessions
 
                 JsonNode jsonNode = JsonNode.Parse(responseMessage.Text!)!;
                 string post_type = Convert.ToString(jsonNode["post_type"])!;
-             
 
                 /*
-message：消息事件
-notice：通知事件
-request：请求事件
-meta_event：元事件
+                            message：消息事件
+                            notice：通知事件
+                            request：请求事件
+                            meta_event：元事件
                  */
-                // Receivers.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.MessageReceiverBase>(responseMessage.Text!)!;
-                //if ("group".Equals(messageReceiverBase.Messagetype,StringComparison.OrdinalIgnoreCase))
-                //{
-                //    Receivers.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.GroupMessageReceiver>(responseMessage.Text!)!;
-                // }
 
 
                 if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase))
@@ -439,12 +434,12 @@ meta_event：元事件
                     if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
 
-/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-在此之前:
-                        Receivers.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Group.GroupMessageReceiver>(responseMessage.Text!)!;
-在此之后:
-                        GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
-*/
+                        /* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+                        在此之前:
+                                                Receivers.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Group.GroupMessageReceiver>(responseMessage.Text!)!;
+                        在此之后:
+                                                GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
+                        */
                         Receivers.Message.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Group.GroupMessageReceiver>(responseMessage.Text!)!;
                         groupMessageReceiver.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(groupMessageReceiver);
@@ -454,46 +449,45 @@ meta_event：元事件
 
 
                         Receivers.Message.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
-                        privateMessageReceiver.Originaljson=responseMessage.Text!;
+                        privateMessageReceiver.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(privateMessageReceiver);
 
                     }
-                    else {
+                    else
+                    {
 
                         Receivers.Message.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.Message.MessageReceiverBase>(responseMessage.Text!)!;
-                        messageReceiverBase.ReceiveMessageType= Data.EventMessageType.Unknown;
+                        messageReceiverBase.ReceiveMessageType = Data.EventMessageType.Unknown;
                         messageReceiverBase.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(messageReceiverBase);
-                        //  _messageReceived.OnNext(privateMessageReceiver);
-                        // _messageReceived.OnNext(messageReceiverBase);
-                        //_unknownMessageReceived.OnNext(responseMessage!);
+                       
 
                     }
-                
-           
-                  
+
+
+
                 }
 
 
-                if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+                else if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
                     _noticeReceived.OnNext(responseMessage);
                 }
 
-                if ("request".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+                else if ("request".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
 
                     string request_type = Convert.ToString(jsonNode["request_type"])!;
-                    if ("friend".Equals(request_type,StringComparison.OrdinalIgnoreCase))
+                    if ("friend".Equals(request_type, StringComparison.OrdinalIgnoreCase))
                     {
                         Receivers.Request.FriendRequestReceiver friendRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.FriendRequestReceiver>(responseMessage.Text!)!;
                         friendRequestReceiver.Originaljson = responseMessage.Text!;
-                       _requestReceived.OnNext(friendRequestReceiver);
+                        _requestReceived.OnNext(friendRequestReceiver);
                     }
 
-                   else if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
+                    else if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
                     {
                         Receivers.Request.GroupRequestReceiver groupRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.GroupRequestReceiver>(responseMessage.Text!)!;
                         groupRequestReceiver.Originaljson = responseMessage.Text!;
@@ -501,17 +495,22 @@ meta_event：元事件
                     }
                     else
                     {
-                        Receivers.Request.RequestReceiverBase requestReceiverBase=JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
+                        Receivers.Request.RequestReceiverBase requestReceiverBase = JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
                         requestReceiverBase.Originaljson = responseMessage.Text!;
                         _requestReceived.OnNext(requestReceiverBase);
                     }
                 }
 
-                if ("meta_event".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+                else if ("meta_event".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
-                   
+
                     _meta_eventReceived.OnNext(responseMessage);
+                }
+
+                else
+                {
+                    _unknownEventReceived.OnNext(responseMessage!);
                 }
 
 
@@ -525,7 +524,7 @@ meta_event：元事件
                 //string sub_type = Convert.ToString(root.GetProperty("sub_type"))!;
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 _unknownEventReceived.OnNext(responseMessage!);
             }

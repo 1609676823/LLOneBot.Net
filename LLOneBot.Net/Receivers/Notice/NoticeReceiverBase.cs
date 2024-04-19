@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace LLOneBot.Net.Receivers.Notice
 {
@@ -13,5 +14,11 @@ namespace LLOneBot.Net.Receivers.Notice
         /// 通知事件接收器基类
         /// </summary>
         public NoticeReceiverBase() { }
+
+        /// <summary>
+        /// 原始的json
+        /// </summary>
+        [JsonIgnore]
+        public string Originaljson { get; set; } = string.Empty;
     }
 }
