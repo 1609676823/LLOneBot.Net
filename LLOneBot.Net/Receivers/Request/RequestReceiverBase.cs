@@ -20,5 +20,11 @@ namespace LLOneBot.Net.Receivers.Request
         /// </summary>
         [JsonIgnore]
         public virtual EventRequestType ReceiveRequestType { get; set; } = EventRequestType.Unknown;
+
+        /// <summary>
+        /// 原始的json
+        /// </summary>
+        [JsonIgnore]
+        public string Originaljson { get; set; } = string.Empty;
     }
 }

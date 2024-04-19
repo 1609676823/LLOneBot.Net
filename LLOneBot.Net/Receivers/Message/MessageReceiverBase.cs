@@ -21,9 +21,16 @@ namespace LLOneBot.Net.Receivers.Message
         /// <summary>
         /// 消息接收器类型
         /// </summary>
-      //  [JsonPropertyName("message_type")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        //  [JsonPropertyName("message_type")]
+        // [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonIgnore]
         public virtual EventMessageType ReceiveMessageType { get; set; }
+
+        /// <summary>
+        /// 原始的json
+        /// </summary>
+        [JsonIgnore]
+        public string Originaljson { get; set; } =string.Empty;
 
         //private string _message_type;
         //public string message_type 

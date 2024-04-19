@@ -52,9 +52,9 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// 接收到未知类型的Websocket消息
         /// </summary>
-        public IObservable<object> UnknownMessageReceived => _unknownMessageReceived.AsObservable();
+        public IObservable<object> UnknownEventReceived => _unknownEventReceived.AsObservable();
 
-        private readonly Subject<object> _unknownMessageReceived = new();
+        private readonly Subject<object> _unknownEventReceived = new();
 
 
 
@@ -446,26 +446,27 @@ meta_event：元事件
                         GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
 */
                         Receivers.Message.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Group.GroupMessageReceiver>(responseMessage.Text!)!;
+                        groupMessageReceiver.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(groupMessageReceiver);
                     }
                     else if ("private".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
 
-/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-在此之前:
-                        Receivers.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
-在此之后:
-                        PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<PrivateMessageReceiver>(responseMessage.Text!)!;
-*/
+
                         Receivers.Message.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
+                        privateMessageReceiver.Originaljson=responseMessage.Text!;
                         _messageReceived.OnNext(privateMessageReceiver);
 
                     }
                     else {
-                     
-                        //  Receivers.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.MessageReceiverBase>(responseMessage.Text!)!;
-                       // _messageReceived.OnNext(messageReceiverBase);
-                        _unknownMessageReceived.OnNext(responseMessage!);
+
+                        Receivers.Message.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.Message.MessageReceiverBase>(responseMessage.Text!)!;
+                        messageReceiverBase.ReceiveMessageType= Data.EventMessageType.Unknown;
+                        messageReceiverBase.Originaljson = responseMessage.Text!;
+                        _messageReceived.OnNext(messageReceiverBase);
+                        //  _messageReceived.OnNext(privateMessageReceiver);
+                        // _messageReceived.OnNext(messageReceiverBase);
+                        //_unknownMessageReceived.OnNext(responseMessage!);
 
                     }
                 
@@ -518,7 +519,7 @@ meta_event：元事件
             }
             catch (Exception )
             {
-                _unknownMessageReceived.OnNext(responseMessage!);
+                _unknownEventReceived.OnNext(responseMessage!);
             }
             // Console.WriteLine(data);
         }
