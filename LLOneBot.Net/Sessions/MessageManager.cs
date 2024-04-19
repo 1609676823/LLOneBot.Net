@@ -1403,9 +1403,62 @@ namespace LLOneBot.Net.Sessions
 
         }
 
+        /// <summary>
+        /// get_credentials 获取 QQ 相关接口凭证
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <returns></returns>
+        public static string GetCredentials(string domain)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "get_credentials");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("domain", domain);
 
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
 
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
 
+        }
+
+        /// <summary>
+        /// get_record 获取语音
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="out_format"></param>
+        /// <returns></returns>
+        public static string GetRecord(string file,string out_format)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "get_record");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("file", file);
+                jsonNodepost.Add("out_format", out_format);
+                string postjson = JsonSerializer.Serialize(jsonNodepost,jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
 
 
 
