@@ -910,9 +910,154 @@ namespace LLOneBot.Net.Sessions
             return objres;
         }
 
+        /// <summary>
+        /// set_group_leave 退出群组(谨慎使用)
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="is_dismiss">(谨慎使用)是否解散，如果登录号是群主，则仅在此项为 true 时能够解散</param>
+        /// <returns></returns>
+        public static string SetGroupLeave(string group_id, bool is_dismiss=false)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_leave");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("is_dismiss", is_dismiss);
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_group_leave 退出群组异步(谨慎使用)
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="is_dismiss">(谨慎使用)是否解散，如果登录号是群主，则仅在此项为 true 时能够解散</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupLeaveAsync(string group_id, bool is_dismiss = false)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupLeave(group_id, false);
+                return resjson;
+            });
 
 
+            return objres;
+        }
+        /// <summary>
+        /// set_group_special_title 设置群组专属头衔(预留功能可能未支持)
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要设置的 QQ 号</param>
+        /// <param name="special_title">专属头衔，不填或空字符串表示删除专属头衔</param>
+        /// <param name="duration">专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试</param>
+        /// <returns></returns>
+        public static string SetGroupSpecialTitle(string group_id, string user_id ,string special_title,long duration=-1)
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url, "set_group_special_title");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("group_id", group_id);
+                jsonNodepost.Add("user_id", user_id);
+                jsonNodepost.Add("special_title", special_title);
+                jsonNodepost.Add("duration", duration);
+               
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
 
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_group_special_title 设置群组专属头衔异步(预留功能可能未支持)
+        /// </summary>
+        /// <param name="group_id">群号</param>
+        /// <param name="user_id">要设置的 QQ 号</param>
+        /// <param name="special_title">专属头衔，不填或空字符串表示删除专属头衔</param>
+        /// <param name="duration">专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试</param>
+        /// <returns></returns>
+        public static async Task<string> SetGroupSpecialTitleAsync(string group_id, string user_id, string special_title, long duration = -1)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetGroupSpecialTitle(group_id, user_id,special_title, duration);
+                return resjson;
+            });
+
+
+            return objres;
+        }
+
+        /// <summary>
+        /// set_friend_add_request 处理加好友请求
+        /// </summary>
+        /// <param name="flag">加好友请求的 flag（需从上报的数据中获得）</param>
+        /// <param name="approve">是否同意请求</param>
+        /// <param name="remark">添加后的好友备注（仅在同意时有效）</param>
+        /// <returns></returns>
+        public static string SetFriendAddRequest(string flag, bool approve, string remark="")
+        {
+            string resjson = string.Empty;
+            try
+            {
+                //  string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
+                string url = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.HttpIpaddress! : string.Empty;
+                url = AppendRoutingToUrl(url,"set_friend_add_request");
+                System.Text.Json.Nodes.JsonObject jsonNodepost = new System.Text.Json.Nodes.JsonObject();
+                jsonNodepost.Add("flag", flag);
+                jsonNodepost.Add("approve", approve);
+                jsonNodepost.Add("remark", remark);
+               
+
+                string postjson = JsonSerializer.Serialize(jsonNodepost, jsonSerializerOptions);
+                resjson = ApiPublicPost(url, postjson);
+
+            }
+            catch (Exception)
+            {
+                //  throw;
+            }
+            return resjson;
+
+        }
+        /// <summary>
+        /// set_friend_add_request 处理加好友请求异步
+        /// </summary>
+        /// <param name="flag">加好友请求的 flag（需从上报的数据中获得）</param>
+        /// <param name="approve">是否同意请求</param>
+        /// <param name="remark">添加后的好友备注（仅在同意时有效）</param>
+        /// <returns></returns>
+        public static async Task<string> SetFriendAddRequestAsync(string flag, bool approve, string remark = "")
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetFriendAddRequest(flag, approve,remark);
+                return resjson;
+            });
+
+
+            return objres;
+        }
 
         /********************************************************************************************************************************************/
         /*****************************************自定义公共方法***************************************************************************************************/
