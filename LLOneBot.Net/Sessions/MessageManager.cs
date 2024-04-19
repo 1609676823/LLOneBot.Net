@@ -1702,7 +1702,7 @@ namespace LLOneBot.Net.Sessions
         }
 
         /// <summary>
-        /// 获取API响应类
+        /// 获取发送消息的API响应类
         /// </summary>
         /// <param name="json">API响应的json</param>
         /// <returns></returns>
