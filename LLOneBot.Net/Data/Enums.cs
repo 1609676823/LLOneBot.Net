@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data
 {
     /// <summary>
-    /// 
+    /// Event消息事件类型
     /// </summary>
     public enum EventMessageType
     {
@@ -47,6 +47,38 @@ namespace LLOneBot.Net.Data
         [EnumMember(Value = "none")]
         [Description("none")]
         None
+
+
+    }
+
+    /// <summary>
+    /// Event请求事件类型
+    /// </summary>
+    public enum EventRequestType
+    {
+        /// <summary>
+        /// Private
+        /// </summary>
+        [EnumMember(Value = "friend")]
+        [Description("friend")]
+
+
+        friend,
+
+        /// <summary>
+        /// Group
+        /// </summary>
+
+        [EnumMember(Value = "group")]
+        [Description("group")]
+        group,
+
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        [EnumMember(Value = "unknown")]
+        [Description("unknown")]
+        Unknown,
 
 
     }

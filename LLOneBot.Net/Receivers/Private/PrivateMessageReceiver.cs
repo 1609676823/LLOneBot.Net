@@ -14,7 +14,10 @@ namespace LLOneBot.Net.Receivers.Private
     /// </summary>
     public class PrivateMessageReceiver : MessageReceiverBase
     {
-
+        /// <summary>
+        /// 接收的信息类型Group/Private
+        /// </summary>
+        public override EventMessageType ReceiveMessageType { get; set; } = EventMessageType.Private;
         /// <summary>
         /// 消息类型
         /// </summary>
