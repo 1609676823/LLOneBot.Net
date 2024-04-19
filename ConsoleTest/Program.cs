@@ -4,6 +4,7 @@
     using LLOneBot.Net.Data.MessageDataType;
     using LLOneBot.Net.Receivers.Message.Group;
     using LLOneBot.Net.Receivers.Message.Private;
+    using LLOneBot.Net.Receivers.Request;
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
     using System.Reactive.Linq;
@@ -158,11 +159,23 @@
 
 
             });
-            /* request 请求事件*/
-            liteLoaderQQNTBot.RequestReceived.OfType<ResponseMessage>().Subscribe(msg =>
+            /* request 群 请求事件*/
+            liteLoaderQQNTBot.RequestReceived.OfType<GroupRequestReceiver>().Subscribe(msg =>
             {
-                Console.WriteLine("接收到request 请求事件");
-                Console.WriteLine(msg.Text);
+                Console.WriteLine("接收到群 request 请求事件");
+               Console.WriteLine(msg.comment);
+            });
+
+            /* request 好友 请求事件*/
+            liteLoaderQQNTBot.RequestReceived.OfType<FriendRequestReceiver>().Subscribe(msg =>
+            {
+                Console.WriteLine("接收到好友 request 请求事件");
+                Console.WriteLine(msg.comment);
+                //if (msg.user_id == 2361803582) 
+                //{
+                //    string resjson = MessageManager.SetFriendAddRequest(msg.flag, true);
+                //    Console.WriteLine(resjson);
+                //}
             });
             /* notice 通知事件*/
             liteLoaderQQNTBot.NoticeReceived.OfType<ResponseMessage>().Subscribe(msg =>

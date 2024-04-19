@@ -96,9 +96,9 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         ///request：请求事件
         /// </summary>
-        public IObservable<ResponseMessage> RequestReceived => _requestReceived.AsObservable();
+        public IObservable<Receivers.Request.RequestReceiverBase> RequestReceived => _requestReceived.AsObservable();
 
-        private readonly Subject<ResponseMessage> _requestReceived = new();
+        private readonly Subject<Receivers.Request.RequestReceiverBase> _requestReceived = new();
 
 
         /// <summary>
@@ -415,7 +415,7 @@ namespace LLOneBot.Net.Sessions
 
                 JsonNode jsonNode = JsonNode.Parse(responseMessage.Text!)!;
                 string post_type = Convert.ToString(jsonNode["post_type"])!;
-                string message_type = Convert.ToString(jsonNode["message_type"])!;
+             
 
                 /*
 message：消息事件
@@ -433,9 +433,8 @@ meta_event：元事件
                 if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
+                    string message_type = Convert.ToString(jsonNode["message_type"])!;
 
-
-                   
 
                     if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
@@ -484,12 +483,25 @@ meta_event：元事件
                 if ("request".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
-                    _requestReceived.OnNext(responseMessage);
+
+                    string request_type = Convert.ToString(jsonNode["request_type"])!;
+                    if ("friend".Equals(request_type,StringComparison.OrdinalIgnoreCase))
+                    {
+                        Receivers.Request.FriendRequestReceiver friendRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.FriendRequestReceiver>(responseMessage.Text!)!;
+                       _requestReceived.OnNext(friendRequestReceiver);
+                    }
+
+                    if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Receivers.Request.GroupRequestReceiver groupRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.GroupRequestReceiver>(responseMessage.Text!)!;
+                        _requestReceived.OnNext(groupRequestReceiver);
+                    }
                 }
 
                 if ("meta_event".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
+                   
                     _meta_eventReceived.OnNext(responseMessage);
                 }
 
