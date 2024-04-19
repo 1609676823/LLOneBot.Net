@@ -1434,8 +1434,8 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// get_record 获取语音
         /// </summary>
-        /// <param name="file"></param>
-        /// <param name="out_format"></param>
+        /// <param name="file">收到的语音文件名（消息段的 file 参数），如 0B38145AA44505000B38145AA4450500.silk</param>
+        /// <param name="out_format">要转换到的格式，目前支持 mp3、amr、wma、m4a、spx、ogg、wav、flac</param>
         /// <returns></returns>
         public static string GetRecord(string file,string out_format)
         {
