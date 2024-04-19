@@ -70,10 +70,10 @@
                              
                               };
 
-            string resjson = MessageManager.GetGroupMemberInfo("600075933","2854196306", true);
+            string resjson = MessageManager.CleanCache();
             //   MessageManager.SetGroupAdmin("782351597", "2361803582", false);
 
-            MessageManager.GetGroupList();
+           
             //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
             Console.WriteLine(resjson);
             //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
