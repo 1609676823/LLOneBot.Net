@@ -75,9 +75,23 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// 接收message：消息事件
         /// </summary>
-        public IObservable<Receivers.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
 
+/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+在此之前:
+        public IObservable<Receivers.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
+在此之后:
+        public IObservable<MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
+*/
+        public IObservable<Receivers.Message.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
+
+
+/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+在此之前:
         private readonly Subject<Receivers.MessageReceiverBase> _messageReceived = new();
+在此之后:
+        private readonly Subject<MessageReceiverBase> _messageReceived = new();
+*/
+        private readonly Subject<Receivers.Message.MessageReceiverBase> _messageReceived = new();
 
         /// <summary>
         ///request：请求事件
@@ -425,12 +439,26 @@ meta_event：元事件
 
                     if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
+
+/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+在此之前:
                         Receivers.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Group.GroupMessageReceiver>(responseMessage.Text!)!;
+在此之后:
+                        GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
+*/
+                        Receivers.Message.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Group.GroupMessageReceiver>(responseMessage.Text!)!;
                         _messageReceived.OnNext(groupMessageReceiver);
                     }
                     else if ("private".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
+
+/* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
+在此之前:
                         Receivers.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
+在此之后:
+                        PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<PrivateMessageReceiver>(responseMessage.Text!)!;
+*/
+                        Receivers.Message.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
                         _messageReceived.OnNext(privateMessageReceiver);
 
                     }

@@ -1,4 +1,4 @@
-﻿using LLOneBot.Net.Receivers;
+﻿using LLOneBot.Net.Receivers.Message;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LLOneBot.Net.Receivers
+namespace LLOneBot.Net.Receivers.Request
 {
     /// <summary>
     /// 请求接收器基类

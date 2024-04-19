@@ -2,8 +2,8 @@
 {
     using LLOneBot.Net.Data;
     using LLOneBot.Net.Data.MessageDataType;
-    using LLOneBot.Net.Receivers.Group;
-    using LLOneBot.Net.Receivers.Private;
+    using LLOneBot.Net.Receivers.Message.Group;
+    using LLOneBot.Net.Receivers.Message.Private;
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
     using System.Reactive.Linq;

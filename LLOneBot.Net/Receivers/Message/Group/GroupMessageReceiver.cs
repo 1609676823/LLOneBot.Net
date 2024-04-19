@@ -1,52 +1,53 @@
-﻿using System;
+﻿using LLOneBot.Net.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using LLOneBot.Net.Data;
-using LLOneBot.Net.Receivers.Group;
 
-namespace LLOneBot.Net.Receivers.Private
+namespace LLOneBot.Net.Receivers.Message.Group
 {
     /// <summary>
-    /// 私信消息接收器
+    /// 群消息接收器
     /// </summary>
-    public class PrivateMessageReceiver : MessageReceiverBase
+    public class GroupMessageReceiver : MessageReceiverBase
     {
         /// <summary>
         /// 接收的信息类型Group/Private
         /// </summary>
-        public override EventMessageType ReceiveMessageType { get; set; } = EventMessageType.Private;
+        public override EventMessageType ReceiveMessageType { get; set; } = EventMessageType.Group;
+
         /// <summary>
         /// 消息类型
         /// </summary>
         [JsonPropertyName("message_type")]
-        public  string? message_type { get; set; }
+        public string? message_type { get; set; }
         /// <summary>
         /// 收到事件的机器人 QQ 号
         /// </summary>
-        public int? self_id { get; set; }
+        [JsonPropertyName("self_id")]
+        public int self_id { get; set; }
         /// <summary>
         /// 发送者 QQ 号
         /// </summary>
-        public long? user_id { get; set; }
+        public long user_id { get; set; }
         /// <summary>
         /// 事件发生的时间戳
         /// </summary>
-        public int? time { get; set; }
+        public int time { get; set; }
         /// <summary>
         /// 消息 ID
         /// </summary>
-        public long? message_id { get; set; }
+        public long message_id { get; set; }
         /// <summary>
-        /// real_id
+        /// 
         /// </summary>
-        public int? real_id { get; set; }
+        public int real_id { get; set; }
         /// <summary>
         /// 发送人信息
         /// </summary>
-        public Sender? sender { get; set; }=new Sender();
+        public Sender? sender { get; set; }
         /// <summary>
         /// 原始消息内容
         /// </summary>
@@ -54,9 +55,9 @@ namespace LLOneBot.Net.Receivers.Private
         /// <summary>
         /// 字体
         /// </summary>
-        public int? font { get; set; }
+        public int font { get; set; }
         /// <summary>
-        /// friend、group、other	消息子类型，如果是好友则是 friend，如果是群临时会话则是 group
+        /// 消息子类型，正常消息是 normal，匿名消息是 anonymous，系统提示（如「管理员已禁止群内匿名聊天」）是 notice
         /// </summary>
         public string? sub_type { get; set; }
 
@@ -64,11 +65,6 @@ namespace LLOneBot.Net.Receivers.Private
         /// 
         /// </summary>
         private object? _messagejson;
-        // /// <summary>
-        // /// 消息内容
-        // /// </summary>
-        // public object? message { get; set; }
-
         /// <summary>
         /// 消息json
         /// </summary>
@@ -84,9 +80,9 @@ namespace LLOneBot.Net.Receivers.Private
                 {
                     MessageChain = MessageBuilder.BulderMessageChain(value!);
                 }
-                catch (Exception )
+                catch (Exception ex)
                 {
-
+                    string error=ex.Message;
                     //  throw;
                 }
 
@@ -104,35 +100,36 @@ namespace LLOneBot.Net.Receivers.Private
         /// </summary>
         public string? message_format { get; set; }
         /// <summary>
-        /// 上报类型(message)
+        /// 上报类型 message
         /// </summary>
         public string? post_type { get; set; }
+        /// <summary>
+        /// 群号
+        /// </summary>
+        public int? group_id { get; set; }
+
+        /// <summary>
+        /// 匿名信息，如果不是匿名消息则为 null
+        /// </summary>
+        public Anonymous? anonymous { get; set; } = new Anonymous();
     }
-    ///// <summary>
-    ///// 发送人信息
-    ///// </summary>
-    //public class Sender
+
+
+
+
+
+
+
+    //public class Message
     //{
-    //    /// <summary>
-    //    /// 发送者 QQ 号
-    //    /// </summary>
-    //    public long? user_id { get; set; }
-    //    /// <summary>
-    //    /// 昵称
-    //    /// </summary>
-    //    public string? nickname { get; set; }
-    //    /// <summary>
-    //    /// 备注
-    //    /// </summary>
-    //    public string? card { get; set; }
-    //    /// <summary>
-    //    /// 性别，male 或 female 或 unknown
-    //    /// </summary>
-    //    public string? sex { get; set; }
-    //    /// <summary>
-    //    /// 年龄
-    //    /// </summary>
-    //    public string? age { get; set; }
+    //    public Data data { get; set; }
+    //    public string type { get; set; }
+    //}
+
+    //public class Data
+    //{
+    //    public string id { get; set; }
+    //    public string text { get; set; }
     //}
 
 }

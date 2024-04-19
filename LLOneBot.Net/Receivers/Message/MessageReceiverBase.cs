@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace LLOneBot.Net.Receivers
+namespace LLOneBot.Net.Receivers.Message
 {
     /// <summary>
     /// 消息接收器基类
@@ -18,7 +18,7 @@ namespace LLOneBot.Net.Receivers
         /// 消息接收器类型
         /// </summary>
       //  [JsonPropertyName("message_type")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public virtual EventMessageType ReceiveMessageType { get; set; }
 
         //private string _message_type;

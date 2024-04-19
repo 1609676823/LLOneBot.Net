@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LLOneBot.Net.Receivers
+namespace LLOneBot.Net.Receivers.Message
 {
     /// <summary>
     /// 发送人信息
