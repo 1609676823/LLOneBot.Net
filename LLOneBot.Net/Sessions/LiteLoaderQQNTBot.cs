@@ -445,12 +445,7 @@ namespace LLOneBot.Net.Sessions
                     if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
                     {
 
-                        /* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-                        在此之前:
-                                                Receivers.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Group.GroupMessageReceiver>(responseMessage.Text!)!;
-                        在此之后:
-                                                GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<GroupMessageReceiver>(responseMessage.Text!)!;
-                        */
+                    
                         Receivers.Message.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Group.GroupMessageReceiver>(responseMessage.Text!)!;
                         groupMessageReceiver.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(groupMessageReceiver);
@@ -486,8 +481,27 @@ namespace LLOneBot.Net.Sessions
 
                     string notice_type = Convert.ToString(jsonNode["notice_type"])!;
 
-                    string sub_type = Convert.ToString(jsonNode["sub_type"])!;
-                    //_noticeReceived.OnNext(responseMessage);
+                    string sub_type = string.Empty;
+                    try
+                    {
+                        sub_type = Convert.ToString(jsonNode["sub_type"])!;
+                    }
+                    catch (Exception)
+                    {
+
+                       // throw;
+                    }
+
+                    if ("group_upload".Equals(notice_type,StringComparison.OrdinalIgnoreCase)) 
+                    { 
+                    Receivers.Notice.GroupUploadReceiver groupUploadReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupUploadReceiver>(responseMessage.Text!)!;
+                    groupUploadReceiver.Originaljson = responseMessage.Text!;
+                   _noticeReceived.OnNext(groupUploadReceiver);
+
+                    }
+
+
+
                 }
 
                 else if ("request".Equals(post_type, StringComparison.OrdinalIgnoreCase))
@@ -523,10 +537,7 @@ namespace LLOneBot.Net.Sessions
                     _meta_eventReceived.OnNext(responseMessage);
                 }
 
-                else if ("message_sent".Equals(post_type, StringComparison.OrdinalIgnoreCase))
-                {
-
-                }
+               
 
                 else
                 {

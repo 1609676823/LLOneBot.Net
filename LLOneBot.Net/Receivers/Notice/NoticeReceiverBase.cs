@@ -19,6 +19,7 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// Event通知事件类型
         /// </summary>
+        [JsonIgnore]
         public virtual Data.EventNoticeType EventNoticeType { get; set; }= Data.EventNoticeType.Unknown;
 
         /// <summary>

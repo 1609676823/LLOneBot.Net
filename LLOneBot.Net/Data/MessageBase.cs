@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -32,7 +34,7 @@ namespace LLOneBot.Net.Data
         /// </summary>
         //
         [JsonIgnore]
-        public virtual MessageType MessageType { get; set; } 
+        public virtual MessageType MessageType { get; set; } = MessageType.Unknown;
         /// <summary>
         /// 消息类型string
         /// </summary>
@@ -126,7 +128,13 @@ namespace LLOneBot.Net.Data
         /// <summary>
         /// JSON 消息
         /// </summary>
-        Json
+        Json,
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        [EnumMember(Value = "Unknown")]
+        [Description("Unknown")]
+        Unknown,
 
 
     }
