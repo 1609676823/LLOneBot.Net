@@ -64,7 +64,14 @@
 
             #endregion
 
-            LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() { Ip = "127.0.0.1", HttpPort = 3000, WebsocKetPort = 3001, AccessTocken = "1" };
+            LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() {
+                Ip = "127.0.0.1", 
+                HttpPort = 3000,
+                WebsocKetPort = 3001,
+                AccessTocken = "1" ,
+               // IsContainsBotMessage=true ,
+
+            };
             await liteLoaderQQNTBot.StartBot();
 
 

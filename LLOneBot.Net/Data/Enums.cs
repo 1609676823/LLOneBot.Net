@@ -165,6 +165,12 @@ namespace LLOneBot.Net.Data
         [EnumMember(Value = "Honor")]
         [Description("Honor")]
         Honor,
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        [EnumMember(Value = "unknown")]
+        [Description("unknown")]
+        Unknown,
     }
 
     /// <summary>

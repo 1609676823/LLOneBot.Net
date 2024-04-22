@@ -104,13 +104,16 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         ///notice：通知事件
         /// </summary>
-        public IObservable<ResponseMessage> NoticeReceived => _noticeReceived.AsObservable();
+        public IObservable<Receivers.Notice.NoticeReceiverBase> NoticeReceived => _noticeReceived.AsObservable();
 
-        private readonly Subject<ResponseMessage> _noticeReceived = new();
+        private readonly Subject<Receivers.Notice.NoticeReceiverBase> _noticeReceived = new();
 
         #region 构造类基础属性
 
-
+        /// <summary>
+        /// 是否包含Bot自身发送的消息(需要同时在插件中开启该功能)
+        /// </summary>
+        public bool IsContainsBotMessage {get;set;}=false;
 
         /// <summary>
         /// 
@@ -424,8 +427,16 @@ namespace LLOneBot.Net.Sessions
                             meta_event：元事件
                  */
 
-
-                if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+                bool message_sent = false;
+                if ("message_sent".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+                 
+                {
+                    if (IsContainsBotMessage)
+                    {
+                        message_sent = true;
+                    }
+                }
+                if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase) || message_sent)
 
                 {
                     string message_type = Convert.ToString(jsonNode["message_type"])!;
@@ -472,7 +483,11 @@ namespace LLOneBot.Net.Sessions
                 else if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
-                    _noticeReceived.OnNext(responseMessage);
+
+                    string notice_type = Convert.ToString(jsonNode["notice_type"])!;
+
+                    string sub_type = Convert.ToString(jsonNode["sub_type"])!;
+                    //_noticeReceived.OnNext(responseMessage);
                 }
 
                 else if ("request".Equals(post_type, StringComparison.OrdinalIgnoreCase))
@@ -506,6 +521,11 @@ namespace LLOneBot.Net.Sessions
                 {
 
                     _meta_eventReceived.OnNext(responseMessage);
+                }
+
+                else if ("message_sent".Equals(post_type, StringComparison.OrdinalIgnoreCase))
+                {
+
                 }
 
                 else
