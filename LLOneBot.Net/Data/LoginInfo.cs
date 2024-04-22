@@ -51,7 +51,7 @@ namespace LLOneBot.Net.Data
               // throw;
             }
             //Console.WriteLine($"Name: {root.GetProperty("Name").GetString()}");
-            //Console.WriteLine($"Age: {root.GetProperty("Age").GetInt32()}");
+            //Console.WriteLine($"Age: {root.GetProperty("Age").Getlong32()}");
             //Console.WriteLine($"City: {root.GetProperty("City").GetString()}");
 
         }

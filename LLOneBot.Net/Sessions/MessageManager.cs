@@ -427,7 +427,7 @@ namespace LLOneBot.Net.Sessions
         /// <param name="user_id">对方 QQ 号</param>
         /// <param name="times">赞的次数，每个好友每天最多 10 次</param>
         /// <returns></returns>
-        public static string SendLike(string user_id,int times=1)
+        public static string SendLike(string user_id,long times=1)
         {
             string resjson = string.Empty;
             try
@@ -456,7 +456,7 @@ namespace LLOneBot.Net.Sessions
         /// <param name="user_id">对方 QQ 号</param>
         /// <param name="times">赞的次数，每个好友每天最多 10 次</param>
         /// <returns></returns>
-        public static async Task<string> SendLikeAsync(string user_id, int times = 1)
+        public static async Task<string> SendLikeAsync(string user_id, long times = 1)
         {
             var objres = await Task.Run(() =>
             {

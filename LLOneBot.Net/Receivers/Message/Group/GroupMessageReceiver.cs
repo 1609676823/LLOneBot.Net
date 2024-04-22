@@ -27,7 +27,7 @@ namespace LLOneBot.Net.Receivers.Message.Group
         /// 收到事件的机器人 QQ 号
         /// </summary>
         [JsonPropertyName("self_id")]
-        public int self_id { get; set; }
+        public long self_id { get; set; }
         /// <summary>
         /// 发送者 QQ 号
         /// </summary>
@@ -35,7 +35,7 @@ namespace LLOneBot.Net.Receivers.Message.Group
         /// <summary>
         /// 事件发生的时间戳
         /// </summary>
-        public int time { get; set; }
+        public long time { get; set; }
         /// <summary>
         /// 消息 ID
         /// </summary>
@@ -43,7 +43,7 @@ namespace LLOneBot.Net.Receivers.Message.Group
         /// <summary>
         /// 
         /// </summary>
-        public int real_id { get; set; }
+        public long real_id { get; set; }
         /// <summary>
         /// 发送人信息
         /// </summary>
@@ -55,7 +55,7 @@ namespace LLOneBot.Net.Receivers.Message.Group
         /// <summary>
         /// 字体
         /// </summary>
-        public int font { get; set; }
+        public long font { get; set; }
         /// <summary>
         /// 消息子类型，正常消息是 normal，匿名消息是 anonymous，系统提示（如「管理员已禁止群内匿名聊天」）是 notice
         /// </summary>
@@ -106,7 +106,7 @@ namespace LLOneBot.Net.Receivers.Message.Group
         /// <summary>
         /// 群号
         /// </summary>
-        public int? group_id { get; set; }
+        public long? group_id { get; set; }
 
         /// <summary>
         /// 匿名信息，如果不是匿名消息则为 null

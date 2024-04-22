@@ -277,7 +277,7 @@ namespace LLOneBot.Net.ComWebHelper
             // 摘要:
             //     Specifies that the System.Net.Mime.MediaTypeNames.Image data is in WEBP format.
             public const string Webp = "image/webp";
-           
+
         }
         //
         // 摘要:

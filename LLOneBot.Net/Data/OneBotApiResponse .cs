@@ -50,7 +50,7 @@ namespace LLOneBot.Net.Data
         /// <summary>
         ///retcode
         /// </summary>
-        public int? retcode { get; set; }
+        public long? retcode { get; set; }
         /// <summary>
         /// data
         /// </summary>

@@ -123,7 +123,7 @@ namespace LLOneBot.Net.Sessions
         /// <param name="websocketPort">WebsocKet服务监听端口</param>
         /// <param name="accesstocken">accesstocken</param>
 
-        public LiteLoaderQQNTBot(string ip, int httpport, int websocketPort, string accesstocken = "")
+        public LiteLoaderQQNTBot(string ip, long httpport, long websocketPort, string accesstocken = "")
         {
             Ip = ip;
             HttpPort = httpport;
@@ -146,11 +146,11 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// HTTP服务监听端口
         /// </summary>
-        public int HttpPort { get; set; } = 3000;
+        public long HttpPort { get; set; } = 3000;
         /// <summary>
         /// WebsocKet服务监听端口
         /// </summary>
-        public int WebsocKetPort { get; set; } = 3001;
+        public long WebsocKetPort { get; set; } = 3001;
 
         /// <summary>
         /// HTTP服务监听地址
@@ -167,7 +167,7 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// TimeoutSeconds
         /// </summary>
-        public int TimeoutSeconds { get; set; } = 10;
+        public long TimeoutSeconds { get; set; } = 10;
         /// <summary>
         /// 初始化地址
         /// </summary>

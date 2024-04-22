@@ -22,12 +22,12 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// 事件发生的时间戳
         /// </summary>
-        public int time { get; set; }
+        public long time { get; set; }
 
         /// <summary>
         /// 收到事件的机器人 QQ 号
         /// </summary>
-        public int self_id { get; set; }
+        public long self_id { get; set; }
 
         /// <summary>
         /// 上报类型
@@ -42,7 +42,7 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// 群号
         /// </summary>
-        public int group_id { get; set; }
+        public long group_id { get; set; }
 
         /// <summary>
         /// 发送者 QQ 号
@@ -70,12 +70,12 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// 文件大小（字节数）
         /// </summary>
-        public int size { get; set; }
+        public long size { get; set; }
 
         /// <summary>
         /// busid（目前不清楚有什么作用）
         /// </summary>
-        public int busid { get; set; }
+        public long busid { get; set; }
     }
 
 }

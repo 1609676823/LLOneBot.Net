@@ -26,7 +26,7 @@ namespace LLOneBot.Net.Receivers.Message.Private
         /// <summary>
         /// 收到事件的机器人 QQ 号
         /// </summary>
-        public int? self_id { get; set; }
+        public long? self_id { get; set; }
         /// <summary>
         /// 发送者 QQ 号
         /// </summary>
@@ -34,7 +34,7 @@ namespace LLOneBot.Net.Receivers.Message.Private
         /// <summary>
         /// 事件发生的时间戳
         /// </summary>
-        public int? time { get; set; }
+        public long? time { get; set; }
         /// <summary>
         /// 消息 ID
         /// </summary>
@@ -42,7 +42,7 @@ namespace LLOneBot.Net.Receivers.Message.Private
         /// <summary>
         /// real_id
         /// </summary>
-        public int? real_id { get; set; }
+        public long? real_id { get; set; }
         /// <summary>
         /// 发送人信息
         /// </summary>
@@ -54,7 +54,7 @@ namespace LLOneBot.Net.Receivers.Message.Private
         /// <summary>
         /// 字体
         /// </summary>
-        public int? font { get; set; }
+        public long? font { get; set; }
         /// <summary>
         /// friend、group、other	消息子类型，如果是好友则是 friend，如果是群临时会话则是 group
         /// </summary>
