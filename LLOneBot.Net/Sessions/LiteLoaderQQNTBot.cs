@@ -436,6 +436,14 @@ namespace LLOneBot.Net.Sessions
                         message_sent = true;
                     }
                 }
+                else
+                {
+                    message_sent = false;
+                }
+
+
+
+
                 if ("message".Equals(post_type, StringComparison.OrdinalIgnoreCase) || message_sent)
 
                 {
@@ -474,7 +482,6 @@ namespace LLOneBot.Net.Sessions
 
                 }
 
-
                 else if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
@@ -498,6 +505,18 @@ namespace LLOneBot.Net.Sessions
                     groupUploadReceiver.Originaljson = responseMessage.Text!;
                    _noticeReceived.OnNext(groupUploadReceiver);
 
+                    }
+                    else if ("group_admin".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Receivers.Notice.GroupAdminReceiver groupAdminReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupAdminReceiver>(responseMessage.Text!)!;
+                        groupAdminReceiver.Originaljson = responseMessage.Text!;
+                        _noticeReceived.OnNext(groupAdminReceiver);
+                    }
+                    else
+                    {
+                        Receivers.Notice.NoticeReceiverBase noticeReceiverBase = JsonSerializer.Deserialize<Receivers.Notice.NoticeReceiverBase>(responseMessage.Text!)!;
+                        noticeReceiverBase.Originaljson = responseMessage.Text!;
+                        _noticeReceived.OnNext(noticeReceiverBase);
                     }
 
 
@@ -536,8 +555,6 @@ namespace LLOneBot.Net.Sessions
 
                     _meta_eventReceived.OnNext(responseMessage);
                 }
-
-               
 
                 else
                 {

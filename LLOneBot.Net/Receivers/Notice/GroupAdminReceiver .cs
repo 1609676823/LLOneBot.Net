@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace LLOneBot.Net.Receivers.Notice
 {
     /// <summary>
-    /// 群文件上传通知事件接收器基类
+    /// 群管理员变动通知事件接收器基类
     /// </summary>
-    public class GroupUploadReceiver : NoticeReceiverBase
+    public class GroupAdminReceiver : NoticeReceiverBase
     {
         /// <summary>
-        /// 群文件上传通知事件接收器基类
+        /// 群管理员变动通知事件接收器基类
         /// </summary>
-        public GroupUploadReceiver() { }
+        public GroupAdminReceiver() { }
 
         /// <summary>
         /// Event通知事件类型
         /// </summary>
-        public override Data.EventNoticeType EventNoticeType { get; set; } = Data.EventNoticeType.GroupUpload;
+        public override Data.EventNoticeType EventNoticeType { get; set; } = Data.EventNoticeType.GroupAdmin;
         /// <summary>
         /// 事件发生的时间戳
         /// </summary>
@@ -40,6 +42,14 @@ namespace LLOneBot.Net.Receivers.Notice
         public string? notice_type { get; set; }
 
         /// <summary>
+        /// 事件子类型，分别表示设置和取消管理员(set、unset)
+        /// </summary>
+
+        [JsonPropertyName("sub_type")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public GroupAdminSubtype? sub_type { get; set; }
+
+        /// <summary>
         /// 群号
         /// </summary>
         public int group_id { get; set; }
@@ -49,33 +59,29 @@ namespace LLOneBot.Net.Receivers.Notice
         /// </summary>
         public long user_id { get; set; }
 
-        /// <summary>
-        /// 文件信息
-        /// </summary>
-        public FileGroupUpload file { get; set; }=new FileGroupUpload();
-    }
 
-    public class FileGroupUpload
+    }
+    /// <summary>
+    /// 事件子类型，分别表示设置和取消管理员(set、unset)
+    /// </summary>
+    public enum GroupAdminSubtype 
     {
         /// <summary>
-        /// 文件 ID
+        /// 设置管理员
         /// </summary>
-        public string id { get; set; }
+        [EnumMember(Value = "set")]
+        [Description("set")]
+        Set,
 
         /// <summary>
-        /// 文件名
+        /// 取消管理员
         /// </summary>
-        public string name { get; set; }
+        [EnumMember(Value = "unset")]
+        [Description("unset")]
+        Unset,
 
-        /// <summary>
-        /// 文件大小（字节数）
-        /// </summary>
-        public int size { get; set; }
-
-        /// <summary>
-        /// busid（目前不清楚有什么作用）
-        /// </summary>
-        public int busid { get; set; }
     }
+
+
 
 }
