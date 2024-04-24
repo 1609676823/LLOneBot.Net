@@ -551,7 +551,9 @@ namespace LLOneBot.Net.Sessions
 
                         else if ("friend_recall".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
-
+                            Receivers.Notice.FriendRecallReceiver friendRecallReceiver = JsonSerializer.Deserialize<Receivers.Notice.FriendRecallReceiver>(responseMessage.Text!)!;
+                            friendRecallReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(friendRecallReceiver);
                         }
                         else if ("XX".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
