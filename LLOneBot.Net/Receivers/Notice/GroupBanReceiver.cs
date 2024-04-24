@@ -40,7 +40,7 @@ namespace LLOneBot.Net.Receivers.Notice
         public string? notice_type { get; set; }
 
         /// <summary>
-        /// leave、kick、kick_me 事件子类型，分别表示主动退群、成员被踢、登录号被踢
+        /// ban、lift_ban  事件子类型，分别表示禁言、解除禁言
         /// </summary>
         [JsonPropertyName("sub_type")]
         [JsonConverter(typeof(JsonStringEnumConverter))]
