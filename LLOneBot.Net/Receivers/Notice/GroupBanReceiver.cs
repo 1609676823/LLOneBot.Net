@@ -20,7 +20,7 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// Event通知事件类型
         /// </summary>
-        public override Data.EventNoticeType EventNoticeType { get; set; } = Data.EventNoticeType.GroupIncrease;
+        public override Data.EventNoticeType EventNoticeType { get; set; } = Data.EventNoticeType.Groupban;
 
         /// <summary>
         /// 事件发生的时间戳
