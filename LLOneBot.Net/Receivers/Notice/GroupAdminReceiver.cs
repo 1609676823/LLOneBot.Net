@@ -34,6 +34,7 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// 上报类型
         /// </summary>
+        /// 
         public string? post_type { get; set; }
 
         /// <summary>
@@ -71,14 +72,14 @@ namespace LLOneBot.Net.Receivers.Notice
         /// </summary>
         [EnumMember(Value = "set")]
         [Description("set")]
-        Set,
+        set,
 
         /// <summary>
         /// 取消管理员
         /// </summary>
         [EnumMember(Value = "unset")]
         [Description("unset")]
-        Unset,
+        unset,
 
     }
 

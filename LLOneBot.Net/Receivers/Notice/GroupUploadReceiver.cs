@@ -54,18 +54,20 @@ namespace LLOneBot.Net.Receivers.Notice
         /// </summary>
         public FileGroupUpload file { get; set; }=new FileGroupUpload();
     }
-
+    /// <summary>
+    /// 文件信息
+    /// </summary>
     public class FileGroupUpload
     {
         /// <summary>
         /// 文件 ID
         /// </summary>
-        public string id { get; set; }
+        public string? id { get; set; }
 
         /// <summary>
         /// 文件名
         /// </summary>
-        public string name { get; set; }
+        public string? name { get; set; }
 
         /// <summary>
         /// 文件大小（字节数）
