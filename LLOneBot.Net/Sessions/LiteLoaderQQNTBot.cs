@@ -76,21 +76,11 @@ namespace LLOneBot.Net.Sessions
         /// 接收message：消息事件
         /// </summary>
 
-        /* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-        在此之前:
-                public IObservable<Receivers.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
-        在此之后:
-                public IObservable<MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
-        */
+
         public IObservable<Receivers.Message.MessageReceiverBase> MessageReceived => _messageReceived.AsObservable();
 
 
-        /* 项目“LLOneBot.Net (netstandard2.1)”的未合并的更改
-        在此之前:
-                private readonly Subject<Receivers.MessageReceiverBase> _messageReceived = new();
-        在此之后:
-                private readonly Subject<MessageReceiverBase> _messageReceived = new();
-        */
+
         private readonly Subject<Receivers.Message.MessageReceiverBase> _messageReceived = new();
 
         /// <summary>
