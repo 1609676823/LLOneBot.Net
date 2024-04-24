@@ -4,6 +4,7 @@
     using LLOneBot.Net.Data.MessageDataType;
     using LLOneBot.Net.Receivers.Message.Group;
     using LLOneBot.Net.Receivers.Message.Private;
+    using LLOneBot.Net.Receivers.Notice;
     using LLOneBot.Net.Receivers.Request;
     using LLOneBot.Net.Sessions;
     using System.Net.WebSockets;
@@ -188,10 +189,10 @@
                 //}
             });
             /* notice 通知事件*/
-            liteLoaderQQNTBot.NoticeReceived.OfType<ResponseMessage>().Subscribe(msg =>
+            liteLoaderQQNTBot.NoticeReceived.OfType<NoticeReceiverBase>().Subscribe(msg =>
             {
                 Console.WriteLine("接收到notice 通知事件");
-                Console.WriteLine(msg.Text);
+                Console.WriteLine(msg.Originaljson);
             });
 
             /*接收meta_event元事件*/

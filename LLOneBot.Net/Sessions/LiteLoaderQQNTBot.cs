@@ -523,7 +523,12 @@ namespace LLOneBot.Net.Sessions
                             groupDecreaseReceiver.Originaljson = responseMessage.Text!;
                             _noticeReceived.OnNext(groupDecreaseReceiver);
                         }
-
+                        else if ("group_increase".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Notice.GroupIncreaseReceiver groupIncreaseReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupIncreaseReceiver>(responseMessage.Text!)!;
+                            groupIncreaseReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(groupIncreaseReceiver);
+                        }
 
                         else if ("group_card".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
