@@ -8,14 +8,14 @@ using System.Text.Json.Serialization;
 namespace LLOneBot.Net.Receivers.Notice
 {
     /// <summary>
-    /// 群成员减少事件接收器基类
+    /// 群成员增加事件接收器基类
     /// </summary>
-    public class GroupDecreaseReceiver : NoticeReceiverBase
+    public class GroupIncreaseReceiver : NoticeReceiverBase
     {
         /// <summary>
-        ///群成员减少事件接收器基类
+        /// 群成员增加事件接收器基类
         /// </summary>
-        public GroupDecreaseReceiver() { }
+        public GroupIncreaseReceiver() { }
 
         /// <summary>
         /// Event通知事件类型
@@ -44,7 +44,7 @@ namespace LLOneBot.Net.Receivers.Notice
         /// </summary>
         [JsonPropertyName("sub_type")]
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public GroupDecreaseSubtype sub_type { get; set; }
+        public GroupIncreaseSubtype sub_type { get; set; }
         /// <summary>
         /// 	群号
         /// </summary>
@@ -62,30 +62,25 @@ namespace LLOneBot.Net.Receivers.Notice
     }
 
     /// <summary>
-    /// leave、kick、kick_me 事件子类型，分别表示主动退群、成员被踢、登录号被踢
+    /// approve、invite 事件子类型，分别表示管理员已同意入群、管理员邀请入群
     /// </summary>
-    public enum GroupDecreaseSubtype
+    public enum GroupIncreaseSubtype
     {
         /// <summary>
-        /// 主动退群
+        /// 管理员已同意入群
         /// </summary>
-        [EnumMember(Value = "leave")]
-        [Description("leave")]
-        leave,
+        [EnumMember(Value = "approve")]
+        [Description("approve")]
+        approve,
 
         /// <summary>
-        /// 成员被踢
+        /// 管理员邀请入群
         /// </summary>
-        [EnumMember(Value = "kick")]
-        [Description("kick")]
-        kick,
+        [EnumMember(Value = "invite")]
+        [Description("invite")]
+        invite,
 
-        /// <summary>
-        /// 登录号被踢
-        /// </summary>
-        [EnumMember(Value = "kick_me")]
-        [Description("kick_me")]
-        kick_me,
+      
 
     }
 
