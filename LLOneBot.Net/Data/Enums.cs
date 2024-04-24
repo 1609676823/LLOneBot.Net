@@ -148,23 +148,23 @@ namespace LLOneBot.Net.Data
         /// <summary>
         /// 群内戳一戳
         /// </summary>
-        [EnumMember(Value = "Poke")]
-        [Description("Poke")]
-        Poke,
+        [EnumMember(Value = "GroupPoke")]
+        [Description("GroupPoke")]
+        GroupPoke,
 
         /// <summary>
         /// 群红包运气王
         /// </summary>
-        [EnumMember(Value = "LuckyKing")]
-        [Description("LuckyKing")]
-        LuckyKing,
+        [EnumMember(Value = "GroupLuckyKing")]
+        [Description("GroupLuckyKing")]
+        GroupLuckyKing,
 
         /// <summary>
         /// 群成员荣誉变更
         /// </summary>
-        [EnumMember(Value = "Honor")]
-        [Description("Honor")]
-        Honor,
+        [EnumMember(Value = "GroupHonor")]
+        [Description("GroupHonor")]
+        GroupHonor,
 
         /// <summary>
         /// 可能是群成员名片变更

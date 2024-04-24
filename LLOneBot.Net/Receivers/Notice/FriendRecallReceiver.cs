@@ -57,9 +57,6 @@ namespace LLOneBot.Net.Receivers.Notice
         public long message_id { get; set; }
     }
 
-    /// <summary>
-    ///ban、lift_ban  事件子类型，分别表示禁言、解除禁言
-    /// </summary>
 
 
 

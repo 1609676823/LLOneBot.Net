@@ -555,14 +555,30 @@ namespace LLOneBot.Net.Sessions
                             friendRecallReceiver.Originaljson = responseMessage.Text!;
                             _noticeReceived.OnNext(friendRecallReceiver);
                         }
-                        else if ("XX".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        else if ("notify".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
+                            if ("poke".Equals(sub_type, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Receivers.Notice.GroupPokeReceiver groupPokeReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupPokeReceiver>(responseMessage.Text!)!;
+                                groupPokeReceiver.Originaljson = responseMessage.Text!;
+                                _noticeReceived.OnNext(groupPokeReceiver);
+                            }
+                            if ("lucky_king".Equals(sub_type, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Receivers.Notice.GroupLuckykingReceiver groupLuckykingReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupLuckykingReceiver>(responseMessage.Text!)!;
+                                groupLuckykingReceiver.Originaljson = responseMessage.Text!;
+                                _noticeReceived.OnNext(groupLuckykingReceiver);
+                            }
 
+                            if ("honor".Equals(sub_type, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Receivers.Notice.GroupHonorReceiver groupHonorReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupHonorReceiver>(responseMessage.Text!)!;
+                                groupHonorReceiver.Originaljson = responseMessage.Text!;
+                                _noticeReceived.OnNext(groupHonorReceiver);
+                            }
+                            
                         }
-                        else if ("XX".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
-                        {
-
-                        }
+                      
                         else if ("group_card".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
                             Receivers.Notice.GroupCardReceiver groupCardReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupCardReceiver>(responseMessage.Text!)!;
