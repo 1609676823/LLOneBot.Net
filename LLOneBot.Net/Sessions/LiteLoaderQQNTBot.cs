@@ -470,7 +470,9 @@ namespace LLOneBot.Net.Sessions
                     else
                     {
 
-                        Receivers.Message.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.Message.MessageReceiverBase>(responseMessage.Text!)!;
+                        //  Receivers.Message.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.Message.MessageReceiverBase>(responseMessage.Text!)!;
+
+                        Receivers.Message.MessageReceiverBase messageReceiverBase =new Receivers.Message.MessageReceiverBase();
                         messageReceiverBase.ReceiveMessageType = Data.EventMessageType.Unknown;
                         messageReceiverBase.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(messageReceiverBase);
@@ -514,7 +516,8 @@ namespace LLOneBot.Net.Sessions
                     }
                     else
                     {
-                        Receivers.Notice.NoticeReceiverBase noticeReceiverBase = JsonSerializer.Deserialize<Receivers.Notice.NoticeReceiverBase>(responseMessage.Text!)!;
+                        // Receivers.Notice.NoticeReceiverBase noticeReceiverBase = JsonSerializer.Deserialize<Receivers.Notice.NoticeReceiverBase>(responseMessage.Text!)!;
+                        Receivers.Notice.NoticeReceiverBase noticeReceiverBase=new Receivers.Notice.NoticeReceiverBase();
                         noticeReceiverBase.Originaljson = responseMessage.Text!;
                         _noticeReceived.OnNext(noticeReceiverBase);
                     }
@@ -543,7 +546,8 @@ namespace LLOneBot.Net.Sessions
                     }
                     else
                     {
-                        Receivers.Request.RequestReceiverBase requestReceiverBase = JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
+                        // Receivers.Request.RequestReceiverBase requestReceiverBase = JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
+                        Receivers.Request.RequestReceiverBase requestReceiverBase=new Receivers.Request.RequestReceiverBase();
                         requestReceiverBase.Originaljson = responseMessage.Text!;
                         _requestReceived.OnNext(requestReceiverBase);
                     }
