@@ -113,7 +113,7 @@ namespace LLOneBot.Net.Sessions
         /// <summary>
         /// 是否包含Bot自身发送的消息(需要同时在插件中开启该功能)
         /// </summary>
-        public bool IsContainsBotMessage {get;set;}=false;
+        public bool IsContainsBotMessage { get; set; } = false;
 
         /// <summary>
         /// 
@@ -429,7 +429,7 @@ namespace LLOneBot.Net.Sessions
 
                 bool message_sent = false;
                 if ("message_sent".Equals(post_type, StringComparison.OrdinalIgnoreCase))
-                 
+
                 {
                     if (IsContainsBotMessage)
                     {
@@ -450,34 +450,44 @@ namespace LLOneBot.Net.Sessions
                     string message_type = Convert.ToString(jsonNode["message_type"])!;
 
 
-                    if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
+                    try
                     {
+                        if ("group".Equals(message_type, StringComparison.OrdinalIgnoreCase))
+                        {
 
-                    
-                        Receivers.Message.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Group.GroupMessageReceiver>(responseMessage.Text!)!;
-                        groupMessageReceiver.Originaljson = responseMessage.Text!;
-                        _messageReceived.OnNext(groupMessageReceiver);
+
+                            Receivers.Message.Group.GroupMessageReceiver groupMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Group.GroupMessageReceiver>(responseMessage.Text!)!;
+                            groupMessageReceiver.Originaljson = responseMessage.Text!;
+                            _messageReceived.OnNext(groupMessageReceiver);
+                        }
+                        else if ("private".Equals(message_type, StringComparison.OrdinalIgnoreCase))
+                        {
+
+                            Receivers.Message.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
+                            privateMessageReceiver.Originaljson = responseMessage.Text!;
+                            _messageReceived.OnNext(privateMessageReceiver);
+
+                        }
+                        else
+
+                        {
+                            //  Receivers.Message.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.Message.MessageReceiverBase>(responseMessage.Text!)!;
+                            Receivers.Message.MessageReceiverBase messageReceiverBase = new Receivers.Message.MessageReceiverBase();
+                            messageReceiverBase.ReceiveMessageType = Data.EventMessageType.Unknown;
+                            messageReceiverBase.Originaljson = responseMessage.Text!;
+                            _messageReceived.OnNext(messageReceiverBase);
+                        }
+
+
                     }
-                    else if ("private".Equals(message_type, StringComparison.OrdinalIgnoreCase))
+                    catch (Exception)
                     {
-
-
-                        Receivers.Message.Private.PrivateMessageReceiver privateMessageReceiver = JsonSerializer.Deserialize<Receivers.Message.Private.PrivateMessageReceiver>(responseMessage.Text!)!;
-                        privateMessageReceiver.Originaljson = responseMessage.Text!;
-                        _messageReceived.OnNext(privateMessageReceiver);
-
-                    }
-                    else
-                    {
-
                         //  Receivers.Message.MessageReceiverBase messageReceiverBase = JsonSerializer.Deserialize<Receivers.Message.MessageReceiverBase>(responseMessage.Text!)!;
-
-                        Receivers.Message.MessageReceiverBase messageReceiverBase =new Receivers.Message.MessageReceiverBase();
+                        Receivers.Message.MessageReceiverBase messageReceiverBase = new Receivers.Message.MessageReceiverBase();
                         messageReceiverBase.ReceiveMessageType = Data.EventMessageType.Unknown;
                         messageReceiverBase.Originaljson = responseMessage.Text!;
                         _messageReceived.OnNext(messageReceiverBase);
-                       
-
+                        //throw;
                     }
 
 
@@ -487,42 +497,62 @@ namespace LLOneBot.Net.Sessions
                 else if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
-
-                    string notice_type = Convert.ToString(jsonNode["notice_type"])!;
-
-                    string sub_type = string.Empty;
                     try
                     {
-                        sub_type = Convert.ToString(jsonNode["sub_type"])!;
+
+
+                        string notice_type = Convert.ToString(jsonNode["notice_type"])!;
+
+                        string sub_type = string.Empty;
+                        try
+                        {
+                            sub_type = Convert.ToString(jsonNode["sub_type"])!;
+                        }
+                        catch (Exception)
+                        {
+
+                            // throw;
+                        }
+
+                        if ("group_upload".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Notice.GroupUploadReceiver groupUploadReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupUploadReceiver>(responseMessage.Text!)!;
+                            groupUploadReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(groupUploadReceiver);
+
+                        }
+                        else if ("group_admin".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Notice.GroupAdminReceiver groupAdminReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupAdminReceiver>(responseMessage.Text!)!;
+                            groupAdminReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(groupAdminReceiver);
+                        }
+                        else if ("group_card".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Notice.GroupCardReceiver groupCardReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupCardReceiver>(responseMessage.Text!)!;
+                            groupCardReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(groupCardReceiver);
+                        }
+
+
+                        else
+                        {
+                            // Receivers.Notice.NoticeReceiverBase noticeReceiverBase = JsonSerializer.Deserialize<Receivers.Notice.NoticeReceiverBase>(responseMessage.Text!)!;
+                            Receivers.Notice.NoticeReceiverBase noticeReceiverBase = new Receivers.Notice.NoticeReceiverBase();
+                            noticeReceiverBase.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(noticeReceiverBase);
+                        }
+
                     }
+
                     catch (Exception)
                     {
-
-                       // throw;
-                    }
-
-                    if ("group_upload".Equals(notice_type,StringComparison.OrdinalIgnoreCase)) 
-                    { 
-                    Receivers.Notice.GroupUploadReceiver groupUploadReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupUploadReceiver>(responseMessage.Text!)!;
-                    groupUploadReceiver.Originaljson = responseMessage.Text!;
-                   _noticeReceived.OnNext(groupUploadReceiver);
-
-                    }
-                    else if ("group_admin".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Receivers.Notice.GroupAdminReceiver groupAdminReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupAdminReceiver>(responseMessage.Text!)!;
-                        groupAdminReceiver.Originaljson = responseMessage.Text!;
-                        _noticeReceived.OnNext(groupAdminReceiver);
-                    }
-                    else
-                    {
-                        // Receivers.Notice.NoticeReceiverBase noticeReceiverBase = JsonSerializer.Deserialize<Receivers.Notice.NoticeReceiverBase>(responseMessage.Text!)!;
-                        Receivers.Notice.NoticeReceiverBase noticeReceiverBase=new Receivers.Notice.NoticeReceiverBase();
+                        Receivers.Notice.NoticeReceiverBase noticeReceiverBase = new Receivers.Notice.NoticeReceiverBase();
                         noticeReceiverBase.Originaljson = responseMessage.Text!;
                         _noticeReceived.OnNext(noticeReceiverBase);
+
+                        // throw;
                     }
-
-
 
                 }
 
@@ -531,25 +561,38 @@ namespace LLOneBot.Net.Sessions
                 {
 
                     string request_type = Convert.ToString(jsonNode["request_type"])!;
-                    if ("friend".Equals(request_type, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Receivers.Request.FriendRequestReceiver friendRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.FriendRequestReceiver>(responseMessage.Text!)!;
-                        friendRequestReceiver.Originaljson = responseMessage.Text!;
-                        _requestReceived.OnNext(friendRequestReceiver);
-                    }
 
-                    else if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
+                    try
                     {
-                        Receivers.Request.GroupRequestReceiver groupRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.GroupRequestReceiver>(responseMessage.Text!)!;
-                        groupRequestReceiver.Originaljson = responseMessage.Text!;
-                        _requestReceived.OnNext(groupRequestReceiver);
+
+
+                        if ("friend".Equals(request_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Request.FriendRequestReceiver friendRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.FriendRequestReceiver>(responseMessage.Text!)!;
+                            friendRequestReceiver.Originaljson = responseMessage.Text!;
+                            _requestReceived.OnNext(friendRequestReceiver);
+                        }
+
+                        else if ("group".Equals(request_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Request.GroupRequestReceiver groupRequestReceiver = JsonSerializer.Deserialize<Receivers.Request.GroupRequestReceiver>(responseMessage.Text!)!;
+                            groupRequestReceiver.Originaljson = responseMessage.Text!;
+                            _requestReceived.OnNext(groupRequestReceiver);
+                        }
+                        else
+                        {
+                            // Receivers.Request.RequestReceiverBase requestReceiverBase = JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
+                            Receivers.Request.RequestReceiverBase requestReceiverBase = new Receivers.Request.RequestReceiverBase();
+                            requestReceiverBase.Originaljson = responseMessage.Text!;
+                            _requestReceived.OnNext(requestReceiverBase);
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
-                        // Receivers.Request.RequestReceiverBase requestReceiverBase = JsonSerializer.Deserialize<Receivers.Request.RequestReceiverBase>(responseMessage.Text!)!;
-                        Receivers.Request.RequestReceiverBase requestReceiverBase=new Receivers.Request.RequestReceiverBase();
+                        Receivers.Request.RequestReceiverBase requestReceiverBase = new Receivers.Request.RequestReceiverBase();
                         requestReceiverBase.Originaljson = responseMessage.Text!;
                         _requestReceived.OnNext(requestReceiverBase);
+                        // throw;
                     }
                 }
 

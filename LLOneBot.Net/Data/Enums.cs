@@ -165,6 +165,14 @@ namespace LLOneBot.Net.Data
         [EnumMember(Value = "Honor")]
         [Description("Honor")]
         Honor,
+
+        /// <summary>
+        /// 可能是群成员名片变更
+        /// </summary>
+        [EnumMember(Value = "groupcard")]
+        [Description("groupcard")]
+        GroupCard,
+        
         /// <summary>
         /// Unknown
         /// </summary>
