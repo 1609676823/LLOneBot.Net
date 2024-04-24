@@ -87,6 +87,12 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("face".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                messageBase = JsonSerializer.Deserialize<FaceMessage>(MessageDataJson, jsonSerializerOptions)!;
+                return messageBase;
+            }
+
             return messageBase;
         }
     }
