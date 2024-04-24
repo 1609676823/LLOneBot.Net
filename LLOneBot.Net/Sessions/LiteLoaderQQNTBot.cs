@@ -535,7 +535,13 @@ namespace LLOneBot.Net.Sessions
                             groupBanReceiver.Originaljson = responseMessage.Text!;
                             _noticeReceived.OnNext(groupBanReceiver);
                         }
+                        else if ("friend_add".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
 
+                            Receivers.Notice.FriendAddReceiver friendAddReceiver = JsonSerializer.Deserialize<Receivers.Notice.FriendAddReceiver>(responseMessage.Text!)!;
+                            friendAddReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(friendAddReceiver);
+                        }
                         else if ("group_card".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
                             Receivers.Notice.GroupCardReceiver groupCardReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupCardReceiver>(responseMessage.Text!)!;
