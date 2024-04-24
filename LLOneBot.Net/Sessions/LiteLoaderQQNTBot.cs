@@ -527,6 +527,14 @@ namespace LLOneBot.Net.Sessions
                             groupAdminReceiver.Originaljson = responseMessage.Text!;
                             _noticeReceived.OnNext(groupAdminReceiver);
                         }
+                        else if ("group_decrease".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Notice.GroupDecreaseReceiver groupDecreaseReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupDecreaseReceiver>(responseMessage.Text!)!;
+                            groupDecreaseReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(groupDecreaseReceiver);
+                        }
+
+
                         else if ("group_card".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
                             Receivers.Notice.GroupCardReceiver groupCardReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupCardReceiver>(responseMessage.Text!)!;
