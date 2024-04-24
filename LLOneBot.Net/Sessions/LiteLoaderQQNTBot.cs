@@ -542,6 +542,25 @@ namespace LLOneBot.Net.Sessions
                             friendAddReceiver.Originaljson = responseMessage.Text!;
                             _noticeReceived.OnNext(friendAddReceiver);
                         }
+                        else if ("group_recall".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Receivers.Notice.GroupRecallReceiver groupRecallReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupRecallReceiver>(responseMessage.Text!)!;
+                            groupRecallReceiver.Originaljson = responseMessage.Text!;
+                            _noticeReceived.OnNext(groupRecallReceiver);
+                        }
+
+                        else if ("friend_recall".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+
+                        }
+                        else if ("XX".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+
+                        }
+                        else if ("XX".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
+                        {
+
+                        }
                         else if ("group_card".Equals(notice_type, StringComparison.OrdinalIgnoreCase))
                         {
                             Receivers.Notice.GroupCardReceiver groupCardReceiver = JsonSerializer.Deserialize<Receivers.Notice.GroupCardReceiver>(responseMessage.Text!)!;
