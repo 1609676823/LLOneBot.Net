@@ -16,7 +16,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 
         /// </summary>
     
-        public TextMessage() { }
+        public TextMessage() { this.data = new TextMessageData(); }
         /// <summary>
         /// 
         /// </summary>

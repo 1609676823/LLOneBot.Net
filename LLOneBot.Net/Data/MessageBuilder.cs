@@ -110,6 +110,29 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("rps".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                messageBase = JsonSerializer.Deserialize<RpsMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+            if ("dice".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
+            if ("shake".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
+            if ("poke".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
+
+            if ("anonymous".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
 
             messageBase.Originaljson = MessageDataJson.ToString();
             return messageBase;
