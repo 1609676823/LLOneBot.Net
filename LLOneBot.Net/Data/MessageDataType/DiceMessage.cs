@@ -40,7 +40,7 @@ namespace LLOneBot.Net.Data.MessageDataType
 
 
     /// <summary>
-    /// TextMessageData
+    /// DiceMessageData
     /// </summary>
     public class DiceMessageData
     {

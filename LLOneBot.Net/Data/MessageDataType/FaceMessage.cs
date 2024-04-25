@@ -51,7 +51,7 @@ namespace LLOneBot.Net.Data.MessageDataType
 
 
     /// <summary>
-    /// TextMessageData
+    /// FaceMessageData
     /// </summary>
     public class FaceMessageData
     {

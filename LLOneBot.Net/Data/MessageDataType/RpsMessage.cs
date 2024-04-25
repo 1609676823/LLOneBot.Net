@@ -40,7 +40,7 @@ namespace LLOneBot.Net.Data.MessageDataType
 
 
     /// <summary>
-    /// TextMessageData
+    /// RpsMessageData
     /// </summary>
     public class RpsMessageData
     {
