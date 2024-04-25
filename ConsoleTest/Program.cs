@@ -88,7 +88,7 @@
                            };
 
             var json = JsonSerializer.Serialize(messageChain)!;
-           string resjson = MessageManager.SendFriendMessage("2361803582", messageChain);
+          string resjson = MessageManager.SendFriendMessage("2361803582", messageChain);
             //string resjson = MessageManager.SendGroupMessage("480339217", messageChain);
 
             //   Console.WriteLine(resjson);

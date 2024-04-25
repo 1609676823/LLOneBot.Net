@@ -125,7 +125,9 @@ namespace LLOneBot.Net.Data
             }
             if ("shake".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
-
+                messageBase = JsonSerializer.Deserialize<ShakeMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
             }
             if ("poke".Equals(type, StringComparison.OrdinalIgnoreCase))
             {

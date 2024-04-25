@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 骰子魔法表情
+    /// 窗口抖动（戳一戳）暂时不支持
     /// </summary>
     public class ShakeMessage : MessageBase
     {
         /// <summary>
-        /// 骰子魔法表情
+        /// 窗口抖动（戳一戳）
         /// </summary>
 
         public ShakeMessage() { 
@@ -25,11 +25,11 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 类型
         /// </summary>
         [JsonIgnore]
-        public override MessageType MessageType { get; set; } = MessageType.Dice;
+        public override MessageType MessageType { get; set; } = MessageType.Shake;
         /// <summary>
         /// 类型json
         /// </summary>
-        public override string type { get; set; } = "dice";
+        public override string type { get; set; } = "shake";
 
         /// <summary>
         /// 消息数据
@@ -41,14 +41,14 @@ namespace LLOneBot.Net.Data.MessageDataType
     }
 
 
-    /// <summary>
-    /// TextMessageData
-    /// </summary>
-    public class ShakeMessageData
-    {
-        /// <summary>
-        ///纯文本内容
-        /// </summary>
-        public string? result { get; set; }
-    }
+    ///// <summary>
+    ///// TextMessageData
+    ///// </summary>
+    //public class ShakeMessageData
+    //{
+    //    /// <summary>
+    //    ///纯文本内容
+    //    /// </summary>
+    //    public string? result { get; set; }
+    //}
 }
