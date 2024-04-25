@@ -83,7 +83,14 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
-             if ("image".Equals(type, StringComparison.OrdinalIgnoreCase))
+            if ("file".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                messageBase = JsonSerializer.Deserialize<FileMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+
+            if ("image".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<ImageMessage>(MessageDataJson, jsonSerializerOptions)!;
                 messageBase.Originaljson = MessageDataJson.ToString();

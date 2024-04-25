@@ -70,6 +70,11 @@ namespace LLOneBot.Net.Data
         Face,
 
         /// <summary>
+        /// 文件
+        /// </summary>
+        File,
+
+        /// <summary>
         /// 图片
         /// </summary>
         Image,
