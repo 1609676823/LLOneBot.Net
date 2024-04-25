@@ -85,6 +85,7 @@
                            //new RpsMessage(),
                          // new DiceMessage(),
                        //new  PokeMessage(EnumPokeMessageDataType.SixSixSix),
+                        new FileMessage(@"D:\1.txt","test1")
                            };
 
             var json = JsonSerializer.Serialize(messageChain)!;

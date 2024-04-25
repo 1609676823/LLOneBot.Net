@@ -29,7 +29,8 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <param name="summary">LLOneBot的扩展字段：图片预览文字</param>
         public FileMessage(string file, string name = "")
         {
-            SetFile(file, name);
+          string uri=  ConvertToUri(file);
+            SetFile(uri, name);
         }
 
         /// <summary>
