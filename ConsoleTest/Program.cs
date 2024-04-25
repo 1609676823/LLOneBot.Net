@@ -84,7 +84,7 @@
                            // new TextMessage("TEST"),
                            //new RpsMessage(),
                          // new DiceMessage(),
-                       new  PokeMessage(EnumPokeMessageDataType.SixSixSix),
+                       //new  PokeMessage(EnumPokeMessageDataType.SixSixSix),
                            };
 
             var json = JsonSerializer.Serialize(messageChain)!;

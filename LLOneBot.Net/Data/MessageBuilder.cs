@@ -138,7 +138,10 @@ namespace LLOneBot.Net.Data
 
             if ("anonymous".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
-
+                messageBase.MessageType= MessageType.Anonymous;
+                messageBase.type = "anonymous";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
             }
 
             messageBase.Originaljson = MessageDataJson.ToString();
