@@ -103,9 +103,11 @@ namespace LLOneBot.Net.Data
                 messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
-             if ("xxx".Equals(type, StringComparison.OrdinalIgnoreCase))
+             if ("video".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
-
+                messageBase = JsonSerializer.Deserialize<VideoMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
             }
 
 

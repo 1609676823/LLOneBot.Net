@@ -133,11 +133,29 @@ namespace LLOneBot.Net.Data.MessageDataType
         ///语音文件名
         /// </summary>
         public string? file { get; set; }
-   
+
+        /// <summary>
+        /// id
+        /// </summary>
+        public string? file_id { get; set; }
+
+        /// <summary>
+        /// 路径
+        /// </summary>
+        //[JsonIgnore]
+        public string? path { get; set; }
+
+        /// <summary>
+        /// 大小
+        /// </summary>
+        //[JsonIgnore]
+
+        public string? file_size { get; set; }
+
         /// <summary>
         /// URL
         /// </summary>
-       // [JsonIgnore]
+        // [JsonIgnore]
         public string? url { get; set; }
         /// <summary>
         ///只在通过网络 URL 发送时有效，表示是否使用已缓存的文件，默认 1
