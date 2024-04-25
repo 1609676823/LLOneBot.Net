@@ -38,6 +38,9 @@ namespace LLOneBot.Net.Receivers.Notice
         /// 
         /// </summary>
         public long group_id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public long user_id { get; set; }
         /// <summary>
         /// 
