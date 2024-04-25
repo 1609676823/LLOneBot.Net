@@ -46,7 +46,11 @@ namespace LLOneBot.Net.Data
         [JsonPropertyName("data")]
         public virtual object? data { get; set; }
 
-
+        /// <summary>
+        /// 原始的json
+        /// </summary>
+        [JsonIgnore]
+        public string Originaljson { get; set; } = string.Empty;
 
     }
 

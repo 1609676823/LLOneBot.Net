@@ -78,21 +78,19 @@
 
             MessageChain messageChain = new MessageChain
                              {
-                              new TextMessage("测试信息："+DateTime.Now),
-                             
-                              };
+                               new FaceMessage("36"),
+                             // new RecordMessage(@"D:\test.mp3"),
+                           };
 
-         //   string resjson = MessageManager.CleanCache();
-            //   MessageManager.SetGroupAdmin("782351597", "2361803582", false);
+            var json = JsonSerializer.Serialize(messageChain)!;
 
-           
-            //  OneBotApiResponse oneBotApiResponse = MessageManager.GetOneBotApiResponse(resjson);
-            //Console.WriteLine(resjson);
-            //string resjsondel=  MessageManager.DeleteMessage(oneBotApiResponse.data.message_id);
+             string resjson = MessageManager.SendFriendMessage("2361803582",messageChain);
 
-           // Console.WriteLine(resjsondel);
+          //   Console.WriteLine(resjson);
 
 
+
+            Console.WriteLine("启动成功");
             /* 接收message 消息事件*/
 
 

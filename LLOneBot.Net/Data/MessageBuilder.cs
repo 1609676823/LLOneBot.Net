@@ -64,7 +64,7 @@ namespace LLOneBot.Net.Data
         {
             MessageBase messageBase = new MessageBase();
             string type = Convert.ToString(MessageDataJson!["type"])!;
-
+           
 
 
             if ("at".Equals(type, StringComparison.OrdinalIgnoreCase))
@@ -72,27 +72,44 @@ namespace LLOneBot.Net.Data
                // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
 
                  messageBase = JsonSerializer.Deserialize<AtMessage>(MessageDataJson, jsonSerializerOptions)!;
+                 messageBase.Originaljson= MessageDataJson.ToString();
                 return messageBase;
             }
 
             if ("text".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<TextMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
 
-            if ("image".Equals(type, StringComparison.OrdinalIgnoreCase))
+             if ("image".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<ImageMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
 
-            if ("face".Equals(type, StringComparison.OrdinalIgnoreCase))
+             if ("face".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<FaceMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
 
+             if ("record".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                messageBase = JsonSerializer.Deserialize<RecordMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+             if ("xxx".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
+
+
+            messageBase.Originaljson = MessageDataJson.ToString();
             return messageBase;
         }
     }
