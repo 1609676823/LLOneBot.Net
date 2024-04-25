@@ -98,6 +98,11 @@ namespace LLOneBot.Net.Data
         /// 窗口抖动（戳一戳）
         /// </summary>
         Shake,
+
+        /// <summary>
+        /// 戳一戳
+        /// </summary>
+        Poke,
         /// <summary>
         /// 匿名发消息
         /// </summary>

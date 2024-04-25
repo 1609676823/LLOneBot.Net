@@ -131,7 +131,9 @@ namespace LLOneBot.Net.Data
             }
             if ("poke".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
-
+                messageBase = JsonSerializer.Deserialize<PokeMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
             }
 
             if ("anonymous".Equals(type, StringComparison.OrdinalIgnoreCase))

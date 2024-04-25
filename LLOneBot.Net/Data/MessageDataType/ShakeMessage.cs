@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 窗口抖动（戳一戳）暂时不支持
+    /// (弃用)窗口抖动（戳一戳）
     /// </summary>
     public class ShakeMessage : MessageBase
     {
