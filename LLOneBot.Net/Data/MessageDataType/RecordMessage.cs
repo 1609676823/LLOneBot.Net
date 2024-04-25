@@ -154,13 +154,13 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// <summary>
         /// 路径
         /// </summary>
-        [JsonIgnore]
+        //[JsonIgnore]
         public string? path { get; set; }
 
         /// <summary>
         /// 大小
         /// </summary>
-        [JsonIgnore]
+        //[JsonIgnore]
 
         public string? file_size { get; set; }
 

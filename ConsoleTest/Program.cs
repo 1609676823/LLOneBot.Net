@@ -78,15 +78,15 @@
 
             MessageChain messageChain = new MessageChain
                              {
-                               new FaceMessage("36"),
-                             // new RecordMessage(@"D:\test.mp3"),
+                               //new FaceMessage("36"),
+                             new RecordMessage(@"D:\test.mp3"),
                            };
 
             var json = JsonSerializer.Serialize(messageChain)!;
 
-             string resjson = MessageManager.SendFriendMessage("2361803582",messageChain);
-
-          //   Console.WriteLine(resjson);
+            string resjson = MessageManager.SendGroupMessage("480339217", messageChain);
+           // string resjson = MessageManager.SendFriendMessage("2361803582", messageChain);
+            //   Console.WriteLine(resjson);
 
 
 
