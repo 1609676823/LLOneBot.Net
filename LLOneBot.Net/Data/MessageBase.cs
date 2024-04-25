@@ -89,6 +89,11 @@ namespace LLOneBot.Net.Data
         /// 猜拳魔法表情
         /// </summary>
         Rps,
+
+        /// <summary>
+        /// 骰子魔法表情
+        /// </summary>
+        Dice,
         /// <summary>
         /// 窗口抖动（戳一戳）
         /// </summary>

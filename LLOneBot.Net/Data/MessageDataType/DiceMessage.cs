@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 猜拳魔法表情
+    /// 骰子魔法表情
     /// </summary>
-    public class RpsMessage : MessageBase
+    public class DiceMessage : MessageBase
     {
         /// <summary>
-        /// 猜拳魔法表情
+        /// 骰子魔法表情
         /// </summary>
 
-        public RpsMessage() { this.data = new RpsMessageData();  }
+        public DiceMessage() { this.data = new DiceMessageData();  }
 
 
         /// <summary>
         /// 类型
         /// </summary>
         [JsonIgnore]
-        public override MessageType MessageType { get; set; } = MessageType.Rps;
+        public override MessageType MessageType { get; set; } = MessageType.Dice;
         /// <summary>
         /// 类型json
         /// </summary>
-        public override string type { get; set; } = "rps";
+        public override string type { get; set; } = "dice";
 
         /// <summary>
         /// 消息数据
         /// </summary>
         [JsonPropertyName("data")]
         //[JsonIgnore]
-        public new RpsMessageData? data { get { return base.data as RpsMessageData; } set { base.data = (value); } } //= new TextMessageData();
+        public new DiceMessageData? data { get { return base.data as DiceMessageData; } set { base.data = (value); } } //= new TextMessageData();
         //{ get { return this.data; } set { this.data = (value); } } 
     }
 
@@ -42,7 +42,7 @@ namespace LLOneBot.Net.Data.MessageDataType
     /// <summary>
     /// TextMessageData
     /// </summary>
-    public class RpsMessageData
+    public class DiceMessageData
     {
         /// <summary>
         ///纯文本内容

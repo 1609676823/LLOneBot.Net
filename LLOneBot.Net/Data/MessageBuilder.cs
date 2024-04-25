@@ -118,6 +118,9 @@ namespace LLOneBot.Net.Data
             }
             if ("dice".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
+                messageBase = JsonSerializer.Deserialize<DiceMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
 
             }
             if ("shake".Equals(type, StringComparison.OrdinalIgnoreCase))
