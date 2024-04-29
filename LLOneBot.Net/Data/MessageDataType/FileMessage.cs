@@ -26,7 +26,7 @@ namespace LLOneBot.Net.Data.MessageDataType
         ///网络 URL，例如 http://i1.piimg.com/567571/fdd6e7b6d93f1ef0.jpg
         ///Base64 编码，例如 base64://iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==
         /// </param>
-        /// <param name="summary">LLOneBot的扩展字段：图片预览文字</param>
+        /// <param name="name">文件名</param>
         public FileMessage(string file, string name = "")
         {
           string uri=  ConvertToUri(file);
