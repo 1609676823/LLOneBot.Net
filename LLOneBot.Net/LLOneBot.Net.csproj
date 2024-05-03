@@ -12,8 +12,8 @@
     <Authors>zoujiawei</Authors>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <FileVersion>1.0.0.4</FileVersion>
-    <VersionPrefix>1.0.0.4</VersionPrefix>
+    <FileVersion>1.0.0.5</FileVersion>
+    <VersionPrefix>1.0.0.5</VersionPrefix>
     <!--<PackageReadmeFile>readme.md</PackageReadmeFile>-->
     <PackageProjectUrl>https://gitee.com/lnsyzjw/llone-bot.-net</PackageProjectUrl>
   </PropertyGroup>
