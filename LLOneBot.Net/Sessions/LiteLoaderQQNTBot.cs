@@ -597,7 +597,7 @@ namespace LLOneBot.Net.Sessions
 
                     }
 
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         Receivers.Notice.NoticeReceiverBase noticeReceiverBase = new Receivers.Notice.NoticeReceiverBase();
                         noticeReceiverBase.Originaljson = responseMessage.Text!;

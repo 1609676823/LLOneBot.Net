@@ -25,11 +25,11 @@ namespace LLOneBot.Net.Receivers.Notice
         /// <summary>
         /// 事件发生的时间戳
         /// </summary>
-        public int time { get; set; }
+        public long time { get; set; }
         /// <summary>
         /// 收到事件的机器人 QQ 号
         /// </summary>
-        public int self_id { get; set; }
+        public long self_id { get; set; }
         /// <summary>
         /// 上报类型
         /// </summary>
