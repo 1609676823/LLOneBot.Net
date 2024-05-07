@@ -40,23 +40,23 @@ namespace LLOneBot.Net.Receivers.Notice
         public string? notice_type { get; set; }
 
         /// <summary>
-        /// leave、kick、kick_me 事件子类型，分别表示主动退群、成员被踢、登录号被踢
+        /// group_increase	通知类型
         /// </summary>
         [JsonPropertyName("sub_type")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public GroupIncreaseSubtype sub_type { get; set; }
+        //[JsonConverter(typeof(JsonStringEnumConverter))]
+        public string? sub_type { get; set; }
         /// <summary>
         /// 	群号
         /// </summary>
         public long group_id { get; set; }
 
         /// <summary>
-        /// 操作者 QQ 号（如果是主动退群，则和 user_id 相同）
+        /// 操作者 QQ 号
         /// </summary>
         public long operator_id { get; set; }
 
         /// <summary>
-        /// 离开者 QQ 号
+        /// 加入者 QQ 号
         /// </summary>
         public long user_id { get; set; }
     }
