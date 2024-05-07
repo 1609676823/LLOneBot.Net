@@ -40,11 +40,11 @@ namespace LLOneBot.Net.Receivers.Notice
         public string? notice_type { get; set; }
 
         /// <summary>
-        /// group_increase	通知类型
+        /// approve、invite	事件子类型，分别表示管理员已同意入群、管理员邀请入群
         /// </summary>
         [JsonPropertyName("sub_type")]
-        //[JsonConverter(typeof(JsonStringEnumConverter))]
-        public string? sub_type { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public GroupIncreaseSubtype sub_type { get; set; }
         /// <summary>
         /// 	群号
         /// </summary>
