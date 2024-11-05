@@ -76,20 +76,20 @@
             await liteLoaderQQNTBot.StartBot();
 
 
-            MessageChain messageChain = new MessageChain
-                             {
-                               //new FaceMessage("36"),
-                            // new RecordMessage(@"D:\test.mp3"),
-                            //  new VideoMessage(@"D:\test.mp4"),
-                           // new TextMessage("TEST"),
-                           //new RpsMessage(),
-                         // new DiceMessage(),
-                       //new  PokeMessage(EnumPokeMessageDataType.SixSixSix),
-                        new FileMessage(@"D:\1.txt","test1")
-                           };
+          //  MessageChain messageChain = new MessageChain
+          //                   {
+          //                     //new FaceMessage("36"),
+          //                  // new RecordMessage(@"D:\test.mp3"),
+          //                  //  new VideoMessage(@"D:\test.mp4"),
+          //                 // new TextMessage("TEST"),
+          //                 //new RpsMessage(),
+          //               // new DiceMessage(),
+          //             //new  PokeMessage(EnumPokeMessageDataType.SixSixSix),
+          //              new FileMessage(@"D:\1.txt","test1")
+          //                 };
 
-            var json = JsonSerializer.Serialize(messageChain)!;
-          string resjson = MessageManager.SendFriendMessage("2361803582", messageChain);
+          //  var json = JsonSerializer.Serialize(messageChain)!;
+          //string resjson = MessageManager.SendFriendMessage("2361803582", messageChain);
             //string resjson = MessageManager.SendGroupMessage("480339217", messageChain);
 
             //   Console.WriteLine(resjson);
