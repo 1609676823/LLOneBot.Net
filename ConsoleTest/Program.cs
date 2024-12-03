@@ -69,31 +69,11 @@
                 Ip = "127.0.0.1", 
                 HttpPort = 3000,
                 WebsocKetPort = 3001,
-                AccessTocken = "1" ,
+               // AccessTocken = "1" ,
                // IsContainsBotMessage=true ,
 
             };
             await liteLoaderQQNTBot.StartBot();
-
-
-          //  MessageChain messageChain = new MessageChain
-          //                   {
-          //                     //new FaceMessage("36"),
-          //                  // new RecordMessage(@"D:\test.mp3"),
-          //                  //  new VideoMessage(@"D:\test.mp4"),
-          //                 // new TextMessage("TEST"),
-          //                 //new RpsMessage(),
-          //               // new DiceMessage(),
-          //             //new  PokeMessage(EnumPokeMessageDataType.SixSixSix),
-          //              new FileMessage(@"D:\1.txt","test1")
-          //                 };
-
-          //  var json = JsonSerializer.Serialize(messageChain)!;
-          //string resjson = MessageManager.SendFriendMessage("2361803582", messageChain);
-            //string resjson = MessageManager.SendGroupMessage("480339217", messageChain);
-
-            //   Console.WriteLine(resjson);
-
 
 
             Console.WriteLine("启动成功");
@@ -107,31 +87,7 @@
                 MessageChain messageChain = msg.MessageChain;
 
                 Console.WriteLine("接收到用户: "+ msg .user_id+ " 的私信消息: "+ msg.raw_message);
-               // Console.WriteLine(msg.raw_message);
-
               
-
-                //foreach (var item in messageChain)
-                //{
-                //    if (item.MessageType == MessageType.Text)
-                //    {
-
-                //        var message = item as TextMessage;
-
-                //    }
-
-                //    if (item.MessageType == MessageType.Image)
-                //    {
-                //        ImageMessage? imageMessage = item as ImageMessage;
-                //    }
-                //    if (item.MessageType == MessageType.At)
-                //    {
-                //        AtMessage? atMessage = item as AtMessage;
-
-                //    }
-                //}
-            
-
 
             });
 
@@ -162,18 +118,7 @@
 
                     }
                 }
-                //foreach (MessageBase item in messageChain)
-                //{
-                //    if (item.MessageType == MessageType.At)
-                //    {
-                //        AtMessage? atMessage = item as AtMessage;
-
-                //    }
-                //    if (item.MessageType == MessageType.Image)
-                //    {
-                //        ImageMessage? imageMessage = item as ImageMessage;
-                //    }
-                //}
+               
 
 
             });
@@ -189,11 +134,7 @@
             {
                 Console.WriteLine("接收到好友 request 请求事件");
                 Console.WriteLine(msg.comment);
-                //if (msg.user_id == 2361803582) 
-                //{
-                //    string resjson = MessageManager.SetFriendAddRequest(msg.flag, true);
-                //    Console.WriteLine(resjson);
-                //}
+               
             });
             /* notice 通知事件*/
             liteLoaderQQNTBot.NoticeReceived.OfType<NoticeReceiverBase>().Subscribe(msg =>
