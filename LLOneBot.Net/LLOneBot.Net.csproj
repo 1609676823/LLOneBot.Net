@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PostManagerTool.Net" Version="1.0.0.1" />
+    <PackageReference Include="PostManagerTool.Net" Version="1.0.0.2" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Text.Json" Version="9.0.0" />
     <PackageReference Include="Websocket.Client" Version="5.1.2" />
