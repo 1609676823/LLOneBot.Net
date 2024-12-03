@@ -84,7 +84,7 @@
             liteLoaderQQNTBot.MessageReceived.OfType<PrivateMessageReceiver>().Subscribe(msg =>
             {
 
-                MessageChain messageChain = msg.MessageChain;
+                
 
                 Console.WriteLine("接收到用户: "+ msg .user_id+ " 的私信消息: "+ msg.raw_message);
               
