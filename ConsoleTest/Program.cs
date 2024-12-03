@@ -74,8 +74,8 @@
 
             };
             await liteLoaderQQNTBot.StartBot();
-
-
+           
+           Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
             Console.WriteLine("启动成功");
             /* 接收message 消息事件*/
 
