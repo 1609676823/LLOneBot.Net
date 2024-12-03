@@ -1,4 +1,5 @@
 ﻿using LLOneBot.Net.Receivers.Message;
+using PostManagerTool.Net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace LLOneBot.Net.Sessions
             string resjson = string.Empty;
             #region post
 
-            ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+            PostManagerToolClient webHelper = new PostManagerToolClient();
             string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
             if (!string.IsNullOrWhiteSpace(accesstocken))
             {
@@ -40,8 +41,8 @@ namespace LLOneBot.Net.Sessions
                 webHelper.RequestHeaders.Add("Authorization", accesstocken);
 
             }
-            webHelper.HttpMethod = HttpMethod.Post;
-            webHelper.bodyType = ComWebHelper.BodyType.raw;
+            webHelper.HttpWebRequestMethod = HttpMethodType.Post;
+            webHelper.bodyType = BodyType.raw;
             webHelper.Body_Raw = postjson;
             Task<string> task = webHelper.SendHttpRequestAsync(url);
             task.Wait();
@@ -59,7 +60,7 @@ namespace LLOneBot.Net.Sessions
             string resjson = string.Empty;
             #region post
 
-            ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+            PostManagerToolClient webHelper = new PostManagerToolClient();
             string accesstocken = LiteLoaderQQNTBot.Instance != null ? LiteLoaderQQNTBot.Instance.AccessTocken! : string.Empty;
             if (!string.IsNullOrWhiteSpace(accesstocken))
             {
@@ -69,8 +70,8 @@ namespace LLOneBot.Net.Sessions
                 webHelper.RequestHeaders.Add("Authorization", accesstocken);
 
             }
-            webHelper.HttpMethod = HttpMethod.Get;
-            webHelper.bodyType = ComWebHelper.BodyType.none;
+            webHelper.HttpWebRequestMethod = HttpMethodType.Get;
+            webHelper.bodyType = BodyType.none;
             //webHelper.Body_Raw = postjson;
             Task<string> task = webHelper.SendHttpRequestAsync(url);
             task.Wait();

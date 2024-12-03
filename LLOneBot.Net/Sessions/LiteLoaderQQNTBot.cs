@@ -1,4 +1,5 @@
 ﻿
+using PostManagerTool.Net;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -205,11 +206,11 @@ namespace LLOneBot.Net.Sessions
 
             string login_info = string.Empty;
 
-            ComWebHelper.WebHelper webHelper = new ComWebHelper.WebHelper();
+            PostManagerToolClient webHelper = new PostManagerToolClient();
 
             webHelper.Timeout = TimeSpan.FromSeconds(TimeoutSeconds);
 
-            webHelper.HttpMethod = HttpMethod.Get;
+            webHelper.HttpWebRequestMethod = HttpMethodType.Get;
             string url = string.Format("{0}get_login_info", GetServerUrl(HttpIpaddress!));
 
             if (!string.IsNullOrWhiteSpace(AccessTocken))
