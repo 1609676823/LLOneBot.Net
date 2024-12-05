@@ -94,6 +94,33 @@ static async Task Main(string[] args)
 
 ```
 
+## 第四步:使用消息管理器和消息链进行信息上报
+### 纯文本消息链发送群消息为代码示例:
+```
+LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot()
+{
+    Ip = "127.0.0.1",
+    HttpPort = 3000,
+    WebsocKetPort = 3001,
+    AccessTocken = "1"
+};
+await liteLoaderQQNTBot.StartBot();
+MessageChain messages = new MessageChain() { new TextMessage("消息内容") };
+MessageManager.SendGroupMessage("群号", messages);
+```
+### 发送@消息代码示例:
+```
+LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot()
+{
+    Ip = "127.0.0.1",
+    HttpPort = 3000,
+    WebsocKetPort = 3001,
+    AccessTocken = "1"
+};
+await liteLoaderQQNTBot.StartBot();
+MessageChain messages = new MessageChain() { new TextMessage("消息内容"),new AtMessage("被@用户的号码") };
+MessageManager.SendGroupMessage("群号", messages);
+```
 # 熟悉消息链的概念，以及使用消息链进行信息发送上报
 消息链由一系列的消息元素组成，每个消息元素表示消息中的一个部分。例如，一条消息可以包含文本、图片、语音、表情等不同类型的元素。每种类型的元素都对应着 MessageChain 中的一个类，比如 Plain 表示纯文本消息，Image 表示图片消息等。
 ## 消息类型如下：
