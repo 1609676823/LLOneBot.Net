@@ -94,6 +94,8 @@ static async Task Main(string[] args)
 
 ```
 
+# 消息链的概念，以及使用消息链进行信息发送上报
+
 # 消息管理器功能介绍
 # 以下是该库中 MessageManager 类的主要功能介绍
 
