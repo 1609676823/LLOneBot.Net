@@ -18,8 +18,8 @@
         static async Task Main(string[] args)
         {
 
-        //   string testa = @"测试123456.";
-        //    Console.WriteLine(testa.Length);
+            //   string testa = @"测试123456.";
+            //    Console.WriteLine(testa.Length);
             // AtMessage atMessage = new AtMessage();
             //var json = JsonSerializer.Serialize(atMessage)!;
 
@@ -66,19 +66,19 @@
 
             #endregion
 
-            LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot() {
-                Ip = "127.0.0.1", 
+            LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot()
+            {
+                Ip = "127.0.0.1",
                 HttpPort = 3000,
                 WebsocKetPort = 3001,
-                AccessTocken = "1" ,
-              
+                AccessTocken = "1",
 
             };
             await liteLoaderQQNTBot.StartBot();
-           
-           Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-           
+            Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
+
+
 
             //MessageChain messages = new MessageChain() { new TextMessage("test") };
             //MessageManager.SendGroupMessage("782351597", messages);
@@ -91,28 +91,28 @@
             liteLoaderQQNTBot.MessageReceived.OfType<PrivateMessageReceiver>().Subscribe(msg =>
             {
 
-                
 
-                Console.WriteLine("接收到用户: "+ msg .user_id+ " 的私信消息: "+ msg.raw_message);
-              
+
+                Console.WriteLine("接收到用户: " + msg.user_id + " 的私信消息: " + msg.raw_message);
+
 
             });
 
             /* 接收到群消息*/
             liteLoaderQQNTBot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(msg =>
             {
-                Console.WriteLine("接收到群: "+msg.group_id+ " 的消息:"+ msg.raw_message);
-               // Console.WriteLine(msg.raw_message);
+                Console.WriteLine("接收到群: " + msg.group_id + " 的消息:" + msg.raw_message);
+                // Console.WriteLine(msg.raw_message);
 
                 MessageChain messageChain = msg.MessageChain;
 
                 foreach (var item in messageChain)
                 {
-                    if (item.MessageType== MessageType.Text)
+                    if (item.MessageType == MessageType.Text)
                     {
-                        
-                        var message= item as TextMessage;
-                       
+
+                        var message = item as TextMessage;
+
                     }
 
                     if (item.MessageType == MessageType.Image)
@@ -125,7 +125,7 @@
 
                     }
                 }
-               
+
 
 
             });
@@ -133,7 +133,7 @@
             liteLoaderQQNTBot.RequestReceived.OfType<GroupRequestReceiver>().Subscribe(msg =>
             {
                 Console.WriteLine("接收到群 request 请求事件");
-               Console.WriteLine(msg.comment);
+                Console.WriteLine(msg.comment);
             });
 
             /* request 好友 请求事件*/
@@ -141,7 +141,7 @@
             {
                 Console.WriteLine("接收到好友 request 请求事件");
                 Console.WriteLine(msg.comment);
-               
+
             });
             /* notice 通知事件*/
             liteLoaderQQNTBot.NoticeReceived.OfType<NoticeReceiverBase>().Subscribe(msg =>

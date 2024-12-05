@@ -72,6 +72,11 @@ namespace LLOneBot.Net.Data
         /// </summary>
         public string? Logininfojson { get; set; }
 
+        /// <summary>
+        /// Websocket链接是否成功
+        /// </summary>
+        public bool WebsocketConnectStatus { get; set; } = false;
+
 
 
     }

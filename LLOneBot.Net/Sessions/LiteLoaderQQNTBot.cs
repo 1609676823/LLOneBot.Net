@@ -285,6 +285,7 @@ namespace LLOneBot.Net.Sessions
             try
             {
                 await StartWebsocketListenerAsync();
+                LoginInfo.WebsocketConnectStatus = true;
             }
             catch (Exception ex)
             {
