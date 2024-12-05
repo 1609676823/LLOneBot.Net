@@ -91,3 +91,143 @@ static async Task Main(string[] args)
 }
 
 ```
+
+# 消息管理器功能介绍
+# LLOneBot.Net 消息管理器功能介绍
+
+## 消息发送与管理
+
+### 发送群消息
+- SendGroupMessage
+- SendGroupMessageAsync
+
+### 发送好友消息
+- SendFriendMessage
+- SendFriendMessageAsync
+
+### 发送私聊消息
+- SendPrivateMessage
+- SendPrivateMessageAsync
+
+### 发送消息
+- SendMessage
+- SendMessageAsync
+
+### 撤回消息
+- DeleteMessage
+- DeleteMessageAsync
+
+### 获取消息
+- GetMessage
+
+### 获取合并转发消息
+- GetForwardMessage
+
+## 群组管理
+
+### 群组踢人
+- SetGroupKick
+- SetGroupKickAsync
+
+### 群组禁言/解除禁言
+- SetGroupBan
+- SetGroupBanAsync
+
+### 群组全员禁言
+- SetGroupWholeBan
+- SetGroupWholeBanAsync
+
+### 群组设置管理员
+- SetGroupAdmin
+- SetGroupAdminAsync
+
+### 群组匿名聊天
+- SetGroupAnonymous
+- SetGroupAnonymousAsync
+
+### 设置群名片
+- SetGroupCard
+- SetGroupCardAsync
+
+### 设置群名
+- SetGroupName
+- SetGroupNamedAsync
+
+### 退出群组
+- SetGroupLeave
+- SetGroupLeaveAsync
+
+### 设置群组专属头衔
+- SetGroupSpecialTitle
+- SetGroupSpecialTitleAsync
+
+## 好友管理
+
+### 处理加好友请求
+- SetFriendAddRequest
+- SetFriendAddRequestAsync
+
+### 处理加群请求/邀请
+- SetGroupAddRequest
+- SetGroupAddRequestAsync
+
+## 其他功能
+
+### 获取登录号信息
+- GetLoginInfo
+
+### 获取陌生人信息
+- GetStrangerInfo
+
+### 获取好友列表
+- GetFriendList
+
+### 获取群信息
+- GetGroupInfo
+
+### 获取群列表
+- GetGroupList
+
+### 获取群成员信息
+- GetGroupMemberInfo
+
+### 获取群成员列表
+- GetGroupMemberList
+
+### 获取群荣誉信息
+- GetGroupHonorInfo
+
+### 获取 Cookies
+- GetCookies
+
+### 获取 CSRF Token
+- GetCsrfToken
+
+### 获取 QQ 相关接口凭证
+- GetCredentials
+
+### 获取语音文件
+- GetRecord
+
+### 获取图片文件
+- GetImage
+
+### 检查是否可以发送图片
+- CanSendImage
+
+### 检查是否可以发送语音
+- CanSendRecord
+
+### 获取运行状态
+- GetStatus
+
+### 获取版本信息
+- GetVersionInfo
+
+### 重启 OneBot 实现
+- SetRestart
+- SetRestartAsync
+
+### 清理缓存
+- CleanCache
+- CleanCacheAsync
