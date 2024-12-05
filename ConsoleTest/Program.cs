@@ -7,8 +7,9 @@
     using LLOneBot.Net.Receivers.Notice;
     using LLOneBot.Net.Receivers.Request;
     using LLOneBot.Net.Sessions;
-    using System.Net.WebSockets;
     using System.Reactive.Linq;
+    using System.Net.WebSockets;
+
     using System.Text.Json;
     using Websocket.Client;
 
@@ -70,7 +71,7 @@
                 HttpPort = 3000,
                 WebsocKetPort = 3001,
                 AccessTocken = "1" ,
-               // IsContainsBotMessage=true ,
+              
 
             };
             await liteLoaderQQNTBot.StartBot();
