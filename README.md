@@ -93,7 +93,7 @@ static async Task Main(string[] args)
 ```
 
 # 消息管理器功能介绍
-# LLOneBot.Net 消息管理器功能介绍
+# 以下是该库中 MessageManager 类的主要功能介绍
 
 ## 消息发送与管理
 
