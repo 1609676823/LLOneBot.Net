@@ -5,7 +5,7 @@
 https://github.com/botuniverse/onebot-11/blob/master/README.md
 
 # 接入教程
-## 第一步:使用nuget管理器安装LLOneBot.Net
+## 第一步:使用nuget管理器安装LLOneBot.Net，或者自己手动添加对应的dll
 对应的nuget地址为:https://www.nuget.org/packages/LLOneBot.Net
 
 ## 第二步:需要添加的引用
