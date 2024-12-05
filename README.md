@@ -18,7 +18,7 @@ using LLOneBot.Net.Receivers.Notice;
 using LLOneBot.Net.Receivers.Request;
 using LLOneBot.Net.Sessions;
 ```
-## 第三部:获取message的代码示例
+## 第三部:获取事件的demo
 ```
 static async Task Main(string[] args)
 {
