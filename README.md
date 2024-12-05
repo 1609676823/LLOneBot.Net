@@ -1,1 +1,1 @@
-# LLOneBot.Net 基于onebot-11协议进行封装
+# LLOneBot.Net 鍩轰簬onebot-11鍗忚杩涜灏佽
