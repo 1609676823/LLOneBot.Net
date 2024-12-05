@@ -1612,7 +1612,7 @@ namespace LLOneBot.Net.Sessions
         /// </summary>
         /// <param name="delay">要延迟的毫秒数，如果默认情况下无法重启，可以尝试设置延迟为 2000 左右</param>
         /// <returns></returns>
-        public static string SetRestart(long delay)
+        public static string SetRestart(long delay=0)
         {
             string resjson = string.Empty;
             try

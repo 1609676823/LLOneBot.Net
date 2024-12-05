@@ -77,8 +77,8 @@
            
            Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-
             
+
             //MessageChain messages = new MessageChain() { new TextMessage("test") };
             //MessageManager.SendGroupMessage("782351597", messages);
             Console.WriteLine("启动成功");
