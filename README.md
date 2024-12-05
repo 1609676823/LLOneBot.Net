@@ -95,6 +95,56 @@ static async Task Main(string[] args)
 ```
 
 # 第四步:熟悉消息链的概念，以及使用消息链进行信息发送上报
+消息链由一系列的消息元素组成，每个消息元素表示消息中的一个部分。例如，一条消息可以包含文本、图片、语音、表情等不同类型的元素。每种类型的元素都对应着 MessageChain 中的一个类，比如 Plain 表示纯文本消息，Image 表示图片消息等。
+## 消息类型如下：
+
+### AtMessage（@某人）
+
+用于在消息中 @某人。
+
+### DiceMessage（骰子魔法表情）
+
+用于发送骰子魔法表情。
+
+### FaceMessage（QQ 表情）
+
+用于发送 QQ 表情。
+
+### FileMessage（图片信息）
+
+用于发送图片文件。
+
+### ImageMessage（图片信息）
+
+用于发送图片信息。
+
+### PokeMessage（窗口抖动）
+
+用于发送窗口抖动（戳一戳）消息。
+
+### RecordMessage（语音信息）
+
+用于发送语音文件。
+
+### ReplyMessage（回复）
+
+用于发送回复消息。
+
+### RpsMessage（猜拳魔法表情）
+
+用于发送猜拳魔法表情。
+
+### ShakeMessage（窗口抖动，已弃用）
+
+用于发送窗口抖动消息（已弃用）。
+
+### TextMessage（文本信息）
+
+用于发送纯文本消息。
+
+### VideoMessage（语音信息）
+
+用于发送视频文件。
 
 # 消息管理器功能介绍
 # 以下是该库中 MessageManager 类的主要功能介绍
