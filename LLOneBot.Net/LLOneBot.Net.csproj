@@ -16,6 +16,10 @@
     <VersionPrefix>1.0.0.7</VersionPrefix>
     <!--<PackageReadmeFile>readme.md</PackageReadmeFile>-->
     <PackageProjectUrl>https://gitee.com/lnsyzjw/llone-bot.-net</PackageProjectUrl>
+    <Description>
+      用于集成LLOneBot，基于标准的onebot-11 协议标准
+      项目地址以及说明:https://gitee.com/lnsyzjw/llone-bot.-net
+    </Description>
   </PropertyGroup>
 
   <ItemGroup>
