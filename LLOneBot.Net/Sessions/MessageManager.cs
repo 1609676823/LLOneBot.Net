@@ -1607,8 +1607,8 @@ namespace LLOneBot.Net.Sessions
         }
 
         /// <summary>
-        /// set_restart 重启 OneBot 实现(预留功能未生效)
-        /// 由于重启 OneBot 实现同时需要重启 API 服务，这意味着当前的 API 请求会被中断，因此需要异步地重启，接口返回的 status 是 async。
+        ///set_restart 重启 OneBot 实现(预留功能未生效)
+        ///由于重启 OneBot 实现同时需要重启 API 服务，这意味着当前的 API 请求会被中断，因此需要异步地重启，接口返回的 status 是 async。
         /// </summary>
         /// <param name="delay">要延迟的毫秒数，如果默认情况下无法重启，可以尝试设置延迟为 2000 左右</param>
         /// <returns></returns>
@@ -1635,7 +1635,23 @@ namespace LLOneBot.Net.Sessions
 
         }
 
+        /// <summary>
+        ///set_restart 重启 OneBot 实现(预留功能未生效)
+        ///由于重启 OneBot 实现同时需要重启 API 服务，这意味着当前的 API 请求会被中断，因此需要异步地重启，接口返回的 status 是 async。
+        /// </summary>
+        /// <param name="delay">要延迟的毫秒数，如果默认情况下无法重启，可以尝试设置延迟为 2000 左右</param>
+        /// <returns></returns>
+        public static async Task<string> SetRestartAsync(long delay = 0)
+        {
+            var objres = await Task.Run(() =>
+            {
+                string resjson = SetRestart(delay);
+                return resjson;
+            });
 
+
+            return objres;
+        }
         /// <summary>
         /// clean_cache 清理缓存
         /// 用于清理积攒了太多的缓存文件。
