@@ -7,10 +7,10 @@ https://llonebot.github.io/zh-CN/
 https://github.com/botuniverse/onebot-11/blob/master/README.md
 
 # 接入教程
-## 第一步:使用nuget管理器安装LLOneBot.Net，或者自己手动添加对应的dll
+## 1.第一步:使用nuget管理器安装LLOneBot.Net，或者自己手动添加对应的dll
 对应的nuget地址为:https://www.nuget.org/packages/LLOneBot.Net
 
-## 第二步:需要添加的引用
+## 2.第二步:需要添加的引用
 ```
 using LLOneBot.Net.Data;
 using LLOneBot.Net.Data.MessageDataType;
@@ -20,7 +20,7 @@ using LLOneBot.Net.Receivers.Notice;
 using LLOneBot.Net.Receivers.Request;
 using LLOneBot.Net.Sessions;
 ```
-## 第三步:获取事件的demo
+## 3.第三步:获取事件的demo
 ```
 static async Task Main(string[] args)
 {
@@ -94,8 +94,8 @@ static async Task Main(string[] args)
 
 ```
 
-## 第四步:使用消息管理器和消息链进行信息上报
-### 纯文本消息链发送群消息为代码示例:
+## 4.第四步:使用消息管理器和消息链进行信息上报
+### 4.1纯文本消息链发送群消息为代码示例:
 ```
 LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot()
 {
@@ -108,7 +108,7 @@ await liteLoaderQQNTBot.StartBot();
 MessageChain messages = new MessageChain() { new TextMessage("消息内容") };
 MessageManager.SendGroupMessage("群号", messages);
 ```
-### 发送@消息代码示例:
+### 4.2发送@消息代码示例:
 ```
 LiteLoaderQQNTBot liteLoaderQQNTBot = new LiteLoaderQQNTBot()
 {
