@@ -31,7 +31,7 @@ using LLOneBot.Net.Receivers.Notice;
 using LLOneBot.Net.Receivers.Request;
 using LLOneBot.Net.Sessions;
 ```
-## 3.第三步:获取事件的demo
+## 3.第三步:(示例代码)获取事件的demo
 ```
 static async Task Main(string[] args)
 {
