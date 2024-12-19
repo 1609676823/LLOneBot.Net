@@ -234,111 +234,111 @@ namespace LLOneBot.Net.Data
         [Description("MEMBER")]
         Member
     }
-    /// <summary>
-    /// 发送消息类型
-    /// </summary>
-    public enum SendMessageType
-    {
-        /// <summary>
-        /// at
-        /// </summary>
-        At,
+    ///// <summary>
+    ///// 发送消息类型
+    ///// </summary>
+    //public enum SendMessageType
+    //{
+    //    /// <summary>
+    //    /// at
+    //    /// </summary>
+    //    At,
 
-        /// <summary>
-        /// 文本
-        /// </summary>
-        Text,
+    //    /// <summary>
+    //    /// 文本
+    //    /// </summary>
+    //    Text,
 
-        /// <summary>
-        /// 表情
-        /// </summary>
-        Face,
+    //    /// <summary>
+    //    /// 表情
+    //    /// </summary>
+    //    Face,
 
-        /// <summary>
-        /// 图片
-        /// </summary>
-        Image,
+    //    /// <summary>
+    //    /// 图片
+    //    /// </summary>
+    //    Image,
 
-        /// <summary>
-        /// json数据
-        /// </summary>
-        Json,
+    //    /// <summary>
+    //    /// json数据
+    //    /// </summary>
+    //    Json,
 
-        /// <summary>
-        /// 回复
-        /// </summary>
-        Reply,
+    //    /// <summary>
+    //    /// 回复
+    //    /// </summary>
+    //    Reply,
 
-        /// <summary>
-        /// 语言
-        /// </summary>
-        Record,
+    //    /// <summary>
+    //    /// 语言
+    //    /// </summary>
+    //    Record,
 
-        /// <summary>
-        /// 视频
-        /// </summary>
-        Video,
+    //    /// <summary>
+    //    /// 视频
+    //    /// </summary>
+    //    Video,
 
-        /// <summary>
-        /// 篮球表情
-        /// </summary>
-        Basketball,
+    //    /// <summary>
+    //    /// 篮球表情
+    //    /// </summary>
+    //    Basketball,
 
-        /// <summary>
-        /// 新猜拳
-        /// </summary>
-        New_rps,
+    //    /// <summary>
+    //    /// 新猜拳
+    //    /// </summary>
+    //    New_rps,
 
-        /// <summary>
-        /// 新骰子
-        /// </summary>
-        New_dice,
+    //    /// <summary>
+    //    /// 新骰子
+    //    /// </summary>
+    //    New_dice,
 
-        /// <summary>
-        /// 戳一戳
-        /// </summary>
-        Poke,
+    //    /// <summary>
+    //    /// 戳一戳
+    //    /// </summary>
+    //    Poke,
 
-        /// <summary>
-        /// 戳一戳（双击头像）
-        /// </summary>
-        Touch,
+    //    /// <summary>
+    //    /// 戳一戳（双击头像）
+    //    /// </summary>
+    //    Touch,
 
-        /// <summary>
-        /// 音乐
-        /// </summary>
-        Music,
+    //    /// <summary>
+    //    /// 音乐
+    //    /// </summary>
+    //    Music,
 
-        /// <summary>
-        /// 天气
-        /// </summary>
-        Weather,
+    //    /// <summary>
+    //    /// 天气
+    //    /// </summary>
+    //    Weather,
 
-        /// <summary>
-        /// 位置
-        /// </summary>
-        Location,
+    //    /// <summary>
+    //    /// 位置
+    //    /// </summary>
+    //    Location,
 
-        /// <summary>
-        /// 连接分享
-        /// </summary>
-        Share,
+    //    /// <summary>
+    //    /// 连接分享
+    //    /// </summary>
+    //    Share,
 
-        /// <summary>
-        /// 礼物
-        /// </summary>
-        Gift,
+    //    /// <summary>
+    //    /// 礼物
+    //    /// </summary>
+    //    Gift,
 
-        /// <summary>
-        /// 事件
-        /// </summary>
-        Button,
+    //    /// <summary>
+    //    /// 事件
+    //    /// </summary>
+    //    Button,
 
-        /// <summary>
-        /// Markdown文本
-        /// </summary>
-        Markdown,
-    }
+    //    /// <summary>
+    //    /// Markdown文本
+    //    /// </summary>
+    //    Markdown,
+    //}
 
 
    
