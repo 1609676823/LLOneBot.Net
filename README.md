@@ -1,7 +1,16 @@
-# LLOneBot插件的 接入框架（LLOneBot.Net)
-# 使用本框架首先需要自行了解LLOneBot内容，自行部署环境
+# LLOneBot以及NapCatQQ 的 接入框架（LLOneBot.Net),同步兼容 NapCatQQ 框架
+
+理论上符合onebot-11的协议标准的框架，均可以支持。
+
+# 使用本框架首先需要自行了解LLOneBot以及NapCatQQ内容，自行部署环境
 ## LLOneBot官网地址如下:
 https://llonebot.github.io/zh-CN/
+https://github.com/LLOneBot/LLOneBot
+
+## NapCatQQ官网地址如下:
+https://napneko.icu/
+https://github.com/NapNeko/NapCatQQ
+
 
 ## 接口协议标准（基于标准的onebot-11)地址如下:
 https://github.com/botuniverse/onebot-11/blob/master/README.md
