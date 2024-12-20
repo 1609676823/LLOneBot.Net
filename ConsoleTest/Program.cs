@@ -71,15 +71,15 @@
                 Ip = "127.0.0.1",
                 HttpPort = 3000,
                 WebsocKetPort = 3001,
-                AccessTocken = "1",
+               // AccessTocken = "1",
 
             };
             await liteLoaderQQNTBot.StartBot();
 
             Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-
-
+          
+          
             //MessageChain messages = new MessageChain() { new TextMessage("消息内容"),new AtMessage("被@用户的号码") };
             //MessageManager.SendGroupMessage("群号", messages);
             Console.WriteLine("启动成功");
