@@ -179,6 +179,24 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("contact".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<ContactMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                }
+                messageBase.MessageType = MessageType.Contact;
+                messageBase.type = "contact";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+
             messageBase.Originaljson = MessageDataJson.ToString();
             return messageBase;
         }
