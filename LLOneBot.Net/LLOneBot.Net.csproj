@@ -29,10 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PostManagerTool.Net" Version="1.0.0.3" />
+    <PackageReference Include="PostManagerTool.Net" Version="1.0.0.5" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.Text.Json" Version="9.0.0" />
     <PackageReference Include="Websocket.Client" Version="5.1.2" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +43,15 @@
     </None>
   </ItemGroup>
 
+  <!-- 特殊框架包引入 --><!--
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="8.0.5" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" Condition="'$(TargetFramework)' == 'net5.0'" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" Condition="'$(TargetFramework)' == 'net6.0'" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" Condition="'$(TargetFramework)' == 'net7.0'" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" Condition="'$(TargetFramework)' == 'net8.0'" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" Condition="'$(TargetFramework)' == 'net9.0'" />
+  </ItemGroup>-->
   <!-- 如果当前框架是Framework，则引用System.Web -->
   <!--<ItemGroup>
     <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net481'" />
