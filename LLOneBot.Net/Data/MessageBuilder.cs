@@ -161,6 +161,24 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("share".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<ShareMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                }
+                messageBase.MessageType = MessageType.Share;
+                messageBase.type = "share";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+
             messageBase.Originaljson = MessageDataJson.ToString();
             return messageBase;
         }

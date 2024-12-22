@@ -79,7 +79,7 @@
 
             Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-            MessageChain messages = new MessageChain() { new AnonymousMessage("test") };
+            MessageChain messages = new MessageChain() { new ShareMessage(@"https://www.baidu.com/","百度") };
             string res = MessageManager.SendGroupMessage("782351597", messages);
 
             Console.WriteLine(res);
