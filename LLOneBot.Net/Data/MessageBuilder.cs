@@ -197,6 +197,17 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            /*
+             位置：不存在表示位置信息消息的类。
+音乐分享：缺少音乐分享消息的相关类。
+音乐自定义分享：同样没有对应的类来处理音乐自定义分享消息。
+合并转发：未见到处理合并转发消息的类。
+合并转发节点：没有定义合并转发节点相关的类。
+合并转发自定义节点：缺乏此类消息的处理类。
+XML 消息：没有针对 XML 消息的类。
+JSON 消息：不存在处理 JSON 消息的类。
+             */
+
             messageBase.Originaljson = MessageDataJson.ToString();
             return messageBase;
         }
