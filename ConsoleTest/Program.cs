@@ -12,6 +12,7 @@
 
     using System.Text.Json;
     using Websocket.Client;
+    using System;
 
     internal class Program
     {
@@ -78,8 +79,13 @@
 
             Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-          
-          
+            MessageChain messages = new MessageChain() { new AnonymousMessage("test") };
+            string res = MessageManager.SendGroupMessage("782351597", messages);
+
+            Console.WriteLine(res);
+
+
+
             //MessageChain messages = new MessageChain() { new TextMessage("消息内容"),new AtMessage("被@用户的号码") };
             //MessageManager.SendGroupMessage("群号", messages);
             Console.WriteLine("启动成功");

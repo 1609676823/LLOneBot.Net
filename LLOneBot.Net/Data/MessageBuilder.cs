@@ -145,6 +145,16 @@ namespace LLOneBot.Net.Data
 
             if ("anonymous".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<AnonymousMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                   // throw;
+                }
                 messageBase.MessageType= MessageType.Anonymous;
                 messageBase.type = "anonymous";
                 messageBase.Originaljson = MessageDataJson.ToString();
