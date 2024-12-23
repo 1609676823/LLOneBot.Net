@@ -233,6 +233,24 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("node".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<NodeMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                }
+                messageBase.MessageType = MessageType.Node;
+                messageBase.type = "node";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+
             /*
             
 
