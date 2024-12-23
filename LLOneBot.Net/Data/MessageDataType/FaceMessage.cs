@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 文本信息
+    /// 表情信息
     /// </summary>
     public class FaceMessage : MessageBase
     {

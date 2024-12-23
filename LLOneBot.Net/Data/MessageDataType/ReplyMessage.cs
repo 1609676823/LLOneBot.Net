@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 回复
+    /// 回复信息
     /// </summary>
     public class ReplyMessage : MessageBase
     {
         /// <summary>
-        /// 回复
+        /// 回复信息
         /// </summary>
 
         public ReplyMessage() { }
 
         /// <summary>
-        /// 回复
+        /// 回复信息
         /// </summary>
         /// <param name="id">回复时引用的消息 ID</param>
         public ReplyMessage(string id) 

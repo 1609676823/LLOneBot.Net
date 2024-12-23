@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 链接分享
+    /// 链接分享信息
     /// </summary>
     public class ShareMessage : MessageBase
     {
         /// <summary>
-        /// 
+        /// 链接分享信息
         /// </summary>
 
         public ShareMessage() { this.data = new ShareMessageData(); }
         /// <summary>
-        /// 
+        /// 链接分享信息
         /// </summary>
         /// <param name="url"></param>
         /// <param name="title"></param>

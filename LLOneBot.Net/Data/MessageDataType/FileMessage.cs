@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 图片信息
+    /// 文件信息
     /// </summary>
     public class FileMessage : MessageBase
     {
         /// <summary>
-        /// 图片信息
+        /// 文件信息
         /// </summary>
         public FileMessage() { this.data = new FileMessageData(); }
 

@@ -14,7 +14,7 @@ namespace LLOneBot.Net.Data.MessageDataType
     public class VideoMessage : MessageBase
     {
         /// <summary>
-        /// 语音信息
+        /// 媒体/视频语音信息
         /// </summary>
         public VideoMessage() { this.data = new VideoMessageData(); }
 
