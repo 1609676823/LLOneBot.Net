@@ -215,6 +215,24 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("forward".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<ForwardMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                }
+                messageBase.MessageType = MessageType.Forward;
+                messageBase.type = "forward";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+
             /*
             
 音乐分享：缺少音乐分享消息的相关类。
