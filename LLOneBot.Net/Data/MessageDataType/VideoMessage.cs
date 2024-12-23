@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
-    /// 语音信息
+    /// 媒体/视频语音信息
     /// </summary>
     public class VideoMessage : MessageBase
     {
