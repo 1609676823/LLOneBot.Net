@@ -9,7 +9,6 @@ namespace LLOneBot.Net.Data.MessageDataType
 {
     /// <summary>
     /// 回复
-
     /// </summary>
     public class ReplyMessage : MessageBase
     {
