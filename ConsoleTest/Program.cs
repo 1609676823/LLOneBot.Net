@@ -79,7 +79,7 @@
 
             Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-            MessageChain messages = new MessageChain() { new ContactMessage(@"600075933", "group") };
+            MessageChain messages = new MessageChain() { new MusicMessage("163", "28949129") };
             string res = MessageManager.SendGroupMessage("782351597", messages);
 
             Console.WriteLine(res);

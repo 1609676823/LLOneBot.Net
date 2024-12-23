@@ -13,21 +13,25 @@ namespace LLOneBot.Net.Data.MessageDataType
     public class LocationMessage: MessageBase
     {
         /// <summary>
-        /// 
+        /// 位置信息
         /// </summary>
-    
+
         public LocationMessage() { this.data = new LocationMessageData(); }
         /// <summary>
-        /// 位置信息
+        ///位置信息
         /// </summary>
         /// <param name="lon">经度</param>
         /// <param name="lat">纬度</param>
-        public LocationMessage(string lon, string lat) 
+        /// <param name="title">发送时可选，标题</param>
+        /// <param name="content">发送时可选，内容描述</param>
+        public LocationMessage(string lon, string lat, string title="",string content="") 
         {
             this.data=new LocationMessageData();
             // this.data.text=messagetext;
             (this.data as LocationMessageData)!.lon = lon;
-            (this.data as LocationMessageData)!.lat = lat; 
+            (this.data as LocationMessageData)!.lat = lat;
+            (this.data as LocationMessageData)!.title = title;
+            (this.data as LocationMessageData)!.content = content;
         }
 
 
@@ -64,5 +68,13 @@ namespace LLOneBot.Net.Data.MessageDataType
         /// 经度
         /// </summary>
         public string? lon { get; set; }
+        /// <summary>
+        /// 发送时可选，标题
+        /// </summary>
+        public string? title { get; set; }
+        /// <summary>
+        /// 发送时可选，内容描述
+        /// </summary>
+        public string? content { get; set; }
     }
 }
