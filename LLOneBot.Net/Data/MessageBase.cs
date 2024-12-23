@@ -125,9 +125,14 @@ namespace LLOneBot.Net.Data
         /// </summary>
         Location,
         /// <summary>
-        /// 音乐分享/音乐自定义分享
+        /// 音乐分享
         /// </summary>
         Music,
+
+        /// <summary>
+        /// 音乐自定义分享
+        /// </summary>
+        CustomMusic,
         /// <summary>
         /// 回复
         /// </summary>
@@ -137,9 +142,14 @@ namespace LLOneBot.Net.Data
         /// </summary>
         Forward,
         /// <summary>
-        /// 合并转发节点/合并转发自定义节点
+        /// 合并转发节点
         /// </summary>
         Node,
+
+        /// <summary>
+        /// 合并转发自定义节点
+        /// </summary>
+        CustomNode,
         /// <summary>
         /// XML 消息
         /// </summary>

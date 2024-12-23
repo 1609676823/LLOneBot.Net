@@ -197,8 +197,26 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
+            if ("location".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<LocationMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                }
+                messageBase.MessageType = MessageType.Location;
+                messageBase.type = "location";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+
             /*
-             位置：不存在表示位置信息消息的类。
+            
 音乐分享：缺少音乐分享消息的相关类。
 音乐自定义分享：同样没有对应的类来处理音乐自定义分享消息。
 合并转发：未见到处理合并转发消息的类。
