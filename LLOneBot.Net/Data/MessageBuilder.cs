@@ -34,7 +34,7 @@ namespace LLOneBot.Net.Data
         /// <returns></returns>
         public static MessageChain BulderMessageChain(object MessageChainJson)
         {
-            
+
             MessageChain messageChain = new MessageChain();
             if (MessageChainJson != null)
             {
@@ -60,19 +60,19 @@ namespace LLOneBot.Net.Data
         /// </summary>
         /// <param name="MessageDataJson"></param>
         /// <returns></returns>
-        public static MessageBase BulderMessageBase(JsonNode MessageDataJson) 
+        public static MessageBase BulderMessageBase(JsonNode MessageDataJson)
         {
             MessageBase messageBase = new MessageBase();
             string type = Convert.ToString(MessageDataJson!["type"])!;
-           
+
 
 
             if ("at".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
-               // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+                // JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
 
-                 messageBase = JsonSerializer.Deserialize<AtMessage>(MessageDataJson, jsonSerializerOptions)!;
-                 messageBase.Originaljson= MessageDataJson.ToString();
+                messageBase = JsonSerializer.Deserialize<AtMessage>(MessageDataJson, jsonSerializerOptions)!;
+                messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
 
@@ -97,20 +97,20 @@ namespace LLOneBot.Net.Data
                 return messageBase;
             }
 
-             if ("face".Equals(type, StringComparison.OrdinalIgnoreCase))
+            if ("face".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<FaceMessage>(MessageDataJson, jsonSerializerOptions)!;
                 messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
 
-             if ("record".Equals(type, StringComparison.OrdinalIgnoreCase))
+            if ("record".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<RecordMessage>(MessageDataJson, jsonSerializerOptions)!;
                 messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
-             if ("video".Equals(type, StringComparison.OrdinalIgnoreCase))
+            if ("video".Equals(type, StringComparison.OrdinalIgnoreCase))
             {
                 messageBase = JsonSerializer.Deserialize<VideoMessage>(MessageDataJson, jsonSerializerOptions)!;
                 messageBase.Originaljson = MessageDataJson.ToString();
@@ -153,9 +153,9 @@ namespace LLOneBot.Net.Data
                 catch (Exception)
                 {
 
-                   // throw;
+                    // throw;
                 }
-                messageBase.MessageType= MessageType.Anonymous;
+                messageBase.MessageType = MessageType.Anonymous;
                 messageBase.type = "anonymous";
                 messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
@@ -265,6 +265,24 @@ namespace LLOneBot.Net.Data
                 }
                 messageBase.MessageType = MessageType.Json;
                 messageBase.type = "json";
+                messageBase.Originaljson = MessageDataJson.ToString();
+                return messageBase;
+            }
+          
+            if ("xml".Equals(type, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    messageBase = JsonSerializer.Deserialize<XmlMessage>(MessageDataJson, jsonSerializerOptions)!;
+
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                }
+                messageBase.MessageType = MessageType.Json;
+                messageBase.type = "xml";
                 messageBase.Originaljson = MessageDataJson.ToString();
                 return messageBase;
             }
