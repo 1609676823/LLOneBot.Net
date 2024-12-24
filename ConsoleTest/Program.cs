@@ -79,10 +79,10 @@
 
             Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
 
-            MessageChain messages = new MessageChain() { new MusicMessage("163", "28949129") };
-            string res = MessageManager.SendGroupMessage("782351597", messages);
+            //MessageChain messages = new MessageChain() { new MusicMessage("163", "28949129") };
+            //string res = MessageManager.SendGroupMessage("782351597", messages);
 
-            Console.WriteLine(res);
+            //Console.WriteLine(res);
 
 
 
@@ -109,6 +109,11 @@
             {
                 Console.WriteLine("接收到群: " + msg.group_id + " 的消息:" + msg.raw_message);
                 // Console.WriteLine(msg.raw_message);
+
+                if (msg.group_id == 782351597) 
+                {
+                    Console.Write(msg.message_id);
+                }
 
                 MessageChain messageChain = msg.MessageChain;
 
