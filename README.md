@@ -1,6 +1,6 @@
 # LLOneBot以及NapCatQQ 的 接入框架（LLOneBot.Net),同步兼容 NapCatQQ 框架
 
-理论上符合onebot-11的协议标准的框架，均可以支持。onebot官网如下:
+理论上符合onebot-11的协议标准的框架，均可以支持。例如如下的框架等:
 https://docs.onebots.org/
 
 # 使用本框架首先需要自行了解LLOneBot/NapCatQQ内容/onebot内容，自行部署环境
