@@ -4,12 +4,12 @@
 https://docs.onebots.org/
 
 # 使用本框架首先需要自行了解LLOneBot/NapCatQQ内容/onebot内容，自行部署环境
-## LLOneBot官网地址如下:
+## LLOneBot(带有人机交互)官网地址如下:
 https://llonebot.github.io/zh-CN/
 
 https://github.com/LLOneBot/LLOneBot
 
-## NapCatQQ官网地址如下:
+## NapCatQQ(带有无头模式)官网地址如下:
 https://napneko.icu/
 
 https://github.com/NapNeko/NapCatQQ
