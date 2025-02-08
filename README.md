@@ -3,7 +3,7 @@
 理论上符合onebot-11的协议标准的框架，均可以支持。例如如下的框架等:
 https://docs.onebots.org/
 
-# 使用本框架首先需要自行了解LLOneBot/NapCatQQ内容/onebot内容，自行部署环境
+# 使用本框架首先需要自行了解LLOneBot/NapCatQQ内容/onebot内容，自行部署环境，这两种框架都是基于QQNT版本，其中NapCatQQ包含无头模式
 ## LLOneBot(带有人机交互)官网地址如下:
 https://llonebot.github.io/zh-CN/
 
