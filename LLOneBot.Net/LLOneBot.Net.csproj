@@ -12,9 +12,9 @@
     <Authors>zoujiawei</Authors>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>1.0.0.13</AssemblyVersion>
-    <FileVersion>1.0.0.13</FileVersion>
-    <VersionPrefix>1.0.0.13</VersionPrefix>
+    <AssemblyVersion>1.0.0.14</AssemblyVersion>
+    <FileVersion>1.0.0.14</FileVersion>
+    <VersionPrefix>1.0.0.14</VersionPrefix>
     <PackageProjectUrl>https://gitee.com/lnsyzjw/llone-bot.-net</PackageProjectUrl>
     <Description>用于集成LLOneBot，基于标准的onebot-11 协议标准
 项目地址以及说明:https://gitee.com/lnsyzjw/llone-bot.-net
@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PostManagerTool.Net" Version="1.0.0.8" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="Websocket.Client" Version="5.1.2" />
     <PackageReference Include="System.Text.Json" Version="9.0.4" />
