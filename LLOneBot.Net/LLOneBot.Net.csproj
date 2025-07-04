@@ -20,6 +20,8 @@
 项目地址以及说明:https://gitee.com/lnsyzjw/llone-bot.-net
     </Description>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <!--抑制版本兼容警告-->
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <ItemGroup>

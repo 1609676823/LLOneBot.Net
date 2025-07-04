@@ -121,7 +121,7 @@ namespace PostManagerTool.Net
         /// <param name="url"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public async Task<string> SendHttpRequestAsync(string url,Encoding encoding=null)
+        public async Task<string> SendHttpRequestAsync(string url,Encoding? encoding =null)
         {
            // 异步获取返回的字符串
 
@@ -216,7 +216,7 @@ namespace PostManagerTool.Net
             if (this.bodyType.Equals(BodyType.urlencoded))
             {
                 // request.Content = this.Body_UrlEncoded;
-                FormUrlEncodedContent formUrlEncodedContent = new FormUrlEncodedContent(Body_UrlEncoded);
+                FormUrlEncodedContent formUrlEncodedContent = new FormUrlEncodedContent(Body_UrlEncoded!);
                 request.Content = formUrlEncodedContent;
             }
 
@@ -260,8 +260,9 @@ namespace PostManagerTool.Net
         /// 获取返回的字符串
         /// </summary>
         /// <param name="url"></param>
+        /// <param name="encoding"></param>
         /// <returns></returns>
-        public string SendHttpRequest(string url, Encoding encoding = null) 
+        public string SendHttpRequest(string url, Encoding? encoding = null) 
         {
            
             string res = string.Empty;

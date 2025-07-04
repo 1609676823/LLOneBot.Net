@@ -19,6 +19,7 @@ using Websocket.Client;
 
 namespace LLOneBot.Net.Sessions
 {
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
     /// <summary>
     /// LLOneBot对象
     /// </summary>
@@ -489,6 +490,7 @@ namespace LLOneBot.Net.Sessions
                 else if ("notice".Equals(post_type, StringComparison.OrdinalIgnoreCase))
 
                 {
+
                     try
                     {
 
@@ -607,6 +609,7 @@ namespace LLOneBot.Net.Sessions
 
                         // throw;
                     }
+
 
                 }
 
