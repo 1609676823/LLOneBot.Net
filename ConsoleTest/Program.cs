@@ -16,6 +16,7 @@
 
     internal class Program
     {
+        #pragma warning disable CS8602 // 解引用可能出现空引用。
         static async Task Main(string[] args)
         {
 
@@ -77,7 +78,9 @@
             };
             await liteLoaderQQNTBot.StartBot();
 
+
             Console.WriteLine(liteLoaderQQNTBot.LoginInfo.Logininfojson);
+
 
             //MessageChain messages = new MessageChain() { new MusicMessage("163", "28949129") };
             //string res = MessageManager.SendGroupMessage("782351597", messages);

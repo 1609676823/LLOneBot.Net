@@ -110,19 +110,20 @@ namespace PostManagerTool.Net
         /// </summary>
         public bool AllowAutoRedirect { get; set; }=true;
 
-        /// <summary>
-        /// 响应是否成功
-        /// </summary>
-        ///public bool ResponseIsSuccess { get; set; } = false;
+        ///// <summary>
+        ///// 响应是否成功
+        ///// </summary>
+        /////public bool ResponseIsSuccess { get; set; } = false;
 
         /// <summary>
         /// 异步获取返回的字符串
         /// </summary>
         /// <param name="url"></param>
+        /// <param name="encoding"></param>
         /// <returns></returns>
         public async Task<string> SendHttpRequestAsync(string url,Encoding encoding=null)
         {
-          
+           // 异步获取返回的字符串
 
             byte[] responseByte = await SendHttpRequestAsByteAsync(url);
 
